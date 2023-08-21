@@ -1,55 +1,125 @@
-<!DOCTYPE html>
+<!-- declaration that the document is written in HTML5 -->
+<!DOCTYPE html>     
 
-<html lang="en">
+<!-- language of the content within the HTML document -->
+<html lang="en">      
 
+
+
+<!-- meta-information about the HTML document -->
 <head>
+
+    <!-- set the character encoding to UTF-8 for proper text representation -->
     <meta charset="UTF-8">
+
+    <!-- ensure compatibility with the latest version of Internet Explorer -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- define the viewport settings for responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- title for the web page displayed in the browser's title bar or tab -->
     <title>Personal Portfolio Website</title>
+
+    <!-- link to external CSS file for styling the web page -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- including the 'Font Awesome' kit for using icons -->
     <script src="https://kit.fontawesome.com/57d8086756.js" crossorigin="anonymous"></script>
+
 </head>
 
+
+
+<!-- main content of the web page -->
 <body>
+
+
+<!----------- header section ------------>
+
 <div id="header">
+
+    <!-- header container having portfolio section links-->
     <div class="container">
+
+        <!-- navigation section -->
         <nav>
-            <img  src="images/logo.png" class="logo">
+
+            <!-- portfolio logo image -->
+            <img  src="images/portfolio-logo.png" class="logo">
+
+            <!-- navigation links -->
             <ul>
+
                 <li><a href="#header">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
+
             </ul>
+
         </nav>
+
+        <!-- text content for the header section -->
         <div class="header-text">
+
+            <!-- paragraph displaying the job title -->
             <p>Machine Learning Engineer</p>
+
+            <!-- heading displaying the name -->
             <h1>Hi, I'm <span>Aman</span> Bhatt.</h1>
+
         </div>
+
     </div>
+
 </div>
 
-<!-----------about---------- -->
+
+<!----------- about section ------------>
+
 <div id="about">
+
+    <!-- container for the about section -->
     <div class="container">
+
+        <!-- distributing container into rows -->
         <div class="row">
+
+            <!-- column 1 -->
             <div class="about-col-1">
-                <img src="images/about_image.png">
+
+                <!-- image file in about section -->
+                <img src="images/about.jpeg">
+
             </div>
+            
+            <!-- column 2 --> 
             <div class="about-col-2">
+
+                <!-- subtitle: About Me -->
                 <h1 class="sub-title">About Me</h1><br>
+
+                <!-- paragraph: About Me Text -->
                 <p>Data enthusiast and a proficient data scientist with a background in civil engineering.
                     Currently working as a Machine Learning Engineer, applying advanced algorithms and techniques
                     to solve complex problems. Passionate about leveraging data-driven insights to address real-world challenges. 
                     Continuously learning and seeking opportunities to further enhance my skills in data science.</p>
 
+                    <!-- tab below paragraph -->
                     <div class="tab-titles">
+
+                        <!-- tab links for skills, experience, education -->
                         <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
                         <p class="tab-links" onclick="opentab('experience')">Experience</p>
                         <p class="tab-links" onclick="opentab('education')">Education</p>
+
                     </div>
+
+                    <!-- tab contents for skills tab -->
                     <div class="tab-contents active-tab" id="skills">
+
+                            <!-- images representing skills -->
                             <img src="images/python.png">
                             <img src="images/R.png">
                             <img src="images/sql.png">
@@ -70,45 +140,89 @@
                             <img src="images/hadoop.png"> 
                                    
                     </div>
+                   
+                    <!-- tab contents for experience tab -->
                     <div class="tab-contents" id="experience">
+
                         <ul>
+
+                            <!-- list of job experiences -->
                             <li><span>Aug 2022 - Present</span><br>Machine Learning Engineer at Climate Connect Digital<br><br></li>
                             <li><span>Jun 2022 - Aug 2022</span><br>Data Scientist Trainee at Climate Connect Digital<br><br></li>
                             <li><span>Aug 2019 - Sep 2020</span><br>Engineer at S & B Engineers & Constructors<br><br></li>
-                        </ul>      
+                        
+                        </ul>  
+
+                    </div>
+                    
+                    <!-- tab contents for experience tab -->
+                    <div class="tab-contents" id="education">
+
+                        <ul>
+
+                            <li><span>2015 - 2019</span><br>Civil Engineering from Aligarh Muslim University<br><br></li>
+                            <li><span>2012 - 2014</span><br>Intermediate from Bal Vidya Mandir Sr. Sec. School<br><br></li>
+                            <li><span>2010 - 2012</span><br>High School from Pioneer Montessori School<br><br></li>
+
+                        </ul>     
+
                     </div>
 
-                    <div class="tab-contents" id="education">
-                        <ul>
-                            <li><span>2015 - 2019</span><br>Civil Engineering from Aligarh Muslim University<br><br></li>
-                            <li><span>2014</span><br>Intermediate from Bal Vidya Mandir Sr. Sec. School<br><br></li>
-                            <li><span>2012</span><br>High School from Pioneer Montessori School<br><br></li>
-                        </ul>      
-                    </div>
             </div>
+
         </div>
+
     </div>
+
 </div>
-<!-------------projects--------------- -->
+
+
+
+<!------------- projects section ----------------->
+
 <div id="projects">
+
     <div class="container">
+
         <h1 class="sub-title">Projects</h1> 
+
         <div class="work-list">
             <div class="work">
-                <img src="images/mrs.png">
+                <img src="images/mrs2.jpeg">
                 <div class="layer">
                     <h3>Movie Recommendation System</h3>
                 </div>
             </div>
+
             <div class="work">
-                <img src="images/ipl.avif">
+                <img src="images/face_mask.jpeg">
                 <div class="layer">
-                    <h3>IPL Win Predictor</h3>
+                    <h3>Face Mask Detection</h3>
+                </div>
             </div>
+
+            <div class="work-list">
+                <div class="work">
+                    <img src="images/iex.jpeg">
+                    <div class="layer">
+                        <h3>Indian Energy Exchange</h3>
+                    </div>
+                </div>
+    
+                <div class="work">
+                    <img src="images/olympics.jpeg">
+                    <div class="layer">
+                        <h3>Olympics Analysis</h3>
+                    </div>
+                </div>
+
         </div>
+
 </div>
 
-<!------------contact----------------->
+
+
+<!------------ contact section ----------------->
 <div id="contact">
     <div class="container">
         <div class="row">

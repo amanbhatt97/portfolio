@@ -1,120 +1,160 @@
+/* default styles to all elements of the web page */
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Times New Roman", Times, serif;
     box-sizing: border-box;
 }
+
+/* applying smooth scrolling behavior for the web page */
 html{
-    scroll-behavior: smooth;
+    scroll-behavior: smooth;   
 }
 
+/* applying styles to the body element */
 body{
-    background: #080808;
-    color: #fff;
+    background: #080808;    /* background color */
+    color: #fff;    /* text color */
 }
+
+
+
+/* ---------- header section -------- */
+
+/* styling background of header section */
 
 #header{
-    width: 100%;
-    height: 100vh;
-    background-image: url(images/my_pic_1.png);
-    background-size: cover;
-    background-position: center;
+    width: 100%;    /* 100% of the container */
+    height: 110vh;      /* 100% of the viewport height */
+    background-image: url(images/my_pic_1.png);     /* background image */
+    background-size: cover;     /* scale the background image to cover the container */
+    background-position: center;    /* position the background image at the center */
 }
 
+/* apply padding to the elements in header section */
 .container{
-    padding: 10px 10%;
+    padding: 25px 8%;
+}
+
+/* applying styles to the <nav> element */
+nav {
+    display: flex;  /* use flex layout */
+    align-items: center;    /* align items vertically in the center */
+    justify-content: space-between;     /* distribute items evenly along the horizontal axis */
+    flex-wrap: wrap;    /* allow items to wrap onto multiple lines if needed */
+}
+
+/* applying width to logo image */
+.logo {
+    width: 250px;   /* set the width to 200 pixels */
+}
+
+/* applying styles to portfolio sections */
+nav ul li {
+    display: inline-block;  /* display the list items horizontally */
+    list-style: none;   /* remove the default list bullet */
+    margin: 10px 25px;   /* apply margin to top and bottom (10px) and left and right (20px) */
+}
+
+/* portfolio sections */
+nav ul li a {
+    color: #fff;    /* set text color to white */
+    text-decoration: none;      /* remove underline from links */
+    font-size: 20px;    /* set font size to 18 pixels */
+    font-weight: 550;   /* thickness of font */
+    position: relative;     /* establish positioning context for pseudo-elements */
+}
+
+/* portfolio section links by default */
+nav ul li a::after {
+    content: '';    /* create the pseudo-element content (no actual content) */
+    width: 0;   /* start with no visible width */
+    height: 3px;    /* set the height of the underline */
+    background: #ff004f;    /* set the color of the underline */
+    position: absolute;     /* position the underline absolutely */
+    left: 0;    /* position the underline at the left edge of the link */
+    bottom: -6px;   /* position the underline slightly below the link */
+    transition: 0.5s;   /* transition effect with a duration of 0.5 seconds */
+}
+
+/* portfolio section links when hovered */
+nav ul li a:hover::after {
+    width: 100%;    /* expand the width of the underline to 100% when hovered */
+}
+
+/* title */
+.header-text {
+    margin-top: 20%; /* Set top margin to 20% of the container's height */
+    font-size: 30px; /* Set font size to 30 pixels */
+}
+
+/* name */
+.header-text h1 {
+    font-size: 60px; /* Set font size to 60 pixels */
+    margin-top: 20px; /* Set top margin to 20 pixels */
+}
+
+/* stying first name */
+.header-text h1 span {
+    color: #ff004f;     /* set text color */
 }
 
 
-nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+
+/* ----------- about section ---------- */
+
+/* applying styles to the element inside about section */
+#about {
+    padding: 80px 0;    /* apply padding of 80 pixels at the top and bottom */
+    color: #ababab;         /* set text color */
 }
 
-.logo{
-    width: 140px;
+/* apply flex layout to elements with class "row" */
+.row {
+    display: flex;      /* Uue flex layout for the container */
+    justify-content: space-between;     /* distribute items with space between them */
+    flex-wrap: wrap;    /* allow items to wrap to the next line if needed */
 }
 
-nav ul li{
-    display: inline-block;
-    list-style: none;
-    margin: 10px 20px;
+/* column-1 styling */
+.about-col-1 {
+    flex-basis: 35%;    /* set the initial flex basis to 35% of the container width */
 }
 
-nav ul li a{
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    position: relative;
-}
-nav ul li a::after{
-    content: '';
-    width: 0;
-    height: 3px;
-    background: #ff004f;
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    transition: 0.5s;
-}
-nav ul li a:hover::after{
-    width: 100%;
+/* column-1 image styling */
+.about-col-1 img {
+    width: 100%; /*     Mmke the image width 100% of its container */
+    border-radius: 25px;    /* apply a border-radius to round the corners of the image */
 }
 
-.header-text{
-    margin-top: 20%;
-    font-size: 30px;
-}
-.header-text h1{
-    font-size: 60px;
-    margin-top: 20px;
-}
-.header-text h1 span{
-    color: #ff004f;
+/* "about me" subtitle */
+.sub-title {
+    font-size: 50px;    /* set the font size to 50 pixels */
+    font-weight: 550;   /* set the font weight to 550 (medium) */
+    color: #fff;    /* set the text color */
 }
 
-/* -----------about---------- */
-#about{
-    padding: 80px 0;
-    color: #ababab;
-}
-.row{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-.about-col-1{
-    flex-basis: 35%;
-}
-.about-col-1 img{
-    width: 100%;
-    border-radius: 25px;
+/* column-2 styling */
+.about-col-2 {
+    flex-basis: 60%;    /* set the initial flex basis to 60% of the container width */
+    font-size: 20px;    /* set the font size to 18 pixels */
 }
 
-.about-col-2{
-    flex-basis: 60%;
-    font-size: 18px;
-}
-
-.sub-title{
-    font-size: 60px;
-    font-weight: 600;
-    color: #fff;
-}
-
+/* tabs styling */
 .tab-titles{
     display: flex;
     margin: 50px 0 40px;
+    color: #9ebed0;    /* set the text color */
 }
+
 .tab-links{
     margin-right: 50px;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 550;
     cursor: pointer;
     position: relative;
 }
+
 .tab-links::after{
     content: '';
     font-weight: 600;
@@ -132,7 +172,7 @@ nav ul li a:hover::after{
 
 .tab-contents ul li{
     list-style: none;
-    font-weight: 550;
+    font-weight: 500;
     margin: 10px 0;
 }
 
