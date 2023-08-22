@@ -448,6 +448,8 @@ nav .fas{
         cursor: pointer;
     }
 
+
+    
     /*------------- about section -----------*/
 
     /* subtitle size */
@@ -498,10 +500,14 @@ nav .fas{
     .layer a {
         padding: 5px;
     }
+
+
+
     /*------------- contact section -----------*/
     .contact-left, .contact-right{
         flex-basis: 100%;
     }
+
 }
 
 
