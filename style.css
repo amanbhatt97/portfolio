@@ -25,7 +25,7 @@ body{
 
 #header{
     width: 100%;    /* 100% of the container */
-    height: 110vh;      /* 100% of the viewport height */
+    height: 100vh;      /* 100% of the viewport height */
     background-image: url(images/my_pic_1.png);     /* background image */
     background-size: cover;     /* scale the background image to cover the container */
     background-position: center;    /* position the background image at the center */
@@ -121,7 +121,7 @@ nav ul li a:hover::after {
     flex-basis: 35%;    /* set the initial flex basis to 35% of the container width */
 }
 
-/* column-1 image styling */
+/* column-1 image */
 .about-col-1 img {
     width: 100%; /*     Mmke the image width 100% of its container */
     border-radius: 25px;    /* apply a border-radius to round the corners of the image */
@@ -134,89 +134,203 @@ nav ul li a:hover::after {
     color: #fff;    /* set the text color */
 }
 
-/* column-2 styling */
+/* column-2 text */
 .about-col-2 {
     flex-basis: 60%;    /* set the initial flex basis to 60% of the container width */
-    font-size: 20px;    /* set the font size to 18 pixels */
+    font-size: 18px;    /* set the font size to 18 pixels */
+    color: #fff;    /* set the text color */ 
 }
 
 /* tabs styling */
-.tab-titles{
-    display: flex;
-    margin: 50px 0 40px;
-    color: #9ebed0;    /* set the text color */
+.tab-titles {
+    display: flex;  /* use flex layout for the container */
+    margin: 80px 0 40px;    /* set margins: top=80px, right=0, bottom=40px, left=0 */
+    color: #9ebed0;  /* set the text color to a shade of blue */
 }
 
-.tab-links{
-    margin-right: 50px;
-    font-size: 20px;
-    font-weight: 550;
-    cursor: pointer;
-    position: relative;
+/* tab links styling */
+.tab-links {
+    margin-right: 50px;     /* add right margin of 50px */
+    font-size: 20px;    /* set the font size to 20 pixels */
+    font-weight: 550;   /* set the font weight to 550 (medium to bold) */
+    cursor: pointer;    /* change the cursor to a pointer on hover, indicating interactivity */
+    position: relative;     /* set the positioning context to relative for positioning children */
 }
 
-.tab-links::after{
-    content: '';
-    font-weight: 600;
-    width: 0;
-    height: 3px;
-    background: #ff004f;
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    transition: 0.5s;
+/* tab links by default */
+.tab-links::after {
+    content: '';    /* insert empty content for the pseudo-element */
+    font-weight: 600;   /* set font weight to 600 (medium bold) for potential styling purposes */
+    width: 0;   /* set initial width of the pseudo-element to 0 */
+    height: 3px;    /* set the height of the pseudo-element's underline to 3 pixels */
+    background: #ff004f;    /* set the background color of the underline to a shade of red (#ff004f) */
+    position: absolute;     /* position the pseudo-element absolutely within the tab link */
+    left: 0;    /* align the pseudo-element's left edge with the left edge of the tab link */
+    bottom: -8px;   /* position the pseudo-element 8 pixels above the bottom of the tab link */
+    transition: 0.5s;   /* apply a smooth transition effect over 0.5 seconds */
 }
+
+/* tab links when hovered */
 .tab-links.active-link::after{
-    width: 50%;
+    width: 100%; /* set the width of the pseudo-element's underline to 100% */
 }
 
-.tab-contents ul li{
-    list-style: none;
-    font-weight: 500;
-    margin: 10px 0;
+/* experience list item styling */
+.tab-contents ul li {
+    list-style: none;   /* remove default list bullets */
+    font-weight: 500;   /* set font weight for the list item */
+    margin: 10px 0;     /* set margin around the list item */
 }
 
-.tab-contents ul li span{
-    color: #b54769;
-    font-size: 18px;
+/* styling for the experience date span */
+.tab-contents ul li span {
+    color: #b54769;     /* set text color for the date span */
+    font-size: 20px;    /* set font size for the date span */
 }
 
-.tab-contents img{
-    width: 15%;
-    border-radius: 15px;
+/* styling for the experience description paragraph */
+.tab-contents ul li p {
+    display: block;     /* display the paragraph as a block element */
+    padding-left: 25px;     /* add left padding for indentation */
+    position: relative;     /* create positioning context for the ::before pseudo-element */
+    color: #bdd5de;     /* set text color for the description paragraph */
+    font-size: 16px;    /* set font size for the description paragraph */
 }
 
-.tab-contents{
-    display: none;
-}
-.tab-contents.active-tab{
-    display: block;
+/* styling for the bullet point */
+.tab-contents ul li p::before {
+    content: '\2023';   /* use bullet character as content */
+    padding-left: 10px; 
+    position: absolute;     /* position the bullet point absolutely */
+    left: 0;    /* position the bullet at the left edge */
+    color: #f7a5a5;    /* set the color of the bullet point */
 }
 
-/* ----------project --------*/
-#portfolio{
-    padding: 50px 0;
+
+/* style for images in skills tab */
+.tab-contents img {
+    width: 15%;     /* set the width of the images to 15% of their container's width */
+    border-radius: 15px;    /* apply rounded corners to the images */
 }
-.work-list{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 40px;
-    margin-top: 50px;
+
+/* hide tab contents by default */
+.tab-contents {
+    display: none;  /* initially hide tab contents */
 }
-.work{
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
+
+/* show active tab contents */
+.tab-contents.active-tab {
+    display: block;     /* display tab contents when the corresponding tab is active */
 }
-.work img{
+
+
+
+/* ----------project section --------*/
+
+
+/* add padding to the projects section */
+#projects {
+    padding: 5px 0;
+}
+
+/* overall project items */
+.work-list {
+    display: grid;  /* use grid layout for the project items */
+    grid-template-columns: repeat(3, 1fr);    /* automatic grid columns with minimum width 250px */
+    grid-gap: 40px;     /* gap between grid items */
+    margin-top: 50px;   /* margin at the top of the project list */
+}
+
+/* each project item */
+.work {
+    border-radius: 20px;    /* add rounded corners to the project item */
+    position: relative;     /* create positioning context for child elements */
+    overflow: hidden;   /* hide overflowing content within the project item */
+}
+
+/* project images */
+.work img {
+    width: 160%;    /* set the width of the image */
+    border-radius: 10px;    /* add rounded corners to the image */
+    display: block;     /* make the image a block element */
+    transition: transform 0.5s;    /* apply smooth transition to image scaling */
+}
+
+/* overlay text layer over image */
+.layer {
     width: 100%;
-    border-radius: 10px;
-    display: block;
+    height: 0%;    /* initially hide the overlay layer */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), #ff004f);    /* gradient background */
+    border-radius: 10px;    /* add rounded corners to the layer */
+    position: absolute;    /* absolute positioning within the container */
+    left: 0;
+    bottom: 0;
+    overflow: hidden;    /* hide overflowing content */
+    display: flex;    /* use flex display for content alignment */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;    /* stack content vertically */
+    padding: 0 40px;    /* padding inside the layer */
+    text-align: center;
+    font-size: 14px;    /* font size for layer content */
+    transition: height 0.5s;    /* apply smooth transition to layer height */
 }
+
+/* Style for the project title and description within the layer */
+.layer h3 {
+    font-weight: 500;    /* Set font weight for the project title */
+    margin-bottom: 20px;    /* Margin at the bottom of the title */
+}
+
+/* link within the layer */
+.layer a {
+    margin-top: 20px;
+    color: #ff004f;    /* set link color */
+    text-decoration: none;    /* remove underline from link */
+    font-size: 18px;    /* set font size for link */
+    line-height: 60px;    /* set line height for vertical alignment */
+    background: #fff;    /* background color for link */
+    width: 60px;    /* set width for link container */
+    height: 60px;    /* set height for link container */
+    border-radius: 50%;    /* create circular link container */
+    text-align: center;    /* center link content horizontally */
+}
+
+/* hover effect for project images */
+.work:hover img {
+    transform: scale(1.1);    /* enlarge the image on hover */
+}
+
+/* hover effect for project title and description within the layer */
+.work:hover .layer {
+    height: 100%;    /* expand the layer height on hover */
+}
+
+/* see more button by default */
+.btn{
+    display: block;
+    background-color: #ff004f;
+    margin: 50px auto;
+    width: fit-content;
+    border: 1px solid #ff004f;
+    padding: 14px 50px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.5s;
+    cursor: pointer
+}
+
+/* see more button on hover */
+.btn:hover{
+    background: #c0013d;
+}
+
+
 
 /*---------------contact-------------*/
 #contact{
-    padding: 100px 0;
+    padding: 40px 0;
 }
 .contact-left{
     flex-basis: 35%;
@@ -231,6 +345,14 @@ nav ul li a:hover::after {
     color: #ff004f;
     margin-right: 15px;
     font-size: 25px;
+}
+
+.btn.btn2{
+    margin: 40px 40px;
+}
+
+.btn.btn3{
+    margin: 5px 5%;
 }
 
 .social-icons{
@@ -249,23 +371,6 @@ nav ul li a:hover::after {
     transform: translateY(-5px);
 }
 
-.btn{
-    display: inline-block;
-    background-color: #080808;
-    margin: 50px auto;
-    width: fit-content;
-    border: 1px solid #ff004f;
-    padding: 14px 50px;
-    border-radius: 6px;
-    text-decoration: none;
-    color: #fff;
-    transition: background 0.5s;
-    cursor: pointer
-}
-.btn:hover{
-    background: #ff004f;
-}
-
 .contact-right form{
     width: 100%;
 }
@@ -280,6 +385,8 @@ form input, form textarea{
     font-size: 18px;
     border-radius: 6px;
 }
+
+
 
 /*------------- CSS for small screen -----------*/
 @media only screen and (max-width: 600ox){
