@@ -387,9 +387,69 @@ form input, form textarea{
 }
 
 
+/* hide menu and cross bar from large screen */
+nav .fas{
+    display: none;
+}
+
+
 
 /*------------- CSS for small screen -----------*/
-@media only screen and (max-width: 600ox){
+@media only screen and (max-width: 768px){
+
+    /* nackground image */
+    #header{
+        background-image: url(images/my_pic_1.png);     /* background image */
+    }
+
+    /* title */
+    .header-text {
+        margin-top: 80%; /* Set top margin to 20% of the container's height */
+        font-size: 16px; /* Set font size to 30 pixels */
+    }
+
+    /* name */
+    .header-text h1 {
+        font-size: 30px; /* Set font size to 60 pixels */
+    }
+
+    /* display cross and menu icon */
+    nav .fas{
+        display: block;
+        font-size: 25px;
+    }
+
+    /* menu bar */
+    nav ul{
+        background: #ff004f;
+        position: fixed;
+        top: 0;
+        right: -200px;
+        width: 180px;
+        height: 100vh;
+        padding-top: 50px;
+        z-index: 2;
+        transition: right 0.5s;
+    }
+
+    /* menu bar links */ 
+    nav ul li{
+        display: block;
+        margin: 25px;
+    }
+
+    /* position of cross mark */
+    nav ul .fas{
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        cursor: pointer;
+    }
+
+    .sub-title{
+        font-size: 40px;
+    }
+
 }
 
 #msg{
