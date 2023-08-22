@@ -395,7 +395,7 @@ nav .fas{
 
 
 /*------------- CSS for small screen -----------*/
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 900px){
 
     /*------------- header section -----------*/ 
 
@@ -487,6 +487,17 @@ nav .fas{
         margin-top: 50px;   /* margin at the top of the project list */
     }
 
+    .layer {
+        display: inline-table;
+        height: 100%;
+        font-size: medium;
+        padding-top: 50%;
+        background: linear-gradient(rgba(0, 0, 0, 0.01), #ff004f); 
+    }
+
+    .layer a {
+        padding: 5px;
+    }
     /*------------- contact section -----------*/
     .contact-left, .contact-right{
         flex-basis: 100%;
