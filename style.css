@@ -395,9 +395,11 @@ nav .fas{
 
 
 /*------------- CSS for small screen -----------*/
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 600px){
 
-    /* nackground image */
+    /*------------- header section -----------*/ 
+
+    /* background image */
     #header{
         background-image: url(images/my_pic_1.png);     /* background image */
     }
@@ -446,12 +448,20 @@ nav .fas{
         cursor: pointer;
     }
 
+    /*------------- about section -----------*/
+
     /* subtitle size */
     .sub-title{
         font-size: 40px;
     }
 
-    .about-col-1, .about-col-2{
+    /* about me image */
+    .about-col-1{
+        flex-basis: 100%; 
+    }
+    
+    /* about me col2 */ 
+    .about-col-2{
         flex-basis: 100%;
     }
 
@@ -469,6 +479,15 @@ nav .fas{
         margin-right: 20px;
     }
 
+    /* overall project items */
+    .work-list {
+        display: grid;  /* use grid layout for the project items */
+        grid-template-columns: repeat(1, 1fr);    /* automatic grid columns with minimum width 250px */
+        grid-gap: 40px;     /* gap between grid items */
+        margin-top: 50px;   /* margin at the top of the project list */
+    }
+
+    /*------------- contact section -----------*/
     .contact-left, .contact-right{
         flex-basis: 100%;
     }
