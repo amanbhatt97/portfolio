@@ -1,6 +1,6 @@
 # My Portfolio
 
-Welcome to my portfolio website! This project showcases my skills, experiences, and projects. It's built using HTML and CSS, and it's designed to be responsive for different screen sizes. 
+Welcome to my portfolio website! This project showcases my skills, experiences, and projects. It's built using HTML and CSS, and it's designed to be responsive for different screen sizes.<br> 
 You can view the live website [here](https://amanbhatt97.github.io/portfolio/).
 
 ## Table of Contents
