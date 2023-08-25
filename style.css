@@ -26,7 +26,7 @@ body{
 #header{
     width: 100%;    /* 100% of the container */
     height: 100vh;      /* 100% of the viewport height */
-    background-image: url(images/my_pic_1.png);     /* background image */
+    background-image: url(images/my_pic_1.png);     /* background image */ 
     background-size: cover;     /* scale the background image to cover the container */
     background-position: center;    /* position the background image at the center */
 }
