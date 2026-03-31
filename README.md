@@ -11,7 +11,6 @@ A personal portfolio website showcasing my skills, projects, and experience as a
 - [About](#about)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
-- [Projects Showcased](#projects-showcased)
 - [Contact](#contact)
 
 ---
@@ -41,19 +40,6 @@ This portfolio is a personal project built to highlight my background in data sc
 - **HTML5** — structure and semantic markup
 - **CSS3** — styling and responsive design
 - **GitHub Pages** — free static site hosting
-
----
-
-## Projects Showcased
-
-Some of the projects featured on the portfolio:
-
-| Project | Description |
-|---|---|
-| [IEX Price Forecasting](https://github.com/amanbhatt97/price-forecast-iex) | Day-ahead energy price prediction using ML + MLOps |
-| [Swiggy Delivery Time Prediction](https://github.com/amanbhatt97/swiggy-delivery-time-prediction) | Regression model for food delivery ETA |
-| [Research Paper Summarizer](https://github.com/amanbhatt97/research-paper-summarizer) | NLP-based summarization tool for academic papers |
-| [IPL Win Probability Predictor](https://github.com/amanbhatt97/IPL-Win-Probability-Predictor) | Real-time match win probability using historical data |
 
 ---
 
