@@ -344,7 +344,7 @@ function mountChrome() {
   });
 
   /* Nav: blur after scroll, hide on scroll down / show on up */
-  const nav = $('nav');
+  const nav = $('.site-nav');
   const toTop = $('#toTop');
   const pbar = $('#pbar');
   let lastY = scrollY, ticking = false;
