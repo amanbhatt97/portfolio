@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "title": "Aman Bhatt · ML Engineer & Data Scientist",
+    "description": "Aman Bhatt — ML Engineer & Data Scientist. Energy forecasting, LLMs, MLOps."
+  },
+  "brand": {
+    "logo": "aman bhatt."
+  },
+  "hero": {
+    "availability": "Assistant Manager – Data Science & AI · BSES Rajdhani Power Limited",
+    "headline1": "Aman",
+    "headline2": "Bhatt",
+    "roles": [
+      "ML Engineer",
+      "Data Scientist",
+      "Energy Forecasting Expert",
+      "LLM Systems Builder",
+      "MLOps Engineer"
+    ],
+    "bio": "Data Scientist & Machine Learning Engineer specialising in forecasting, real-time ML systems and MLOps. Proven ability to deliver production-grade models with <3% MAPE, architect low-latency data pipelines with Spark, Kafka and AWS, and design CI/CD-driven ML workflows for scale and reliability.",
+    "stats": [
+      { "value": "<3%", "label": "MAPE · production" },
+      { "value": "4+", "label": "years experience" },
+      { "value": "166", "label": "RE plants forecasted" }
+    ],
+    "photo": "images/my_pic_1.png",
+    "photoBadges": [
+      { "value": "<3%", "label": "MAPE" },
+      { "value": "4+", "label": "Yrs ML" },
+      { "value": "166", "label": "Plants" }
+    ]
+  },
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/amanbhatt1997/",
+    "github": "https://github.com/amanbhatt97",
+    "email": "amanbhatt.1997.ab@gmail.com",
+    "hackerrank": "https://www.hackerrank.com/ab_977"
+  },
+  "resume": {
+    "file": "Aman_Bhatt_Resume.pdf"
+  },
+  "about": {
+    "label": "About me",
+    "headingPlain": "Data Scientist &",
+    "headingAccent": "ML Engineer",
+    "image": "images/about.jpeg",
+    "badges": [
+      { "icon": "pin", "text": "New Delhi" },
+      { "icon": "wifi", "text": "Remote-friendly" }
+    ],
+    "paragraphs": [
+      "Data enthusiast and a proficient data scientist with a background in civil engineering. Currently working as an Assistant Manager – Data Science & AI at BSES Rajdhani Power Limited, applying advanced algorithms and techniques to solve complex forecasting problems.",
+      "Passionate about leveraging data-driven insights and building AI systems that last — driving measurable business impact across the energy sector. Experienced in bridging research with engineering, enabling grid operators and renewable energy firms to make data-driven decisions at speed."
+    ],
+    "chips": [
+      "Python",
+      "LangChain",
+      "Apache Spark",
+      "Kafka",
+      "AWS",
+      "LightGBM",
+      "Transformers",
+      "MLOps"
+    ]
+  },
+  "skills": {
+    "label": "Tech stack",
+    "heading": "Skills & Tools",
+    "sub": "From raw data to deployed model — the full ML engineering toolkit.",
+    "groups": [
+      {
+        "icon": "bot",
+        "color": "violet",
+        "title": "Machine Learning / AI",
+        "pills": ["Python", "OOP", "DSA", "SQL", "Statistics", "Data Visualization", "ML Algorithms"]
+      },
+      {
+        "icon": "cpu",
+        "color": "cyan",
+        "title": "Deep Learning & LLMs",
+        "pills": ["ANN", "CNN", "RNN", "LSTM", "GRU", "Autoencoders", "Transformers", "NLP", "Generative AI", "LangChain", "LlamaIndex"]
+      },
+      {
+        "icon": "layers",
+        "color": "green",
+        "title": "Python Packages",
+        "pills": ["NumPy", "Pandas", "Matplotlib", "Plotly", "Scipy", "Scikit-learn", "TensorFlow", "Keras", "Streamlit", "Optuna"]
+      },
+      {
+        "icon": "database",
+        "color": "amber",
+        "title": "MLOps & Big Data",
+        "pills": ["Git", "Docker", "MLflow", "FastAPI", "Apache Spark", "Kafka", "Airflow", "AWS", "Kubernetes", "Hadoop"]
+      }
+    ],
+    "logos": [
+      { "label": "Python", "img": "images/python.png", "url": "https://www.python.org/" },
+      { "label": "NumPy", "img": "images/numpy.png", "url": "https://numpy.org/" },
+      { "label": "Pandas", "img": "images/pandas.png", "url": "https://pandas.pydata.org/" },
+      { "label": "Matplotlib", "img": "images/matplotlib.png", "url": "https://matplotlib.org/" },
+      { "label": "Seaborn", "img": "images/seaborn.svg", "url": "https://seaborn.pydata.org/" },
+      { "label": "Sklearn", "img": "images/scikit-learn.png", "url": "https://scikit-learn.org/" },
+      { "label": "TensorFlow", "img": "images/tensorflow.png", "url": "https://www.tensorflow.org/" },
+      { "label": "Keras", "img": "images/keras.png", "url": "https://keras.io/" },
+      { "label": "PyTorch", "img": "images/pytorch.png", "url": "https://pytorch.org/" },
+      { "label": "Streamlit", "img": "images/streamlit.png", "url": "https://www.streamlit.io/" },
+      { "label": "Spark", "img": "images/spark.png", "url": "https://spark.apache.org/" },
+      { "label": "Hadoop", "img": "images/hadoop.png", "url": "https://hadoop.apache.org/" },
+      { "label": "SQL", "img": "images/sql.png", "url": "https://www.microsoft.com/en-us/sql-server" },
+      { "label": "Power BI", "img": "images/powerbi.png", "url": "https://powerbi.microsoft.com/" },
+      { "label": "Tableau", "img": "images/tableau.webp", "url": "https://www.tableau.com/" },
+      { "label": "MongoDB", "img": "images/mongodb.png", "url": "https://www.mongodb.com/" }
+    ]
+  },
+  "experience": {
+    "label": "Experience",
+    "heading": "Work Experience",
+    "sub": "Building real ML systems in the energy sector.",
+    "items": [
+      {
+        "type": "work",
+        "role": "Assistant Manager – Data Science & AI",
+        "org": "BSES Rajdhani Power Limited (BRPL)",
+        "date": "Apr 2025 — Present",
+        "location": "New Delhi, India",
+        "bullets": [
+          "Leading the design and deployment of short-term and day-ahead load forecasting models, enhanced with an LLM-powered assistant built using LangChain that allows grid operators and planners to query demand forecasts and scenario analyses in natural language, improving decision-making speed, transparency, and operational efficiency across BRPL's service zones."
+        ],
+        "tags": ["LangChain", "Load Forecasting", "LLMs", "Python"]
+      },
+      {
+        "type": "work",
+        "role": "Machine Learning Engineer",
+        "org": "Renew Power · Climate Connect Digital",
+        "date": "Jun 2022 — Apr 2025",
+        "location": "Gurugram, India",
+        "bullets": [
+          "Led the development of predictive models for Delhi Discoms (BRPL, BYPL, TPDDL), achieving a 3% MAPE using Neural Networks, LightGBM, CatBoost, and XGBoost for day-ahead and intraday forecasting. Integrated real-time weather data while leveraging Apache Spark and Kafka for efficient data handling.",
+          "Developed solar and wind forecasting models for REMC-Telangana (166 plants), designing high-precision week-ahead energy predictions. Deployed models using AWS SageMaker, with automated CI/CD pipelines for seamless updates.",
+          "Conducted extensive research and development on price forecasting at IEX, employing diverse models and achieving a notable 7.5% MAPE with innovative strategies using the LightGBM model."
+        ],
+        "tags": ["LightGBM", "Neural Networks", "Apache Spark", "Kafka", "AWS SageMaker", "CatBoost"]
+      },
+      {
+        "type": "work",
+        "role": "Engineer",
+        "org": "S & B Engineers & Constructors",
+        "date": "Aug 2019 — Sep 2020",
+        "location": "Noida, India",
+        "bullets": [
+          "Designed foundation for different equipment and structures that are usually present in oil refineries using softwares like AutoCAD, StaadPro, RISA Base, Foundation 3D, RAM Connection etc."
+        ],
+        "tags": ["AutoCAD", "StaadPro", "RISA Base", "Foundation 3D"]
+      },
+      {
+        "type": "education",
+        "role": "B.Tech Civil Engineering",
+        "org": "Aligarh Muslim University",
+        "date": "2015 — 2019",
+        "location": "Aligarh, India",
+        "bullets": [
+          "Graduated with a 9.0 CGPA."
+        ],
+        "tags": ["9.0 CGPA"]
+      }
+    ]
+  },
+  "projects": {
+    "label": "Projects",
+    "heading": "My Work",
+    "sub": "End-to-end ML projects — all deployed as live apps.",
+    "githubUrl": "https://github.com/amanbhatt97",
+    "items": [
+      {
+        "title": "Movie Recommendation System",
+        "desc": "A movie recommendation system that recommends movies based on search.",
+        "image": "images/mrs.jpeg",
+        "link": "https://recommend-movies-app.streamlit.app/"
+      },
+      {
+        "title": "IPL Win Predictor",
+        "desc": "IPL win predictor that can predict probability of winning of chasing team at any point of the match.",
+        "image": "images/ipl.jpeg",
+        "link": "https://ipl-win-prediction.streamlit.app/"
+      },
+      {
+        "title": "Olympics Analysis",
+        "desc": "Analysis of past years summer olympics record from 1896 to 2016.",
+        "image": "images/olympics.jpeg",
+        "link": "https://olympics-analysis.streamlit.app/"
+      },
+      {
+        "title": "SMS Spam Classifier",
+        "desc": "A classifier that can predict any SMS as spam or not.",
+        "image": "images/spam_sms.jpeg",
+        "link": "https://spam-classifier-sms.streamlit.app/"
+      },
+      {
+        "title": "WhatsApp Chat Analysis",
+        "desc": "Analyse of group as well as personal WhatsApp chats.",
+        "image": "images/whatsapp.jpeg",
+        "link": "https://chat-analysis-whatsapp.streamlit.app/"
+      }
+    ]
+  },
+  "cta": {
+    "badge": "Open to opportunities",
+    "title1": "Let's build something",
+    "title2": "that ships to production",
+    "sub": "Full-time roles · Contract work · Consulting · Research collaborations in ML, AI and data science."
+  },
+  "contact": {
+    "label": "Contact",
+    "heading": "Get in Touch",
+    "sub": "Have a role or project in mind? Fill in the form — I'll reply within 24 hours.",
+    "intro": "Open to full-time ML/AI roles, contract work, consulting and research collaborations.",
+    "phone": "+91-9452305762",
+    "location": "New Delhi · Open to remote"
+  },
+  "footer": {
+    "copyright": "© 2025 Aman Bhatt · ML Engineer & Data Scientist"
+  }
+}

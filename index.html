@@ -2,862 +2,151 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aman Bhatt · ML Engineer &amp; Data Scientist</title>
 <meta name="description" content="Aman Bhatt — ML Engineer & Data Scientist. Energy forecasting, LLMs, MLOps.">
-<title>Aman Bhatt · ML Engineer</title>
+<link rel="canonical" href="https://amanbhatt97.github.io/portfolio/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aman Bhatt · ML Engineer & Data Scientist">
+<meta property="og:description" content="Energy forecasting, LLMs and MLOps — production-grade ML systems.">
+<meta property="og:url" content="https://amanbhatt97.github.io/portfolio/">
+<meta property="og:image" content="https://amanbhatt97.github.io/portfolio/images/my_pic_1.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="images/portfolio-logo.png">
+<link rel="apple-touch-icon" href="images/portfolio-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-img{display:block;max-width:100%}
-button{font-family:inherit;cursor:pointer;border:none;background:none}
-a{text-decoration:none;color:inherit}
-
-/* ══ THEMES ════════════════════════════════════════════════════════ */
-[data-theme="dark"]{
-  --bg:#050508;
-  --bg2:#0a0f1e;
-  --bg3:#0f1629;
-  --surf:rgba(255,255,255,.03);
-  --surf2:rgba(255,255,255,.06);
-  --surf3:rgba(255,255,255,.09);
-  --bdr:rgba(255,255,255,.06);
-  --bdr2:rgba(255,255,255,.1);
-  --bdr-hi:rgba(139,92,246,.65);
-  --t1:#eef0ff;
-  --t2:#94a3b8;
-  --t3:#475569;
-  --acc:#8b5cf6;
-  --acc2:#a78bfa;
-  --cy:#22d3ee;
-  --gn:#10b981;
-  --pk:#ec4899;
-  --am:#f59e0b;
-  --grd:linear-gradient(135deg,#8b5cf6 0%,#6366f1 45%,#22d3ee 100%);
-  --grd2:linear-gradient(135deg,#8b5cf6,#6366f1);
-  --grd3:linear-gradient(135deg,#ec4899,#8b5cf6,#22d3ee);
-  --nav-bg:rgba(5,5,8,.9);
-  --card-shd:0 8px 40px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.04);
-  --spotlight-clr:rgba(139,92,246,.12);
-  --blob-op:.18;
-}
-[data-theme="light"]{
-  --bg:#f7f6ff;
-  --bg2:#eeecff;
-  --bg3:#e5e2ff;
-  --surf:rgba(255,255,255,.65);
-  --surf2:rgba(255,255,255,.9);
-  --surf3:rgba(255,255,255,.98);
-  --bdr:rgba(109,40,217,.1);
-  --bdr2:rgba(109,40,217,.18);
-  --bdr-hi:rgba(109,40,217,.5);
-  --t1:#1e1b4b;
-  --t2:#4c3d6e;
-  --t3:#9ca3af;
-  --acc:#7c3aed;
-  --acc2:#7c3aed;
-  --cy:#0891b2;
-  --gn:#059669;
-  --pk:#db2777;
-  --am:#d97706;
-  --grd:linear-gradient(135deg,#7c3aed 0%,#6366f1 45%,#0891b2 100%);
-  --grd2:linear-gradient(135deg,#7c3aed,#6366f1);
-  --grd3:linear-gradient(135deg,#db2777,#7c3aed,#0891b2);
-  --nav-bg:rgba(247,246,255,.92);
-  --card-shd:0 8px 32px rgba(109,40,217,.07),inset 0 1px 0 rgba(255,255,255,.9);
-  --spotlight-clr:rgba(109,40,217,.08);
-  --blob-op:.06;
-}
-
-/* ══ BASE ══════════════════════════════════════════════════════════ */
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{
-  background:var(--bg);color:var(--t1);
-  font-family:'Inter',sans-serif;line-height:1.65;overflow-x:hidden;
-  transition:background .35s,color .35s;
-  -webkit-tap-highlight-color:transparent;
-}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--acc);border-radius:4px}
-::selection{background:rgba(139,92,246,.3);color:#fff}
-
-/* ══ BACKGROUND ════════════════════════════════════════════════════ */
-/* Aurora orbs */
-.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.ao{position:absolute;border-radius:50%;filter:blur(80px);opacity:var(--blob-op)}
-.ao1{width:65vw;height:55vh;background:radial-gradient(ellipse,rgba(139,92,246,1) 0%,transparent 65%);top:-15%;left:-15%;animation:ao-drift1 22s ease-in-out infinite}
-.ao2{width:55vw;height:50vh;background:radial-gradient(ellipse,rgba(34,211,238,1) 0%,transparent 65%);bottom:-10%;right:-10%;animation:ao-drift2 28s ease-in-out infinite}
-.ao3{width:40vw;height:40vh;background:radial-gradient(ellipse,rgba(236,72,153,1) 0%,transparent 65%);top:40%;left:38%;animation:ao-drift3 19s ease-in-out infinite}
-@keyframes ao-drift1{0%,100%{transform:translate(0,0)}40%{transform:translate(3vw,4vh)}70%{transform:translate(-2vw,2vh)}}
-@keyframes ao-drift2{0%,100%{transform:translate(0,0)}35%{transform:translate(-4vw,-4vh)}65%{transform:translate(2vw,-5vh)}}
-@keyframes ao-drift3{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,calc(-50% - 3vh))}}
-/* Neural network canvas */
-#pcanvas{position:fixed;inset:0;z-index:1;pointer-events:none}
-/* Cyber dot grid */
-.bg-dots{
-  position:fixed;inset:0;z-index:1;pointer-events:none;
-  background-image:radial-gradient(rgba(139,92,246,.07) 1px,transparent 1px);
-  background-size:28px 28px;
-}
-[data-theme="light"] .bg-dots{background-image:radial-gradient(rgba(109,40,217,.08) 1px,transparent 1px)}
-
-/* ══ SCROLL PROGRESS ═══════════════════════════════════════════════ */
-#pbar{
-  position:fixed;top:0;left:0;right:0;height:2px;z-index:500;
-  background:var(--grd);transform:scaleX(0);transform-origin:left;
-  box-shadow:0 0 10px rgba(139,92,246,.6),0 0 24px rgba(34,211,238,.2);
-}
-
-/* ══ NAV ═══════════════════════════════════════════════════════════ */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:300;height:64px;
-  background:var(--nav-bg);
-  backdrop-filter:blur(28px) saturate(180%);
-  -webkit-backdrop-filter:blur(28px) saturate(180%);
-  border-bottom:1px solid var(--bdr);
-}
-.nav-inner{
-  max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,48px);
-  height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
-}
-.nav-logo{
-  font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:17px;letter-spacing:-.04em;
-  background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  white-space:nowrap;
-}
-.nav-links{display:flex;list-style:none;gap:2px}
-.nav-links a{
-  font-size:13px;font-weight:500;color:var(--t3);
-  padding:6px 12px;border-radius:8px;transition:color .15s,background .15s;
-  font-family:'Fira Code',monospace;letter-spacing:.02em;
-}
-.nav-links a:hover,.nav-links a.act{color:var(--t1);background:var(--surf2)}
-.nav-right{display:flex;align-items:center;gap:8px}
-.t-btn{
-  width:34px;height:34px;border-radius:8px;
-  background:var(--surf2);border:1px solid var(--bdr);
-  color:var(--t2);font-size:13px;
-  display:flex;align-items:center;justify-content:center;transition:all .2s;
-}
-.t-btn:hover{border-color:var(--bdr-hi);color:var(--acc2);background:rgba(139,92,246,.1)}
-.nav-cta{
-  padding:8px 18px;border-radius:8px;background:var(--grd2);
-  color:#fff;font-size:13px;font-weight:600;letter-spacing:.01em;
-  box-shadow:0 2px 16px rgba(139,92,246,.35);transition:all .22s;
-}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(139,92,246,.5),0 0 0 1px rgba(139,92,246,.5)}
-.hbg{display:none;flex-direction:column;gap:5px;padding:8px}
-.hbg span{display:block;width:20px;height:1.5px;background:var(--t2);border-radius:2px;transition:all .3s}
-.hbg.op span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
-.hbg.op span:nth-child(2){opacity:0}
-.hbg.op span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-
-/* ══ MOBILE DROPDOWN ═══════════════════════════════════════════════ */
-.mob-drop{
-  position:fixed;top:64px;left:0;right:0;z-index:290;
-  background:var(--nav-bg);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
-  border-bottom:1px solid var(--bdr);padding:8px 20px 14px;
-  display:none;flex-direction:column;gap:2px;
-}
-.mob-drop.op{display:flex}
-.mob-drop a{
-  padding:12px 14px;border-radius:9px;color:var(--t2);
-  font-size:15px;font-weight:500;border:1px solid transparent;transition:all .15s;
-}
-.mob-drop a:hover{color:var(--t1);background:var(--surf2);border-color:var(--bdr)}
-.mob-drop .mob-cta{
-  margin-top:8px;padding:13px;border-radius:10px;text-align:center;
-  background:var(--grd2);color:#fff;font-weight:600;font-size:14px;
-  box-shadow:0 4px 18px rgba(139,92,246,.3);
-}
-
-/* ══ LAYOUT ════════════════════════════════════════════════════════ */
-.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,48px)}
-.sect{padding:clamp(80px,9vw,128px) 0;position:relative;z-index:10}
-.sect+.sect{border-top:1px solid var(--bdr)}
-.sect-lbl{
-  font-family:'Fira Code',monospace;font-size:11px;letter-spacing:.16em;
-  color:var(--cy);margin-bottom:14px;display:flex;align-items:center;gap:8px;
-  text-transform:uppercase;
-}
-.sect-lbl::before{content:'//';color:var(--acc2);opacity:.6}
-.h2{
-  font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,3.5vw,40px);
-  font-weight:800;letter-spacing:-.035em;margin-bottom:12px;
-}
-.grd-txt{
-  background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  background-size:200% auto;animation:shimmer 5s linear infinite;
-}
-@keyframes shimmer{0%{background-position:0% center}100%{background-position:200% center}}
-
-/* Glassmorphism card base */
-.glass{
-  background:var(--surf);
-  backdrop-filter:blur(20px) saturate(160%);
-  -webkit-backdrop-filter:blur(20px) saturate(160%);
-  border:1px solid var(--bdr);border-radius:20px;
-  box-shadow:var(--card-shd);
-  transition:border-color .25s,box-shadow .25s,transform .25s;
-}
-.glass:hover{border-color:var(--bdr-hi)}
-/* Touch-friendly: disable hover effects on touch devices */
-@media(hover:none){
-  .glass:hover,.sk-card:hover,.ti-card:hover,.proj-card:hover,.logo-item:hover{transform:none;box-shadow:var(--card-shd)}
-  .sk-card::after,.ti-card::after{opacity:0!important}
-  .photo-tilt{transform:none!important}
-}
-
-/* Card spotlight effect */
-.spotlight{--mx:50%;--my:50%;position:relative;overflow:hidden}
-.spotlight::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(600px circle at var(--mx) var(--my),var(--spotlight-clr),transparent 50%);
-  opacity:0;transition:opacity .4s;pointer-events:none;border-radius:inherit;z-index:0;
-}
-.spotlight:hover::before{opacity:1}
-.spotlight>*{position:relative;z-index:1}
-/* Spotlight follow on mobile - use touch */
-@media(hover:none){
-  .spotlight{--mx:50%;--my:50%}
-  .spotlight::before{opacity:.5}
-}
-
-.chip{
-  display:inline-flex;align-items:center;gap:4px;
-  padding:4px 10px;border-radius:6px;font-size:11.5px;font-weight:500;
-  background:rgba(139,92,246,.1);color:var(--acc2);
-  border:1px solid rgba(139,92,246,.2);font-family:'Fira Code',monospace;
-}
-.btn{
-  display:inline-flex;align-items:center;gap:7px;
-  padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;
-  font-family:'Inter',sans-serif;transition:all .22s;cursor:pointer;
-  touch-action:manipulation;
-  min-height:44px;
-}
-.btn-fill{
-  background:var(--grd2);color:#fff;border:1px solid transparent;
-  box-shadow:0 2px 16px rgba(139,92,246,.3);
-}
-.btn-fill:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(139,92,246,.5),0 0 0 1px rgba(139,92,246,.4)}
-.btn-out{background:var(--surf2);color:var(--t1);border:1px solid var(--bdr)}
-.btn-out:hover{border-color:var(--bdr-hi);color:var(--acc2);transform:translateY(-2px);box-shadow:0 4px 16px rgba(139,92,246,.12)}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
-.reveal.on{opacity:1;transform:none}
-.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
-
-/* ══ HERO ══════════════════════════════════════════════════════════ */
-.hero{
-  min-height:calc(100svh - 64px);display:flex;align-items:center;
-  padding:clamp(80px,10vw,120px) 0 clamp(60px,7vw,100px);
-}
-.hero-grid{
-  display:grid;grid-template-columns:1fr 370px;
-  gap:clamp(48px,6vw,88px);align-items:center;
-}
-.hero-avail{
-  display:inline-flex;align-items:center;gap:10px;margin-bottom:24px;
-  padding:7px 16px;border-radius:100px;
-  background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);
-  font-size:12px;color:var(--gn);font-weight:500;font-family:'Fira Code',monospace;
-  letter-spacing:.04em;
-}
-.avail-dot{
-  width:8px;height:8px;border-radius:50%;background:var(--gn);flex-shrink:0;
-  box-shadow:0 0 0 3px rgba(16,185,129,.15),0 0 12px rgba(16,185,129,.5);
-  animation:pulse-dot 2.4s ease-in-out infinite;
-}
-@keyframes pulse-dot{
-  0%,100%{box-shadow:0 0 0 3px rgba(16,185,129,.15),0 0 12px rgba(16,185,129,.5)}
-  50%{box-shadow:0 0 0 8px rgba(16,185,129,.04),0 0 4px rgba(16,185,129,.2)}
-}
-.hero h1{
-  font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(52px,7.5vw,88px);font-weight:800;
-  line-height:1;letter-spacing:-.05em;margin-bottom:18px;
-}
-.hero-role{
-  font-size:clamp(17px,2.4vw,22px);font-weight:500;color:var(--t2);
-  font-family:'Space Grotesk',sans-serif;min-height:1.6em;margin-bottom:20px;
-}
-.cursor{
-  display:inline-block;width:3px;height:.85em;background:var(--cy);
-  margin-left:2px;vertical-align:middle;
-  animation:blink .95s step-end infinite;
-  box-shadow:0 0 10px var(--cy);border-radius:2px;
-}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.hero-bio{
-  font-size:clamp(14.5px,1.6vw,16px);color:var(--t2);line-height:1.85;
-  max-width:520px;margin-bottom:36px;
-}
-.hero-stats{
-  display:flex;gap:clamp(22px,3.5vw,40px);margin-bottom:36px;flex-wrap:wrap;
-}
-.hst{position:relative;padding-left:16px}
-.hst::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
-  background:var(--grd);border-radius:2px;
-  box-shadow:0 0 10px rgba(139,92,246,.5);
-}
-.hst-n{
-  font-family:'Space Grotesk',sans-serif;font-weight:800;
-  font-size:clamp(22px,3vw,32px);line-height:1;
-  background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  margin-bottom:4px;filter:drop-shadow(0 0 10px rgba(139,92,246,.4));
-}
-.hst-l{font-size:11px;color:var(--t3);font-family:'Fira Code',monospace;letter-spacing:.06em}
-.hero-btns{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
-.hero-socs{display:flex;gap:8px}
-.soc{
-  display:flex;align-items:center;justify-content:center;
-  width:44px;height:44px;border-radius:9px;
-  background:var(--surf2);border:1px solid var(--bdr);
-  color:var(--t3);font-size:15px;transition:all .22s;
-  touch-action:manipulation;
-}
-.soc:hover{color:var(--cy);border-color:rgba(34,211,238,.4);background:rgba(34,211,238,.07);box-shadow:0 0 16px rgba(34,211,238,.2)}
-
-/* ══ HERO PHOTO ════════════════════════════════════════════════════ */
-.hero-photo{position:relative;perspective:1000px;display:flex;justify-content:center;align-items:center}
-.photo-tilt{transition:transform .1s linear}
-.photo-frame{
-  position:relative;border-radius:26px;overflow:hidden;
-  box-shadow:0 0 0 1px var(--bdr),var(--card-shd);
-  background:var(--bg2);
-}
-/* Spinning neon ring */
-.photo-ring{
-  position:absolute;inset:-3px;border-radius:28px;z-index:0;
-  background:conic-gradient(from 0deg,#8b5cf6,#6366f1,#22d3ee,#10b981,#ec4899,#8b5cf6);
-  animation:spin 7s linear infinite;
-  opacity:.85;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-.photo-inner{position:relative;z-index:1;border-radius:24px;overflow:hidden;background:var(--bg2)}
-.photo-inner img{
-  width:100%;height:clamp(340px,44vw,450px);
-  object-fit:cover;object-position:center top;display:block;
-}
-/* HUD scan line */
-.photo-scan{
-  position:absolute;left:0;right:0;height:2px;z-index:5;
-  background:linear-gradient(90deg,transparent,rgba(34,211,238,.7) 30%,rgba(34,211,238,1) 50%,rgba(34,211,238,.7) 70%,transparent);
-  box-shadow:0 0 12px rgba(34,211,238,.7),0 0 28px rgba(34,211,238,.3);
-  animation:scan-line 4s linear infinite;pointer-events:none;top:-2px;
-}
-@keyframes scan-line{0%{top:-2px;opacity:0}4%{opacity:1}90%{opacity:.5}100%{top:100%;opacity:0}}
-/* Corner HUD brackets */
-.c{position:absolute;z-index:4;width:24px;height:24px;pointer-events:none}
-.c-tl{top:10px;left:10px;border-top:2px solid var(--cy);border-left:2px solid var(--cy)}
-.c-tr{top:10px;right:10px;border-top:2px solid var(--cy);border-right:2px solid var(--cy)}
-.c-bl{bottom:10px;left:10px;border-bottom:2px solid var(--cy);border-left:2px solid var(--cy)}
-.c-br{bottom:10px;right:10px;border-bottom:2px solid var(--cy);border-right:2px solid var(--cy)}
-/* Glow on corners */
-.c-tl,.c-tr,.c-bl,.c-br{filter:drop-shadow(0 0 4px rgba(34,211,238,.7))}
-.photo-fade{
-  position:absolute;bottom:0;left:0;right:0;height:50%;z-index:2;
-  background:linear-gradient(to top,var(--bg2) 0%,transparent 100%);pointer-events:none;
-}
-.photo-stats{
-  position:absolute;bottom:14px;left:12px;right:12px;z-index:3;display:flex;gap:7px;
-}
-.pst{
-  flex:1;padding:10px 8px;border-radius:12px;text-align:center;
-  background:rgba(5,5,8,.86);backdrop-filter:blur(20px);
-  border:1px solid rgba(139,92,246,.25);
-}
-[data-theme="light"] .pst{background:rgba(247,246,255,.9);border-color:rgba(109,40,217,.2)}
-.pst-v{
-  font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:16px;line-height:1;
-  background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  margin-bottom:3px;
-}
-.pst-l{font-size:9px;color:var(--t3);font-family:'Fira Code',monospace;letter-spacing:.06em}
-
-/* ══ ABOUT ═════════════════════════════════════════════════════════ */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:center}
-.about-img-wrap{border-radius:24px;overflow:hidden;border:1px solid var(--bdr);box-shadow:var(--card-shd);position:relative}
-.about-img-wrap img{
-  width:100%;height:clamp(300px,38vw,450px);
-  object-fit:cover;object-position:center center;display:block;transition:transform .6s;
-}
-.about-img-wrap:hover img{transform:scale(1.04)}
-.about-img-strip{
-  position:absolute;bottom:0;left:0;right:0;padding:24px 16px 14px;pointer-events:none;
-  background:linear-gradient(to top,var(--bg),transparent);display:flex;gap:6px;flex-wrap:wrap;
-}
-.about-txt h2{margin-bottom:16px}
-.about-txt p{color:var(--t2);font-size:15px;line-height:1.85;margin-bottom:14px}
-.about-chips{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 28px}
-.about-btns{display:flex;flex-wrap:wrap;gap:10px}
-
-/* ══ SKILLS ════════════════════════════════════════════════════════ */
-.skills-intro{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:52px}
-.skills-intro h2{margin-bottom:8px}
-.skills-intro p{color:var(--t2);font-size:15px;line-height:1.75}
-.sk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,2vw,18px)}
-.sk-card{
-  padding:clamp(22px,3vw,30px);border-radius:20px;
-  background:var(--surf);
-  backdrop-filter:blur(20px) saturate(160%);
-  -webkit-backdrop-filter:blur(20px) saturate(160%);
-  border:1px solid var(--bdr);
-  transition:border-color .25s,transform .25s,box-shadow .25s;
-  position:relative;overflow:hidden;--mx:50%;--my:50%;
-}
-.sk-card::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(500px circle at var(--mx) var(--my),var(--spotlight-clr),transparent 50%);
-  opacity:0;transition:opacity .4s;pointer-events:none;border-radius:inherit;z-index:0;
-}
-.sk-card::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:var(--grd);opacity:0;transition:opacity .3s;pointer-events:none;
-}
-.sk-card:hover{border-color:var(--bdr-hi);transform:translateY(-3px);box-shadow:0 12px 40px rgba(139,92,246,.15),0 0 0 1px rgba(139,92,246,.12)}
-.sk-card:hover::before{opacity:1}
-.sk-card:hover::after{opacity:1}
-.sk-card>*{position:relative;z-index:1}
-.sk-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
-.sk-ico{
-  width:40px;height:40px;border-radius:10px;flex-shrink:0;
-  background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.22);
-  display:flex;align-items:center;justify-content:center;font-size:16px;
-}
-.sk-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15.5px;color:var(--t1)}
-.sk-pills{display:flex;flex-wrap:wrap;gap:6px}
-.sk-pill{
-  display:inline-flex;padding:5px 11px;border-radius:7px;font-size:11.5px;font-weight:500;
-  background:var(--surf2);border:1px solid var(--bdr);color:var(--t2);
-  font-family:'Fira Code',monospace;transition:all .2s;cursor:default;
-}
-.sk-pill:hover{background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.25);color:var(--acc2)}
-
-/* ══ TECH LOGOS ════════════════════════════════════════════════════ */
-.logos-grid{
-  display:flex;flex-wrap:wrap;gap:clamp(10px,1.5vw,14px);
-  justify-content:center;margin-top:48px;
-}
-.logo-item{
-  display:flex;flex-direction:column;align-items:center;gap:7px;
-  padding:16px 12px;border-radius:14px;
-  background:var(--surf);border:1px solid var(--bdr);
-  width:clamp(72px,9vw,88px);
-  transition:border-color .2s,transform .25s,box-shadow .2s;cursor:pointer;
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-}
-.logo-item:hover{border-color:var(--bdr-hi);transform:translateY(-4px);box-shadow:0 8px 28px rgba(139,92,246,.2),0 0 0 1px rgba(139,92,246,.15)}
-.logo-item img{width:34px;height:34px;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.3))}
-.logo-item span{font-size:9.5px;color:var(--t3);font-family:'Fira Code',monospace;text-align:center;line-height:1.3}
-
-/* ══ EXPERIENCE ════════════════════════════════════════════════════ */
-.exp-head{margin-bottom:52px}
-.exp-head h2{margin-bottom:8px}
-.exp-head p{color:var(--t2);font-size:15px}
-.timeline{position:relative;padding-left:clamp(28px,4vw,44px)}
-.timeline::before{
-  content:'';position:absolute;left:8px;top:12px;bottom:12px;width:1px;
-  background:linear-gradient(to bottom,var(--acc),var(--cy) 50%,transparent);
-  box-shadow:0 0 16px rgba(139,92,246,.2);
-}
-.ti{position:relative;margin-bottom:24px}
-.ti:last-child{margin-bottom:0}
-.ti-dot{
-  position:absolute;left:calc(-1*clamp(28px,4vw,44px) + 2px);top:16px;
-  width:14px;height:14px;border-radius:50%;
-  background:var(--grd2);border:3px solid var(--bg);
-  box-shadow:0 0 0 3px rgba(139,92,246,.2),0 0 14px rgba(139,92,246,.4);
-  animation:ti-pulse 3s ease-in-out infinite;
-}
-@keyframes ti-pulse{
-  0%,100%{box-shadow:0 0 0 3px rgba(139,92,246,.2),0 0 14px rgba(139,92,246,.4)}
-  50%{box-shadow:0 0 0 6px rgba(139,92,246,.06),0 0 8px rgba(139,92,246,.15)}
-}
-.ti-card{
-  padding:clamp(22px,3vw,30px);border-radius:18px;
-  background:var(--surf);
-  backdrop-filter:blur(20px) saturate(160%);
-  -webkit-backdrop-filter:blur(20px) saturate(160%);
-  border:1px solid var(--bdr);
-  transition:border-color .25s,box-shadow .25s;
-  position:relative;overflow:hidden;--mx:50%;--my:50%;
-}
-.ti-card::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(500px circle at var(--mx) var(--my),var(--spotlight-clr),transparent 50%);
-  opacity:0;transition:opacity .4s;pointer-events:none;border-radius:inherit;
-}
-.ti-card::after{
-  content:'';position:absolute;top:0;left:0;width:2px;bottom:0;
-  background:var(--grd2);opacity:0;border-radius:2px;
-  transition:opacity .25s;
-}
-.ti-card:hover{border-color:var(--bdr-hi);box-shadow:0 12px 40px rgba(139,92,246,.12),0 0 0 1px rgba(139,92,246,.1)}
-.ti-card:hover::before{opacity:1}
-.ti-card:hover::after{opacity:1}
-.ti-card>*{position:relative;z-index:1}
-.ti-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;flex-wrap:wrap}
-.ti-role{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16.5px;color:var(--t1);margin-bottom:3px}
-.ti-co{font-size:13px;font-weight:500;color:var(--acc2)}
-.ti-date{
-  font-family:'Fira Code',monospace;font-size:11px;color:var(--t3);
-  padding:4px 10px;border-radius:6px;background:var(--surf2);border:1px solid var(--bdr);
-  white-space:nowrap;flex-shrink:0;
-}
-.ti-loc{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--t3);margin-bottom:12px}
-.ti-body{color:var(--t2);font-size:14px;line-height:1.8;margin-bottom:12px}
-.ti-body ul{padding-left:18px;display:flex;flex-direction:column;gap:7px}
-.ti-body li::marker{color:var(--cy)}
-.ti-tags{display:flex;flex-wrap:wrap;gap:6px}
-
-/* ══ PROJECTS ══════════════════════════════════════════════════════ */
-.proj-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:48px;flex-wrap:wrap}
-.proj-head h2{margin-bottom:8px}
-.proj-head p{color:var(--t2);font-size:15px}
-.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,18px)}
-.proj-card{
-  border-radius:18px;overflow:hidden;
-  border:1px solid var(--bdr);background:var(--surf);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  box-shadow:var(--card-shd);position:relative;
-  transition:border-color .3s,transform .3s,box-shadow .3s;
-  --mx:50%;--my:50%;
-}
-/* Spotlight on proj card */
-.proj-card::before{
-  content:'';position:absolute;inset:0;z-index:2;border-radius:inherit;
-  background:radial-gradient(500px circle at var(--mx) var(--my),var(--spotlight-clr),transparent 50%);
-  opacity:0;transition:opacity .4s;pointer-events:none;
-}
-.proj-card:hover{border-color:var(--bdr-hi);transform:translateY(-6px);box-shadow:0 20px 56px rgba(0,0,0,.4),0 0 0 1px rgba(139,92,246,.2),0 0 40px rgba(139,92,246,.08)}
-.proj-card:hover::before{opacity:1}
-.proj-img{
-  width:100%;height:180px;object-fit:cover;
-  display:block;transition:transform .55s cubic-bezier(.16,1,.3,1);
-}
-.proj-card:hover .proj-img{transform:scale(1.07)}
-.proj-overlay{
-  position:absolute;top:0;left:0;right:0;height:180px;z-index:3;
-  background:linear-gradient(to top,rgba(5,5,8,.97) 0%,rgba(5,5,8,.5) 55%,transparent 100%);
-  opacity:0;transition:opacity .3s;
-  display:flex;align-items:flex-end;padding:16px;
-  pointer-events:none;
-}
-.proj-card:hover .proj-overlay{opacity:1;pointer-events:auto}
-[data-theme="light"] .proj-overlay{background:linear-gradient(to top,rgba(30,27,75,.92) 0%,rgba(30,27,75,.4) 55%,transparent 100%)}
-.proj-open{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:8px 16px;border-radius:8px;
-  background:var(--grd2);color:#fff;font-size:13px;font-weight:600;
-  box-shadow:0 4px 16px rgba(139,92,246,.5);
-}
-.proj-body{padding:16px;position:relative;z-index:1}
-.proj-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--t1);margin-bottom:7px}
-.proj-desc{font-size:13px;color:var(--t2);line-height:1.68}
-
-/* ══ CTA ═══════════════════════════════════════════════════════════ */
-.cta-section{position:relative;overflow:hidden;border-radius:28px}
-.cta-glow-bg{
-  position:absolute;inset:0;
-  background:radial-gradient(ellipse at 50% 0%,rgba(139,92,246,.22) 0%,rgba(34,211,238,.08) 40%,transparent 65%);
-  pointer-events:none;
-}
-.cta-dots{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:radial-gradient(var(--bdr) 1px,transparent 1px);
-  background-size:24px 24px;
-}
-.cta-border{
-  position:absolute;inset:-1px;border-radius:29px;
-  background:conic-gradient(from 0deg,#8b5cf6,#6366f1,#22d3ee,#10b981,#ec4899,#8b5cf6);
-  animation:spin 10s linear infinite;
-  z-index:0;pointer-events:none;opacity:.4;
-}
-.cta-cover{position:absolute;inset:1px;border-radius:27px;background:var(--bg2);z-index:0}
-.cta-box{
-  position:relative;z-index:1;
-  padding:clamp(56px,8vw,90px) clamp(28px,5vw,72px);
-  text-align:center;
-  background:var(--surf);
-  backdrop-filter:blur(24px) saturate(160%);
-  -webkit-backdrop-filter:blur(24px) saturate(160%);
-  border-radius:28px;border:1px solid var(--bdr);
-}
-.cta-badge{
-  display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;
-  padding:6px 16px;border-radius:100px;
-  background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);
-  font-size:12px;color:var(--acc2);font-weight:500;font-family:'Fira Code',monospace;
-  letter-spacing:.04em;
-}
-.cta-title{
-  font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,5vw,56px);
-  font-weight:800;line-height:1.1;letter-spacing:-.04em;margin-bottom:16px;
-}
-.cta-sub{color:var(--t2);font-size:clamp(14px,1.6vw,17px);max-width:520px;margin:0 auto 36px;line-height:1.78}
-.cta-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:28px}
-.cta-socs{display:flex;justify-content:center;gap:8px}
-
-/* ══ CONTACT ═══════════════════════════════════════════════════════ */
-.contact-grid{display:grid;grid-template-columns:340px 1fr;gap:clamp(40px,5vw,72px);align-items:start}
-.ct-info h3{font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,2.5vw,28px);font-weight:700;margin-bottom:12px}
-.ct-info p{color:var(--t2);font-size:14.5px;line-height:1.8;margin-bottom:28px}
-.ct-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.ct-ico{
-  width:40px;height:40px;border-radius:10px;flex-shrink:0;
-  background:var(--surf2);border:1px solid var(--bdr);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--acc2);font-size:15px;
-}
-.ct-txt{font-size:13.5px;color:var(--t2)}
-.ct-txt strong{display:block;font-size:10.5px;color:var(--t3);font-family:'Fira Code',monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
-.form-card{
-  padding:clamp(26px,3.5vw,38px);border-radius:22px;
-  background:var(--surf);
-  backdrop-filter:blur(20px) saturate(160%);
-  -webkit-backdrop-filter:blur(20px) saturate(160%);
-  border:1px solid var(--bdr);
-}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.fg{margin-bottom:14px}
-.fg label{
-  display:block;font-family:'Fira Code',monospace;
-  font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--t3);margin-bottom:7px;
-}
-.fg input,.fg select,.fg textarea{
-  width:100%;padding:11px 14px;border-radius:10px;
-  background:var(--surf2);border:1px solid var(--bdr);
-  color:var(--t1);font-family:'Inter',sans-serif;font-size:14px;
-  outline:none;transition:border-color .22s,box-shadow .22s;-webkit-appearance:none;
-}
-.fg input::placeholder,.fg textarea::placeholder{color:var(--t3)}
-.fg input:focus,.fg textarea:focus,.fg select:focus{
-  border-color:var(--bdr-hi);box-shadow:0 0 0 3px rgba(139,92,246,.12),0 0 16px rgba(139,92,246,.08);
-}
-.fg select{
-  cursor:pointer;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;
-}
-.fg select option{background:var(--bg2);color:var(--t1)}
-.fg textarea{resize:vertical;min-height:96px}
-.fnote{font-size:12px;color:var(--t3);display:flex;align-items:center;gap:5px;margin-bottom:14px}
-.fnote i{color:var(--gn)}
-#fmsg{margin-top:10px;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:500;display:none}
-#fmsg.ok{background:rgba(16,185,129,.08);color:var(--gn);border:1px solid rgba(16,185,129,.2)}
-#fmsg.er{background:rgba(239,68,68,.08);color:#f87171;border:1px solid rgba(239,68,68,.2)}
-
-/* ══ FOOTER ════════════════════════════════════════════════════════ */
-footer{border-top:1px solid var(--bdr);padding:28px 0;position:relative;z-index:10}
-.foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-.foot-brand{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.foot-copy{font-size:12px;color:var(--t3)}
-.foot-nav{display:flex;gap:18px}
-.foot-nav a{font-size:12.5px;color:var(--t3);transition:color .15s}
-.foot-nav a:hover{color:var(--acc2)}
-
-/* ══ RESPONSIVE ════════════════════════════════════════════════════ */
-@media(max-width:1024px){
-  .hero-grid{grid-template-columns:1fr;max-width:640px}
-  .hero-photo{display:none}
-  .about-grid{grid-template-columns:1fr}
-  .about-img-wrap{order:-1}
-  .skills-intro{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr}
-  .proj-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:768px){
-  .nav-links,.nav-cta{display:none}
-  .hbg{display:flex}
-  .sk-grid{grid-template-columns:1fr}
-  .frow{grid-template-columns:1fr}
-  .foot-inner{flex-direction:column;text-align:center}
-  .h2{font-size:clamp(24px,3vw,32px)}
-  .sect{padding:clamp(60px,7vw,96px) 0}
-  .hero-stats{flex-wrap:wrap;gap:16px}
-  .about-chips{justify-content:flex-start}
-  .logo-item{width:clamp(64px,10vw,80px)}
-  .logo-item img{width:28px;height:28px}
-  .logo-item span{font-size:8.5px}
-}
-@media(max-width:540px){
-  .proj-grid{grid-template-columns:1fr}
-  .hero-btns{flex-direction:column;align-items:flex-start}
-  .hero-btns .btn{width:100%;justify-content:center}
-  .cta-btns{flex-direction:column;align-items:center}
-  .cta-btns .btn{width:100%;max-width:260px;justify-content:center}
-  .hero h1{font-size:clamp(40px,10vw,56px)}
-  .hero-role{font-size:clamp(15px,3.5vw,18px)}
-  .hero-bio{font-size:clamp(13px,2vw,15px)}
-  .hst-n{font-size:clamp(18px,4vw,24px)}
-  .hst-l{font-size:10px}
-  .hero-stats{gap:14px}
-  .soc{width:40px;height:40px;font-size:14px}
-  .about-img-wrap{border-radius:16px}
-  .about-img-wrap img{height:auto;min-height:240px}
-  .about-chips{gap:5px}
-  .chip{font-size:10.5px;padding:3px 8px}
-  .sk-card{padding:18px}
-  .sk-ico{width:36px;height:36px;font-size:14px}
-  .sk-title{font-size:14px}
-  .sk-pill{font-size:10.5px;padding:4px 9px}
-  .ti-card{padding:18px}
-  .ti-role{font-size:15px}
-  .ti-co{font-size:12px}
-  .ti-date{font-size:10px;padding:3px 8px}
-  .ti-loc{font-size:11px}
-  .ti-body{font-size:13px}
-  .proj-img{height:160px}
-  .proj-overlay{height:160px}
-  .proj-title{font-size:14px}
-  .proj-desc{font-size:12px}
-  .cta-box{padding:40px 18px}
-  .cta-badge{font-size:11px;padding:5px 12px}
-  .cta-title{font-size:clamp(22px,5vw,36px)}
-  .cta-sub{font-size:clamp(13px,2.2vw,15px)}
-  .fg input,.fg select,.fg textarea{padding:10px 12px;font-size:13px}
-  .fg label{font-size:9.5px}
-  .btn{padding:11px 18px;font-size:13px}
-  .btn-fill,.btn-out{width:100%;justify-content:center}
-  .about-btns .btn,.hero-btns .btn{width:100%;justify-content:center}
-  .foot-nav{flex-wrap:wrap;justify-content:center;gap:12px}
-  .pst{padding:8px 6px}
-  .pst-v{font-size:14px}
-  .pst-l{font-size:8px}
-  .photo-stats{gap:5px}
-}
-@media(max-width:380px){
-  .hero h1{font-size:clamp(32px,9vw,44px)}
-  .hero-role{font-size:14px}
-  .hero-bio{font-size:12.5px}
-  .hst-n{font-size:16px}
-  .wrap{padding:0 14px}
-  .nav-inner{padding:0 14px}
-  .sk-card{padding:16px}
-  .ti-card{padding:16px}
-  .cta-box{padding:32px 14px;border-radius:20px}
-  .proj-img{height:140px}
-  .proj-overlay{height:140px}
-}
-</style>
+<link rel="preload" as="image" href="images/my_pic_1.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Aman Bhatt",
+  "jobTitle": "ML Engineer & Data Scientist",
+  "url": "https://amanbhatt97.github.io/portfolio/",
+  "email": "mailto:amanbhatt.1997.ab@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/amanbhatt1997/",
+    "https://github.com/amanbhatt97"
+  ]
+}
+</script>
 </head>
 <body>
 
-<!-- AURORA BACKGROUND -->
-<div class="aurora" aria-hidden="true">
-  <div class="ao ao1"></div>
-  <div class="ao ao2"></div>
-  <div class="ao ao3"></div>
-</div>
-<!-- Neural Network Canvas -->
-<canvas id="pcanvas" style="position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.28" aria-hidden="true"></canvas>
-<!-- Dot grid -->
-<div class="bg-dots" aria-hidden="true"></div>
+<!-- SVG icon sprite -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <defs>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+    <symbol id="i-grad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+    <symbol id="i-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol>
+    <symbol id="i-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+    <symbol id="i-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="currentColor"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+    <symbol id="i-hackerrank" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 20 7v10l-8 4.5L4 17V7Z"/><path d="M9.5 8.5v7"/><path d="M14.5 8.5v7"/><path d="M9.5 12h5"/></symbol>
+  </defs>
+</svg>
 
-<!-- SCROLL PROGRESS -->
+<a class="skip-link" href="#about">Skip to content</a>
+
+<!-- Atmosphere -->
+<div class="atmosphere" aria-hidden="true">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
 <div id="pbar" aria-hidden="true"></div>
 
-<!-- MOBILE DROPDOWN -->
+<!-- Mobile menu -->
 <div class="mob-drop" id="mobDrop">
-  <a href="#about" onclick="closeMob()">About</a>
-  <a href="#skills" onclick="closeMob()">Skills</a>
-  <a href="#experience" onclick="closeMob()">Experience</a>
-  <a href="#projects" onclick="closeMob()">Projects</a>
-  <a href="#contact" onclick="closeMob()">Contact</a>
-  <a href="#hire" class="mob-cta" onclick="closeMob()"><i class="fa-solid fa-bolt"></i> Hire Me</a>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#experience">Experience</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+  <a href="#hire" class="mob-cta"><svg class="ic"><use href="#i-zap"/></svg> Hire Me</a>
 </div>
 
-<!-- NAV -->
+<!-- Nav -->
 <nav>
   <div class="nav-inner">
-    <a href="#home" class="nav-logo">aman bhatt.</a>
+    <a href="#home" class="nav-logo">aman <span>bhatt.</span></a>
     <ul class="nav-links">
-      <li><a href="#about">about</a></li>
-      <li><a href="#skills">skills</a></li>
-      <li><a href="#experience">experience</a></li>
-      <li><a href="#projects">projects</a></li>
-      <li><a href="#contact">contact</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <button class="t-btn" id="themeBtn" aria-label="Toggle theme"><i id="themeIcon" class="fa-solid fa-moon"></i></button>
+      <button class="t-btn" id="themeBtn" aria-label="Toggle theme"><svg class="ic" id="themeIcon"><use href="#i-moon"/></svg></button>
       <a href="#hire" class="nav-cta">Hire Me</a>
-      <button class="hbg" id="hbg" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="hbg" id="hbg" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
 
-<main style="position:relative;z-index:10">
+<main>
 
-<!-- ══ HERO ══════════════════════════════════════════════════════════ -->
-<section class="hero sect" id="home">
+<!-- ══ Hero ══════════════════════════════════════════════════════════ -->
+<section class="hero" id="home">
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="hero-avail reveal">
+        <div class="hero-avail hi">
           <span class="avail-dot"></span>
-          Assistant Manager – Data Science & AI · BSES Rajdhani Power Limited
+          <span data-c="hero.availability">Assistant Manager – Data Science &amp; AI · BSES Rajdhani Power Limited</span>
         </div>
-        <h1 class="reveal d1">
-          Aman<br>
-          <span class="grd-txt">Bhatt</span>
-        </h1>
-        <p class="hero-role reveal d1"><span id="typed"></span><span class="cursor"></span></p>
-        <p class="hero-bio reveal d2">
-          Data Scientist &amp; Machine Learning Engineer specialising in forecasting, real-time ML systems and MLOps.
-          Proven ability to deliver production-grade models with &lt;3% MAPE, architect low-latency data pipelines with
-          Spark, Kafka and AWS, and design CI/CD-driven ML workflows for scale and reliability.
-        </p>
-        <div class="hero-stats reveal d2">
-          <div class="hst">
-            <div class="hst-n" data-count="3" data-prefix="&lt;" data-suffix="%"><span class="count-val">&lt;3%</span></div>
-            <div class="hst-l">MAPE · production</div>
-          </div>
-          <div class="hst">
-            <div class="hst-n" data-count="4" data-suffix="+"><span class="count-val">4+</span></div>
-            <div class="hst-l">years experience</div>
-          </div>
-          <div class="hst">
-            <div class="hst-n" data-count="166"><span class="count-val">166</span></div>
-            <div class="hst-l">RE plants forecasted</div>
-          </div>
+        <h1 class="hi" style="--hd:.08s" id="heroH1">Aman<br><span class="grd-txt">Bhatt</span></h1>
+        <p class="hero-role hi" style="--hd:.16s"><span id="typed"></span><span class="cursor" aria-hidden="true"></span></p>
+        <p class="hero-bio hi" style="--hd:.24s" data-c="hero.bio">Data Scientist &amp; Machine Learning Engineer specialising in forecasting, real-time ML systems and MLOps. Proven ability to deliver production-grade models with &lt;3% MAPE, architect low-latency data pipelines with Spark, Kafka and AWS, and design CI/CD-driven ML workflows for scale and reliability.</p>
+        <div class="hero-stats hi" style="--hd:.32s" id="heroStats">
+          <div class="hst"><div class="hst-n" data-count="&lt;3%">&lt;3%</div><div class="hst-l">MAPE · production</div></div>
+          <div class="hst"><div class="hst-n" data-count="4+">4+</div><div class="hst-l">years experience</div></div>
+          <div class="hst"><div class="hst-n" data-count="166">166</div><div class="hst-l">RE plants forecasted</div></div>
         </div>
-        <div class="hero-btns reveal d3">
-          <a href="#hire" class="btn btn-fill"><i class="fa-solid fa-bolt"></i> Hire Me</a>
-          <a href="#projects" class="btn btn-out"><i class="fa-solid fa-folder-open"></i> Projects</a>
-          <a href="Aman_Bhatt_Resume.pdf" target="_blank" rel="noopener" class="btn btn-out"><i class="fa-solid fa-file-pdf"></i> Resume</a>
+        <div class="hero-btns hi" style="--hd:.4s">
+          <a href="#hire" class="btn btn-fill"><svg class="ic"><use href="#i-zap"/></svg> Hire Me</a>
+          <a href="#projects" class="btn btn-out"><svg class="ic"><use href="#i-folder"/></svg> Projects</a>
+          <a href="Aman_Bhatt_Resume.pdf" target="_blank" rel="noopener" class="btn btn-out" data-resume><svg class="ic"><use href="#i-file"/></svg> Resume</a>
         </div>
-        <div class="hero-socs reveal d4">
-          <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" class="soc" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" class="soc" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-          <a href="mailto:amanbhatt.1997.ab@gmail.com" class="soc" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-          <a href="https://www.hackerrank.com/ab_977" target="_blank" rel="noopener" class="soc" aria-label="HackerRank"><i class="fa-brands fa-hackerrank"></i></a>
+        <div class="hero-socs hi" style="--hd:.48s">
+          <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" class="soc" aria-label="LinkedIn" data-soc="linkedin"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+          <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" class="soc" aria-label="GitHub" data-soc="github"><svg class="ic"><use href="#i-github"/></svg></a>
+          <a href="mailto:amanbhatt.1997.ab@gmail.com" class="soc" aria-label="Email" data-soc="email"><svg class="ic"><use href="#i-mail"/></svg></a>
+          <a href="https://www.hackerrank.com/ab_977" target="_blank" rel="noopener" class="soc" aria-label="HackerRank" data-soc="hackerrank"><svg class="ic"><use href="#i-hackerrank"/></svg></a>
         </div>
       </div>
-      <!-- Photo with 3D tilt -->
-      <div class="hero-photo reveal d2" id="photoWrap">
+      <div class="hero-photo hi" style="--hd:.2s" id="photoWrap">
+        <div class="photo-glow" aria-hidden="true"></div>
         <div class="photo-tilt" id="photoTilt">
           <div class="photo-frame">
-            <div class="photo-ring" aria-hidden="true"></div>
-            <div class="photo-inner">
-              <div class="c c-tl"></div><div class="c c-tr"></div>
-              <div class="c c-bl"></div><div class="c c-br"></div>
-              <div class="photo-scan" aria-hidden="true"></div>
-              <img src="images/my_pic_1.png" alt="Aman Bhatt" loading="eager">
-              <div class="photo-fade" aria-hidden="true"></div>
-              <div class="photo-stats">
-                <div class="pst"><div class="pst-v">&lt;3%</div><div class="pst-l">MAPE</div></div>
-                <div class="pst"><div class="pst-v">4+</div><div class="pst-l">Yrs ML</div></div>
-                <div class="pst"><div class="pst-v">166</div><div class="pst-l">Plants</div></div>
-              </div>
+            <img src="images/my_pic_1.png" alt="Aman Bhatt" id="heroImg" fetchpriority="high">
+            <div class="photo-fade" aria-hidden="true"></div>
+            <div class="photo-stats" id="photoStats">
+              <div class="pst"><div class="pst-v">&lt;3%</div><div class="pst-l">MAPE</div></div>
+              <div class="pst"><div class="pst-v">4+</div><div class="pst-l">Yrs ML</div></div>
+              <div class="pst"><div class="pst-v">166</div><div class="pst-l">Plants</div></div>
             </div>
           </div>
         </div>
@@ -866,156 +155,118 @@ footer{border-top:1px solid var(--bdr);padding:28px 0;position:relative;z-index:
   </div>
 </section>
 
-<!-- ══ ABOUT ═════════════════════════════════════════════════════════ -->
+<!-- ══ About ═════════════════════════════════════════════════════════ -->
 <section class="sect" id="about">
   <div class="wrap">
     <div class="about-grid">
-      <div class="about-img-wrap reveal">
-        <img src="images/about.jpeg" alt="Aman Bhatt" loading="lazy">
-        <div class="about-img-strip">
-          <span class="chip"><i class="fa-solid fa-location-dot"></i> New Delhi</span>
-          <span class="chip"><i class="fa-solid fa-wifi"></i> Remote-friendly</span>
+      <div class="about-img" data-reveal>
+        <img src="images/about.jpeg" alt="Aman Bhatt" loading="lazy" id="aboutImg">
+        <div class="about-img-strip" id="aboutBadges">
+          <span class="chip"><svg class="ic"><use href="#i-pin"/></svg> New Delhi</span>
+          <span class="chip"><svg class="ic"><use href="#i-wifi"/></svg> Remote-friendly</span>
         </div>
       </div>
-      <div class="reveal d1">
-        <div class="sect-lbl">about me</div>
-        <h2 class="h2">Data Scientist &amp; <span class="grd-txt">ML Engineer</span></h2>
-        <p>Data enthusiast and a proficient data scientist with a background in civil engineering. Currently working as an Assistant Manager – Data Science & AI at BSES Rajdhani Power Limited, applying advanced algorithms and techniques to solve complex forecasting problems.</p>
-        <p>Passionate about leveraging data-driven insights and building AI systems that last — driving measurable business impact across the energy sector. Experienced in bridging research with engineering, enabling grid operators and renewable energy firms to make data-driven decisions at speed.</p>
-        <div class="about-chips">
+      <div class="about-txt" data-reveal style="--rd:.1s">
+        <div class="sect-lbl" data-c="about.label">About me</div>
+        <h2 class="h2" id="aboutH2">Data Scientist &amp; <span class="grd-txt">ML Engineer</span></h2>
+        <div id="aboutParas">
+          <p>Data enthusiast and a proficient data scientist with a background in civil engineering. Currently working as an Assistant Manager – Data Science &amp; AI at BSES Rajdhani Power Limited, applying advanced algorithms and techniques to solve complex forecasting problems.</p>
+          <p>Passionate about leveraging data-driven insights and building AI systems that last — driving measurable business impact across the energy sector. Experienced in bridging research with engineering, enabling grid operators and renewable energy firms to make data-driven decisions at speed.</p>
+        </div>
+        <div class="about-chips" id="aboutChips">
           <span class="chip">Python</span><span class="chip">LangChain</span>
           <span class="chip">Apache Spark</span><span class="chip">Kafka</span>
           <span class="chip">AWS</span><span class="chip">LightGBM</span>
           <span class="chip">Transformers</span><span class="chip">MLOps</span>
         </div>
         <div class="about-btns">
-          <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" class="btn btn-fill" style="padding:10px 20px;font-size:13px"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
-          <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" class="btn btn-out" style="padding:10px 20px;font-size:13px"><i class="fa-brands fa-github"></i> GitHub</a>
-          <a href="Aman_Bhatt_Resume.pdf" target="_blank" rel="noopener" class="btn btn-out" style="padding:10px 20px;font-size:13px"><i class="fa-solid fa-file-pdf"></i> Resume</a>
+          <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" class="btn btn-fill" data-soc="linkedin"><svg class="ic"><use href="#i-linkedin"/></svg> LinkedIn</a>
+          <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" class="btn btn-out" data-soc="github"><svg class="ic"><use href="#i-github"/></svg> GitHub</a>
+          <a href="Aman_Bhatt_Resume.pdf" target="_blank" rel="noopener" class="btn btn-out" data-resume><svg class="ic"><use href="#i-file"/></svg> Resume</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ SKILLS ════════════════════════════════════════════════════════ -->
+<!-- ══ Skills ════════════════════════════════════════════════════════ -->
 <section class="sect" id="skills">
   <div class="wrap">
-    <div class="skills-intro">
-      <div class="reveal">
-        <div class="sect-lbl">tech stack</div>
-        <h2 class="h2">Skills &amp; Tools</h2>
-      </div>
-      <p class="reveal d1">From raw data to deployed model — the full ML engineering toolkit.</p>
-    </div>
-    <div class="sk-grid">
-      <div class="sk-card spotlight reveal">
-        <div class="sk-head">
-          <div class="sk-ico" style="color:var(--acc)"><i class="fa-solid fa-robot"></i></div>
-          <div class="sk-title">Machine Learning / AI</div>
-        </div>
-        <div class="sk-pills">
-          <span class="sk-pill">Python</span><span class="sk-pill">OOP</span>
-          <span class="sk-pill">DSA</span><span class="sk-pill">SQL</span>
-          <span class="sk-pill">Statistics</span><span class="sk-pill">Data Visualization</span>
-          <span class="sk-pill">ML Algorithms</span>
-        </div>
-      </div>
-      <div class="sk-card spotlight reveal d1">
-        <div class="sk-head">
-          <div class="sk-ico" style="color:var(--cy)"><i class="fa-solid fa-microchip"></i></div>
-          <div class="sk-title">Deep Learning &amp; LLMs</div>
-        </div>
-        <div class="sk-pills">
-          <span class="sk-pill">ANN</span><span class="sk-pill">CNN</span>
-          <span class="sk-pill">RNN</span><span class="sk-pill">LSTM</span>
-          <span class="sk-pill">GRU</span><span class="sk-pill">Autoencoders</span>
-          <span class="sk-pill">Transformers</span><span class="sk-pill">NLP</span>
-          <span class="sk-pill">Generative AI</span><span class="sk-pill">LangChain</span>
-          <span class="sk-pill">LlamaIndex</span>
-        </div>
-      </div>
-      <div class="sk-card spotlight reveal d2">
-        <div class="sk-head">
-          <div class="sk-ico" style="color:var(--gn)"><i class="fa-solid fa-layer-group"></i></div>
-          <div class="sk-title">Python Packages</div>
-        </div>
-        <div class="sk-pills">
-          <span class="sk-pill">NumPy</span><span class="sk-pill">Pandas</span>
-          <span class="sk-pill">Matplotlib</span><span class="sk-pill">Plotly</span>
-          <span class="sk-pill">Scipy</span><span class="sk-pill">Scikit-learn</span>
-          <span class="sk-pill">TensorFlow</span><span class="sk-pill">Keras</span>
-          <span class="sk-pill">Streamlit</span><span class="sk-pill">Optuna</span>
-        </div>
-      </div>
-      <div class="sk-card spotlight reveal d3">
-        <div class="sk-head">
-          <div class="sk-ico" style="color:var(--am)"><i class="fa-solid fa-gears"></i></div>
-          <div class="sk-title">MLOps &amp; Big Data</div>
-        </div>
-        <div class="sk-pills">
-          <span class="sk-pill">Apache Spark</span><span class="sk-pill">Kafka</span>
-          <span class="sk-pill">Airflow</span><span class="sk-pill">AWS</span>
-          <span class="sk-pill">Kubernetes</span><span class="sk-pill">Hadoop</span>
-        </div>
+    <div class="skills-head">
+      <div data-reveal>
+        <div class="sect-lbl" data-c="skills.label">Tech stack</div>
+        <h2 class="h2" data-c="skills.heading">Skills &amp; Tools</h2>
+        <p class="sect-sub" data-c="skills.sub">From raw data to deployed model — the full ML engineering toolkit.</p>
       </div>
     </div>
-    <div class="logos-grid reveal">
-      <a href="https://www.python.org/" target="_blank" rel="noopener" class="logo-item"><img src="images/python.png" alt="Python"><span>Python</span></a>
-      <a href="https://numpy.org/" target="_blank" rel="noopener" class="logo-item"><img src="images/numpy.png" alt="NumPy"><span>NumPy</span></a>
-      <a href="https://pandas.pydata.org/" target="_blank" rel="noopener" class="logo-item"><img src="images/pandas.png" alt="Pandas"><span>Pandas</span></a>
-      <a href="https://matplotlib.org/" target="_blank" rel="noopener" class="logo-item"><img src="images/matplotlib.png" alt="Matplotlib"><span>Matplotlib</span></a>
-      <a href="https://seaborn.pydata.org/" target="_blank" rel="noopener" class="logo-item"><img src="images/seaborn.svg" alt="Seaborn"><span>Seaborn</span></a>
-      <a href="https://scikit-learn.org/" target="_blank" rel="noopener" class="logo-item"><img src="images/scikit-learn.png" alt="Scikit-learn"><span>Sklearn</span></a>
-      <a href="https://www.tensorflow.org/" target="_blank" rel="noopener" class="logo-item"><img src="images/tensorflow.png" alt="TensorFlow"><span>TensorFlow</span></a>
-      <a href="https://keras.io/" target="_blank" rel="noopener" class="logo-item"><img src="images/keras.png" alt="Keras"><span>Keras</span></a>
-      <a href="https://pytorch.org/" target="_blank" rel="noopener" class="logo-item"><img src="images/pytorch.png" alt="PyTorch"><span>PyTorch</span></a>
-      <a href="https://www.streamlit.io/" target="_blank" rel="noopener" class="logo-item"><img src="images/streamlit.png" alt="Streamlit"><span>Streamlit</span></a>
-      <a href="https://spark.apache.org/" target="_blank" rel="noopener" class="logo-item"><img src="images/spark.png" alt="Spark"><span>Spark</span></a>
-      <a href="https://hadoop.apache.org/" target="_blank" rel="noopener" class="logo-item"><img src="images/hadoop.png" alt="Hadoop"><span>Hadoop</span></a>
-      <a href="https://www.microsoft.com/en-us/sql-server" target="_blank" rel="noopener" class="logo-item"><img src="images/sql.png" alt="SQL"><span>SQL</span></a>
-      <a href="https://powerbi.microsoft.com/" target="_blank" rel="noopener" class="logo-item"><img src="images/powerbi.png" alt="Power BI"><span>Power BI</span></a>
-      <a href="https://www.tableau.com/" target="_blank" rel="noopener" class="logo-item"><img src="images/tableau.webp" alt="Tableau"><span>Tableau</span></a>
-      <a href="https://www.mongodb.com/" target="_blank" rel="noopener" class="logo-item"><img src="images/mongodb.png" alt="MongoDB"><span>MongoDB</span></a>
+    <div class="sk-grid" id="skGrid">
+      <div class="sk-card card spot" data-reveal>
+        <div class="sk-head"><div class="sk-ico violet"><svg class="ic"><use href="#i-bot"/></svg></div><div class="sk-title">Machine Learning / AI</div></div>
+        <div class="sk-pills"><span class="sk-pill">Python</span><span class="sk-pill">OOP</span><span class="sk-pill">DSA</span><span class="sk-pill">SQL</span><span class="sk-pill">Statistics</span><span class="sk-pill">Data Visualization</span><span class="sk-pill">ML Algorithms</span></div>
+      </div>
+      <div class="sk-card card spot" data-reveal style="--rd:.08s">
+        <div class="sk-head"><div class="sk-ico cyan"><svg class="ic"><use href="#i-cpu"/></svg></div><div class="sk-title">Deep Learning &amp; LLMs</div></div>
+        <div class="sk-pills"><span class="sk-pill">ANN</span><span class="sk-pill">CNN</span><span class="sk-pill">RNN</span><span class="sk-pill">LSTM</span><span class="sk-pill">GRU</span><span class="sk-pill">Autoencoders</span><span class="sk-pill">Transformers</span><span class="sk-pill">NLP</span><span class="sk-pill">Generative AI</span><span class="sk-pill">LangChain</span><span class="sk-pill">LlamaIndex</span></div>
+      </div>
+      <div class="sk-card card spot" data-reveal>
+        <div class="sk-head"><div class="sk-ico green"><svg class="ic"><use href="#i-layers"/></svg></div><div class="sk-title">Python Packages</div></div>
+        <div class="sk-pills"><span class="sk-pill">NumPy</span><span class="sk-pill">Pandas</span><span class="sk-pill">Matplotlib</span><span class="sk-pill">Plotly</span><span class="sk-pill">Scipy</span><span class="sk-pill">Scikit-learn</span><span class="sk-pill">TensorFlow</span><span class="sk-pill">Keras</span><span class="sk-pill">Streamlit</span><span class="sk-pill">Optuna</span></div>
+      </div>
+      <div class="sk-card card spot" data-reveal style="--rd:.08s">
+        <div class="sk-head"><div class="sk-ico amber"><svg class="ic"><use href="#i-database"/></svg></div><div class="sk-title">MLOps &amp; Big Data</div></div>
+        <div class="sk-pills"><span class="sk-pill">Git</span><span class="sk-pill">Docker</span><span class="sk-pill">MLflow</span><span class="sk-pill">FastAPI</span><span class="sk-pill">Apache Spark</span><span class="sk-pill">Kafka</span><span class="sk-pill">Airflow</span><span class="sk-pill">AWS</span><span class="sk-pill">Kubernetes</span><span class="sk-pill">Hadoop</span></div>
+      </div>
+    </div>
+    <div class="marquee" data-reveal>
+      <div class="marquee-track" id="logoTrack">
+        <a class="logo-item" href="https://www.python.org/" target="_blank" rel="noopener"><img src="images/python.png" alt="Python" loading="lazy" width="32" height="32"><span>Python</span></a>
+        <a class="logo-item" href="https://numpy.org/" target="_blank" rel="noopener"><img src="images/numpy.png" alt="NumPy" loading="lazy" width="32" height="32"><span>NumPy</span></a>
+        <a class="logo-item" href="https://pandas.pydata.org/" target="_blank" rel="noopener"><img src="images/pandas.png" alt="Pandas" loading="lazy" width="32" height="32"><span>Pandas</span></a>
+        <a class="logo-item" href="https://matplotlib.org/" target="_blank" rel="noopener"><img src="images/matplotlib.png" alt="Matplotlib" loading="lazy" width="32" height="32"><span>Matplotlib</span></a>
+        <a class="logo-item" href="https://seaborn.pydata.org/" target="_blank" rel="noopener"><img src="images/seaborn.svg" alt="Seaborn" loading="lazy" width="32" height="32"><span>Seaborn</span></a>
+        <a class="logo-item" href="https://scikit-learn.org/" target="_blank" rel="noopener"><img src="images/scikit-learn.png" alt="Scikit-learn" loading="lazy" width="32" height="32"><span>Sklearn</span></a>
+        <a class="logo-item" href="https://www.tensorflow.org/" target="_blank" rel="noopener"><img src="images/tensorflow.png" alt="TensorFlow" loading="lazy" width="32" height="32"><span>TensorFlow</span></a>
+        <a class="logo-item" href="https://keras.io/" target="_blank" rel="noopener"><img src="images/keras.png" alt="Keras" loading="lazy" width="32" height="32"><span>Keras</span></a>
+        <a class="logo-item" href="https://pytorch.org/" target="_blank" rel="noopener"><img src="images/pytorch.png" alt="PyTorch" loading="lazy" width="32" height="32"><span>PyTorch</span></a>
+        <a class="logo-item" href="https://www.streamlit.io/" target="_blank" rel="noopener"><img src="images/streamlit.png" alt="Streamlit" loading="lazy" width="32" height="32"><span>Streamlit</span></a>
+        <a class="logo-item" href="https://spark.apache.org/" target="_blank" rel="noopener"><img src="images/spark.png" alt="Spark" loading="lazy" width="32" height="32"><span>Spark</span></a>
+        <a class="logo-item" href="https://hadoop.apache.org/" target="_blank" rel="noopener"><img src="images/hadoop.png" alt="Hadoop" loading="lazy" width="32" height="32"><span>Hadoop</span></a>
+        <a class="logo-item" href="https://www.microsoft.com/en-us/sql-server" target="_blank" rel="noopener"><img src="images/sql.png" alt="SQL" loading="lazy" width="32" height="32"><span>SQL</span></a>
+        <a class="logo-item" href="https://powerbi.microsoft.com/" target="_blank" rel="noopener"><img src="images/powerbi.png" alt="Power BI" loading="lazy" width="32" height="32"><span>Power BI</span></a>
+        <a class="logo-item" href="https://www.tableau.com/" target="_blank" rel="noopener"><img src="images/tableau.webp" alt="Tableau" loading="lazy" width="32" height="32"><span>Tableau</span></a>
+        <a class="logo-item" href="https://www.mongodb.com/" target="_blank" rel="noopener"><img src="images/mongodb.png" alt="MongoDB" loading="lazy" width="32" height="32"><span>MongoDB</span></a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ══ EXPERIENCE ════════════════════════════════════════════════════ -->
+<!-- ══ Experience ════════════════════════════════════════════════════ -->
 <section class="sect" id="experience">
   <div class="wrap">
-    <div class="exp-head">
-      <div class="sect-lbl reveal">experience</div>
-      <h2 class="h2 reveal d1">Work Experience</h2>
-      <p class="reveal d2">Building real ML systems in the energy sector.</p>
+    <div class="exp-head" data-reveal>
+      <div class="sect-lbl" data-c="experience.label">Experience</div>
+      <h2 class="h2" data-c="experience.heading">Work Experience</h2>
+      <p class="sect-sub" data-c="experience.sub">Building real ML systems in the energy sector.</p>
     </div>
-    <div class="timeline">
-
-      <div class="ti reveal">
+    <div class="timeline" id="timeline">
+      <div class="ti current" data-reveal>
         <div class="ti-dot"></div>
-        <div class="ti-card spotlight">
+        <div class="ti-card card spot">
           <div class="ti-top">
             <div>
-              <div class="ti-role">Assistant Manager – Data Science & AI</div>
+              <div class="ti-role">Assistant Manager – Data Science &amp; AI</div>
               <div class="ti-co">BSES Rajdhani Power Limited (BRPL)</div>
             </div>
             <span class="ti-date">Apr 2025 — Present</span>
           </div>
-          <div class="ti-loc"><i class="fa-solid fa-location-dot"></i>&nbsp;New Delhi, India</div>
-          <div class="ti-body">
-            <ul>
-              <li>Leading the design and deployment of short-term and day-ahead load forecasting models, enhanced with an LLM-powered assistant built using LangChain that allows grid operators and planners to query demand forecasts and scenario analyses in natural language, improving decision-making speed, transparency, and operational efficiency across BRPL's service zones.</li>
-            </ul>
-          </div>
-          <div class="ti-tags">
-            <span class="chip">LangChain</span><span class="chip">Load Forecasting</span><span class="chip">LLMs</span><span class="chip">Python</span>
-          </div>
+          <div class="ti-loc"><svg class="ic"><use href="#i-pin"/></svg> New Delhi, India</div>
+          <div class="ti-body"><ul><li>Leading the design and deployment of short-term and day-ahead load forecasting models, enhanced with an LLM-powered assistant built using LangChain that allows grid operators and planners to query demand forecasts and scenario analyses in natural language, improving decision-making speed, transparency, and operational efficiency across BRPL's service zones.</li></ul></div>
+          <div class="ti-tags"><span class="chip">LangChain</span><span class="chip">Load Forecasting</span><span class="chip">LLMs</span><span class="chip">Python</span></div>
         </div>
       </div>
-
-      <div class="ti reveal d1">
+      <div class="ti" data-reveal>
         <div class="ti-dot"></div>
-        <div class="ti-card spotlight">
+        <div class="ti-card card spot">
           <div class="ti-top">
             <div>
               <div class="ti-role">Machine Learning Engineer</div>
@@ -1023,25 +274,18 @@ footer{border-top:1px solid var(--bdr);padding:28px 0;position:relative;z-index:
             </div>
             <span class="ti-date">Jun 2022 — Apr 2025</span>
           </div>
-          <div class="ti-loc"><i class="fa-solid fa-location-dot"></i>&nbsp;Gurugram, India</div>
-          <div class="ti-body">
-            <ul>
-              <li>Led the development of predictive models for Delhi Discoms (BRPL, BYPL, TPDDL), achieving a 3% MAPE using Neural Networks, LightGBM, CatBoost, and XGBoost for day-ahead and intraday forecasting. Integrated real-time weather data while leveraging Apache Spark and Kafka for efficient data handling.</li>
-              <li>Developed solar and wind forecasting models for REMC-Telangana (166 plants), designing high-precision week-ahead energy predictions. Deployed models using AWS SageMaker, with automated CI/CD pipelines for seamless updates.</li>
-              <li>Conducted extensive research and development on price forecasting at IEX, employing diverse models and achieving a notable 7.5% MAPE with innovative strategies using the LightGBM model.</li>
-            </ul>
-          </div>
-          <div class="ti-tags">
-            <span class="chip">LightGBM</span><span class="chip">Neural Networks</span>
-            <span class="chip">Apache Spark</span><span class="chip">Kafka</span>
-            <span class="chip">AWS SageMaker</span><span class="chip">CatBoost</span>
-          </div>
+          <div class="ti-loc"><svg class="ic"><use href="#i-pin"/></svg> Gurugram, India</div>
+          <div class="ti-body"><ul>
+            <li>Led the development of predictive models for Delhi Discoms (BRPL, BYPL, TPDDL), achieving a 3% MAPE using Neural Networks, LightGBM, CatBoost, and XGBoost for day-ahead and intraday forecasting. Integrated real-time weather data while leveraging Apache Spark and Kafka for efficient data handling.</li>
+            <li>Developed solar and wind forecasting models for REMC-Telangana (166 plants), designing high-precision week-ahead energy predictions. Deployed models using AWS SageMaker, with automated CI/CD pipelines for seamless updates.</li>
+            <li>Conducted extensive research and development on price forecasting at IEX, employing diverse models and achieving a notable 7.5% MAPE with innovative strategies using the LightGBM model.</li>
+          </ul></div>
+          <div class="ti-tags"><span class="chip">LightGBM</span><span class="chip">Neural Networks</span><span class="chip">Apache Spark</span><span class="chip">Kafka</span><span class="chip">AWS SageMaker</span><span class="chip">CatBoost</span></div>
         </div>
       </div>
-
-      <div class="ti reveal d2">
+      <div class="ti" data-reveal>
         <div class="ti-dot"></div>
-        <div class="ti-card spotlight">
+        <div class="ti-card card spot">
           <div class="ti-top">
             <div>
               <div class="ti-role">Engineer</div>
@@ -1049,188 +293,118 @@ footer{border-top:1px solid var(--bdr);padding:28px 0;position:relative;z-index:
             </div>
             <span class="ti-date">Aug 2019 — Sep 2020</span>
           </div>
-          <div class="ti-loc"><i class="fa-solid fa-location-dot"></i>&nbsp;Noida, India</div>
-          <div class="ti-body">
-            <ul>
-              <li>Designed foundation for different equipment and structures that are usually present in oil refineries using softwares like AutoCAD, StaadPro, RISA Base, Foundation 3D, RAM Connection etc.</li>
-            </ul>
-          </div>
-          <div class="ti-tags">
-            <span class="chip">AutoCAD</span><span class="chip">StaadPro</span><span class="chip">RISA Base</span><span class="chip">Foundation 3D</span>
-          </div>
+          <div class="ti-loc"><svg class="ic"><use href="#i-pin"/></svg> Noida, India</div>
+          <div class="ti-body"><ul><li>Designed foundation for different equipment and structures that are usually present in oil refineries using softwares like AutoCAD, StaadPro, RISA Base, Foundation 3D, RAM Connection etc.</li></ul></div>
+          <div class="ti-tags"><span class="chip">AutoCAD</span><span class="chip">StaadPro</span><span class="chip">RISA Base</span><span class="chip">Foundation 3D</span></div>
         </div>
       </div>
-
-      <!-- Education -->
-      <div class="ti reveal d3">
-        <div class="ti-dot" style="background:linear-gradient(135deg,var(--cy),var(--gn));animation:none;box-shadow:0 0 0 3px rgba(34,211,238,.15),0 0 14px rgba(34,211,238,.4)"></div>
-        <div class="ti-card spotlight" style="border-color:rgba(34,211,238,.12)">
+      <div class="ti edu" data-reveal>
+        <div class="ti-dot"></div>
+        <div class="ti-card card spot">
           <div class="ti-top">
             <div>
               <div class="ti-role">B.Tech Civil Engineering</div>
-              <div class="ti-co" style="color:var(--cy)">Aligarh Muslim University</div>
+              <div class="ti-co">Aligarh Muslim University</div>
             </div>
             <span class="ti-date">2015 — 2019</span>
           </div>
-          <div class="ti-loc"><i class="fa-solid fa-graduation-cap"></i>&nbsp;Aligarh, India</div>
-          <div class="ti-body">Grade: <strong style="color:var(--t1)">9.0 CGPA</strong></div>
-          <div class="ti-tags">
-            <span class="chip" style="color:var(--cy);border-color:rgba(34,211,238,.22)">9.0 CGPA</span>
-          </div>
+          <div class="ti-loc"><svg class="ic"><use href="#i-grad"/></svg> Aligarh, India</div>
+          <div class="ti-body"><ul><li>Graduated with a 9.0 CGPA.</li></ul></div>
+          <div class="ti-tags"><span class="chip">9.0 CGPA</span></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══ PROJECTS ═══════════════════════════════════════════════════════ -->
+<!-- ══ Projects ══════════════════════════════════════════════════════ -->
 <section class="sect" id="projects">
   <div class="wrap">
     <div class="proj-head">
-      <div>
-        <div class="sect-lbl reveal">projects</div>
-        <h2 class="h2 reveal d1">My Work</h2>
-        <p class="reveal d2">End-to-end ML projects — all deployed as live apps.</p>
+      <div data-reveal>
+        <div class="sect-lbl" data-c="projects.label">Projects</div>
+        <h2 class="h2" data-c="projects.heading">My Work</h2>
+        <p class="sect-sub" data-c="projects.sub">End-to-end ML projects — all deployed as live apps.</p>
       </div>
-      <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" class="btn btn-out reveal" style="align-self:flex-end">
-        <i class="fa-brands fa-github"></i> All on GitHub
+      <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" class="btn btn-out" id="projGithub" data-reveal><svg class="ic"><use href="#i-github"/></svg> All on GitHub</a>
+    </div>
+    <div class="proj-grid" id="projGrid">
+      <a class="proj-card card" href="https://recommend-movies-app.streamlit.app/" target="_blank" rel="noopener" data-reveal>
+        <div class="proj-media"><img src="images/mrs.jpeg" alt="Movie Recommendation System" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> View app</span></div></div>
+        <div class="proj-body"><div class="proj-title"><span>Movie Recommendation System</span><svg class="ic"><use href="#i-arrow-up-right"/></svg></div><p class="proj-desc">A movie recommendation system that recommends movies based on search.</p></div>
+      </a>
+      <a class="proj-card card" href="https://ipl-win-prediction.streamlit.app/" target="_blank" rel="noopener" data-reveal style="--rd:.08s">
+        <div class="proj-media"><img src="images/ipl.jpeg" alt="IPL Win Predictor" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> View app</span></div></div>
+        <div class="proj-body"><div class="proj-title"><span>IPL Win Predictor</span><svg class="ic"><use href="#i-arrow-up-right"/></svg></div><p class="proj-desc">IPL win predictor that can predict probability of winning of chasing team at any point of the match.</p></div>
+      </a>
+      <a class="proj-card card" href="https://olympics-analysis.streamlit.app/" target="_blank" rel="noopener" data-reveal style="--rd:.16s">
+        <div class="proj-media"><img src="images/olympics.jpeg" alt="Olympics Analysis" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> View app</span></div></div>
+        <div class="proj-body"><div class="proj-title"><span>Olympics Analysis</span><svg class="ic"><use href="#i-arrow-up-right"/></svg></div><p class="proj-desc">Analysis of past years summer olympics record from 1896 to 2016.</p></div>
+      </a>
+      <a class="proj-card card" href="https://spam-classifier-sms.streamlit.app/" target="_blank" rel="noopener" data-reveal>
+        <div class="proj-media"><img src="images/spam_sms.jpeg" alt="SMS Spam Classifier" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> View app</span></div></div>
+        <div class="proj-body"><div class="proj-title"><span>SMS Spam Classifier</span><svg class="ic"><use href="#i-arrow-up-right"/></svg></div><p class="proj-desc">A classifier that can predict any SMS as spam or not.</p></div>
+      </a>
+      <a class="proj-card card" href="https://chat-analysis-whatsapp.streamlit.app/" target="_blank" rel="noopener" data-reveal style="--rd:.08s">
+        <div class="proj-media"><img src="images/whatsapp.jpeg" alt="WhatsApp Chat Analysis" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> View app</span></div></div>
+        <div class="proj-body"><div class="proj-title"><span>WhatsApp Chat Analysis</span><svg class="ic"><use href="#i-arrow-up-right"/></svg></div><p class="proj-desc">Analyse of group as well as personal WhatsApp chats.</p></div>
       </a>
     </div>
-    <div class="proj-grid">
-
-      <div class="proj-card reveal d1">
-        <img class="proj-img" src="images/mrs.jpeg" alt="Movie Recommendation System" style="object-position:center center">
-        <div class="proj-overlay">
-          <a href="https://recommend-movies-app.streamlit.app/" target="_blank" rel="noopener" class="proj-open"><i class="fa-solid fa-up-right-from-square"></i> View App</a>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title">Movie Recommendation System</div>
-          <p class="proj-desc">A movie recommendation system that recommends movies based on search.</p>
-        </div>
-      </div>
-
-      <div class="proj-card reveal d2">
-        <img class="proj-img" src="images/ipl.jpeg" alt="IPL Win Predictor" style="object-position:center center">
-        <div class="proj-overlay">
-          <a href="https://ipl-win-prediction.streamlit.app/" target="_blank" rel="noopener" class="proj-open"><i class="fa-solid fa-up-right-from-square"></i> View App</a>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title">IPL Win Predictor</div>
-          <p class="proj-desc">IPL win predictor that can predict probability of winning of chasing team at any point of the match.</p>
-        </div>
-      </div>
-
-      <div class="proj-card reveal d1">
-        <img class="proj-img" src="images/olympics.jpeg" alt="Olympics Analysis" style="object-position:center center">
-        <div class="proj-overlay">
-          <a href="https://olympics-analysis.streamlit.app/" target="_blank" rel="noopener" class="proj-open"><i class="fa-solid fa-up-right-from-square"></i> View App</a>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title">Olympics Analysis</div>
-          <p class="proj-desc">Analysis of past years summer olympics record from 1896 to 2016.</p>
-        </div>
-      </div>
-
-      <div class="proj-card reveal d2">
-        <img class="proj-img" src="images/spam_sms.jpeg" alt="SMS Spam Classifier" style="object-position:center center">
-        <div class="proj-overlay">
-          <a href="https://spam-classifier-sms.streamlit.app/" target="_blank" rel="noopener" class="proj-open"><i class="fa-solid fa-up-right-from-square"></i> View App</a>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title">SMS Spam Classifier</div>
-          <p class="proj-desc">A classifier that can predict any SMS as spam or not.</p>
-        </div>
-      </div>
-
-      <div class="proj-card reveal d3">
-        <img class="proj-img" src="images/whatsapp.jpeg" alt="WhatsApp Chat Analysis" style="object-position:center center">
-        <div class="proj-overlay">
-          <a href="https://chat-analysis-whatsapp.streamlit.app/" target="_blank" rel="noopener" class="proj-open"><i class="fa-solid fa-up-right-from-square"></i> View App</a>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title">WhatsApp Chat Analysis</div>
-          <p class="proj-desc">Analyse of group as well as personal WhatsApp chats.</p>
-        </div>
-      </div>
-
-    </div>
   </div>
 </section>
 
-<!-- ══ CTA ════════════════════════════════════════════════════════════ -->
+<!-- ══ Hire CTA ══════════════════════════════════════════════════════ -->
 <section class="sect" id="hire">
   <div class="wrap">
-    <div class="reveal" style="position:relative">
-      <div class="cta-border" aria-hidden="true"></div>
-      <div class="cta-cover" aria-hidden="true"></div>
-      <div class="cta-box">
-        <div class="cta-glow-bg" aria-hidden="true"></div>
-        <div class="cta-dots" aria-hidden="true"></div>
-        <div style="position:relative;z-index:1">
-          <div class="cta-badge"><i class="fa-solid fa-circle-dot"></i>&nbsp; Open to opportunities</div>
-          <h2 class="cta-title">Let's build something<br><span class="grd-txt">that ships to production</span></h2>
-          <p class="cta-sub">Full-time roles · Contract work · Consulting · Research collaborations in ML, AI and data science.</p>
-          <div class="cta-btns">
-            <a href="#contact" class="btn btn-fill" style="padding:14px 36px;font-size:15px"><i class="fa-solid fa-paper-plane"></i> Send Inquiry</a>
-            <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" class="btn btn-out" style="padding:14px 28px;font-size:15px"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
-            <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" class="btn btn-out" style="padding:14px 28px;font-size:15px"><i class="fa-brands fa-github"></i> GitHub</a>
-            <a href="Aman_Bhatt_Resume.pdf" target="_blank" rel="noopener" class="btn btn-out" style="padding:14px 28px;font-size:15px"><i class="fa-solid fa-file-pdf"></i> Resume</a>
-          </div>
-          <div class="cta-socs">
-            <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" class="soc" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" class="soc" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            <a href="mailto:amanbhatt.1997.ab@gmail.com" class="soc" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://www.hackerrank.com/ab_977" target="_blank" rel="noopener" class="soc" aria-label="HackerRank"><i class="fa-brands fa-hackerrank"></i></a>
-          </div>
+    <div class="cta-box" data-reveal>
+      <div class="cta-glow" aria-hidden="true"></div>
+      <div style="position:relative;z-index:1">
+        <div class="cta-badge"><svg class="ic"><use href="#i-dot"/></svg> <span data-c="cta.badge">Open to opportunities</span></div>
+        <h2 class="cta-title" id="ctaTitle">Let's build something<br><span class="grd-txt">that ships to production</span></h2>
+        <p class="cta-sub" data-c="cta.sub">Full-time roles · Contract work · Consulting · Research collaborations in ML, AI and data science.</p>
+        <div class="cta-btns">
+          <a href="#contact" class="btn btn-fill"><svg class="ic"><use href="#i-send"/></svg> Send Inquiry</a>
+          <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" class="btn btn-out" data-soc="linkedin"><svg class="ic"><use href="#i-linkedin"/></svg> LinkedIn</a>
+          <a href="Aman_Bhatt_Resume.pdf" target="_blank" rel="noopener" class="btn btn-out" data-resume><svg class="ic"><use href="#i-file"/></svg> Resume</a>
+        </div>
+        <div class="cta-socs">
+          <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" class="soc" aria-label="LinkedIn" data-soc="linkedin"><svg class="ic"><use href="#i-linkedin"/></svg></a>
+          <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" class="soc" aria-label="GitHub" data-soc="github"><svg class="ic"><use href="#i-github"/></svg></a>
+          <a href="mailto:amanbhatt.1997.ab@gmail.com" class="soc" aria-label="Email" data-soc="email"><svg class="ic"><use href="#i-mail"/></svg></a>
+          <a href="https://www.hackerrank.com/ab_977" target="_blank" rel="noopener" class="soc" aria-label="HackerRank" data-soc="hackerrank"><svg class="ic"><use href="#i-hackerrank"/></svg></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ CONTACT ════════════════════════════════════════════════════════ -->
+<!-- ══ Contact ═══════════════════════════════════════════════════════ -->
 <section class="sect" id="contact">
   <div class="wrap">
-    <div style="margin-bottom:52px">
-      <div class="sect-lbl reveal">contact</div>
-      <h2 class="h2 reveal d1">Get in Touch</h2>
-      <p class="reveal d2" style="color:var(--t2);font-size:15px">Have a role or project in mind? Fill in the form — I'll reply within 24 hours.</p>
+    <div style="margin-bottom:56px" data-reveal>
+      <div class="sect-lbl" data-c="contact.label">Contact</div>
+      <h2 class="h2" data-c="contact.heading">Get in Touch</h2>
+      <p class="sect-sub" data-c="contact.sub">Have a role or project in mind? Fill in the form — I'll reply within 24 hours.</p>
     </div>
     <div class="contact-grid">
-      <div class="reveal">
-        <div class="ct-info">
-          <h3>Let's connect</h3>
-          <p>Open to full-time ML/AI roles, contract work, consulting and research collaborations.</p>
-          <div class="ct-row">
-            <div class="ct-ico"><i class="fa-solid fa-envelope"></i></div>
-            <div class="ct-txt"><strong>email</strong>amanbhatt.1997.ab@gmail.com</div>
-          </div>
-          <div class="ct-row">
-            <div class="ct-ico"><i class="fa-solid fa-phone"></i></div>
-            <div class="ct-txt"><strong>phone</strong>+91-9452305762</div>
-          </div>
-          <div class="ct-row">
-            <div class="ct-ico"><i class="fa-brands fa-linkedin-in"></i></div>
-            <div class="ct-txt"><strong>linkedin</strong>linkedin.com/in/amanbhatt1997</div>
-          </div>
-          <div class="ct-row">
-            <div class="ct-ico"><i class="fa-brands fa-github"></i></div>
-            <div class="ct-txt"><strong>github</strong>github.com/amanbhatt97</div>
-          </div>
-          <div class="ct-row">
-            <div class="ct-ico"><i class="fa-solid fa-location-dot"></i></div>
-            <div class="ct-txt"><strong>location</strong>New Delhi · Open to remote</div>
-          </div>
+      <div class="ct-info" data-reveal>
+        <h3>Let's connect</h3>
+        <p data-c="contact.intro">Open to full-time ML/AI roles, contract work, consulting and research collaborations.</p>
+        <div id="ctRows">
+          <a class="ct-row" href="mailto:amanbhatt.1997.ab@gmail.com"><div class="ct-ico"><svg class="ic"><use href="#i-mail"/></svg></div><div class="ct-txt"><strong>email</strong>amanbhatt.1997.ab@gmail.com</div></a>
+          <a class="ct-row" href="tel:+919452305762"><div class="ct-ico"><svg class="ic"><use href="#i-phone"/></svg></div><div class="ct-txt"><strong>phone</strong>+91-9452305762</div></a>
+          <a class="ct-row" href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener"><div class="ct-ico"><svg class="ic"><use href="#i-linkedin"/></svg></div><div class="ct-txt"><strong>linkedin</strong>linkedin.com/in/amanbhatt1997</div></a>
+          <a class="ct-row" href="https://github.com/amanbhatt97" target="_blank" rel="noopener"><div class="ct-ico"><svg class="ic"><use href="#i-github"/></svg></div><div class="ct-txt"><strong>github</strong>github.com/amanbhatt97</div></a>
+          <div class="ct-row"><div class="ct-ico"><svg class="ic"><use href="#i-pin"/></svg></div><div class="ct-txt"><strong>location</strong>New Delhi · Open to remote</div></div>
         </div>
       </div>
-      <div class="reveal d1">
-        <form class="form-card" id="cForm" novalidate>
+      <div data-reveal style="--rd:.1s">
+        <form class="form-card card" id="cForm" novalidate>
           <div class="frow">
-            <div class="fg"><label for="fn">Name *</label><input type="text" id="fn" name="name" placeholder="Jane Smith" required></div>
-            <div class="fg"><label for="fe">Email *</label><input type="email" id="fe" name="email" placeholder="jane@company.com" required></div>
+            <div class="fg"><label for="fn">Name *</label><input type="text" id="fn" name="name" placeholder="Jane Smith" required autocomplete="name"></div>
+            <div class="fg"><label for="fe">Email *</label><input type="email" id="fe" name="email" placeholder="jane@company.com" required autocomplete="email"></div>
           </div>
-          <div class="fg"><label for="fc">Company</label><input type="text" id="fc" name="company" placeholder="Acme Corp (optional)"></div>
+          <div class="fg"><label for="fc">Company</label><input type="text" id="fc" name="company" placeholder="Acme Corp (optional)" autocomplete="organization"></div>
           <div class="fg">
             <label for="ft">Opportunity type *</label>
             <select id="ft" name="role" required>
@@ -1242,15 +416,10 @@ footer{border-top:1px solid var(--bdr);padding:28px 0;position:relative;z-index:
               <option>Other</option>
             </select>
           </div>
-          <div class="fg">
-            <label for="fm">Message <span style="text-transform:none;font-size:11px;color:var(--t3)">(optional)</span></label>
-            <textarea id="fm" name="message" rows="4" placeholder="Tell me about the role or project…"></textarea>
-          </div>
-          <p class="fnote"><i class="fa-solid fa-lock"></i> Delivered securely to my inbox.</p>
-          <button type="submit" class="btn btn-fill" style="width:100%;justify-content:center;font-size:15px;padding:13px">
-            <i class="fa-solid fa-paper-plane"></i> Send Message
-          </button>
-          <div id="fmsg"></div>
+          <div class="fg"><label for="fm">Message</label><textarea id="fm" name="message" rows="4" placeholder="Tell me about the role or project…"></textarea></div>
+          <p class="fnote"><svg class="ic"><use href="#i-lock"/></svg> Delivered securely to my inbox.</p>
+          <button type="submit" class="btn btn-fill" style="width:100%"><svg class="ic"><use href="#i-send"/></svg> Send Message</button>
+          <div id="fmsg" role="status"></div>
         </form>
       </div>
     </div>
@@ -1261,248 +430,20 @@ footer{border-top:1px solid var(--bdr);padding:28px 0;position:relative;z-index:
 
 <footer>
   <div class="wrap foot-inner">
-    <span class="foot-brand">aman bhatt.</span>
-    <span class="foot-copy">© 2025 Aman Bhatt · ML Engineer &amp; Data Scientist</span>
-    <nav class="foot-nav">
+    <span class="foot-brand">aman <span>bhatt.</span></span>
+    <span class="foot-copy" data-c="footer.copyright">© 2025 Aman Bhatt · ML Engineer &amp; Data Scientist</span>
+    <nav class="foot-nav" aria-label="Footer">
       <a href="#home">Top</a>
-      <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" data-soc="linkedin">LinkedIn</a>
+      <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" data-soc="github">GitHub</a>
+      <a href="admin.html" rel="nofollow" title="Developer console"><svg class="ic"><use href="#i-code"/></svg> Developer</a>
     </nav>
   </div>
 </footer>
 
-<script>
-/* ── THEME ──────────────────────────────────────────────────── */
-const root = document.documentElement;
-const themeBtn = document.getElementById('themeBtn');
-const themeIcon = document.getElementById('themeIcon');
-function setTheme(t) {
-  root.setAttribute('data-theme', t);
-  themeIcon.className = t === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
-  localStorage.setItem('theme', t);
-}
-themeBtn.addEventListener('click', () =>
-  setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')
-);
-setTheme(localStorage.getItem('theme') || 'dark');
+<button id="toTop" aria-label="Back to top"><svg class="ic"><use href="#i-arrow-up"/></svg></button>
 
-/* ── SCROLL PROGRESS ────────────────────────────────────────── */
-const pbar = document.getElementById('pbar');
-window.addEventListener('scroll', () => {
-  pbar.style.transform = `scaleX(${window.scrollY / (document.body.scrollHeight - innerHeight)})`;
-}, { passive: true });
-
-/* ── MOBILE NAV (drops down, not sidebar) ───────────────────── */
-const hbg = document.getElementById('hbg');
-const mobDrop = document.getElementById('mobDrop');
-function closeMob() {
-  mobDrop.classList.remove('op');
-  hbg.classList.remove('op');
-  hbg.setAttribute('aria-expanded', 'false');
-}
-hbg.addEventListener('click', () => {
-  const open = !mobDrop.classList.contains('op');
-  mobDrop.classList.toggle('op', open);
-  hbg.classList.toggle('op', open);
-  hbg.setAttribute('aria-expanded', String(open));
-});
-window.addEventListener('click', e => {
-  if (!hbg.contains(e.target) && !mobDrop.contains(e.target)) closeMob();
-});
-
-/* ── TYPING ANIMATION ───────────────────────────────────────── */
-(function () {
-  const el = document.getElementById('typed');
-  const words = ['ML Engineer', 'Data Scientist', 'Energy Forecasting Expert', 'LLM Systems Builder', 'MLOps Engineer'];
-  let wi = 0, ci = 0, del = false;
-  const tick = () => {
-    const w = words[wi];
-    el.textContent = del ? w.slice(0, --ci) : w.slice(0, ++ci);
-    if (!del && ci === w.length) return setTimeout(tick, 2200);
-    if (del && ci === 0) { del = false; wi = (wi + 1) % words.length; }
-    else if (!del && ci === w.length) del = true;
-    setTimeout(tick, del ? 38 : 62);
-  };
-  tick();
-})();
-
-/* ── SCROLL REVEAL ──────────────────────────────────────────── */
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
-}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-/* ── ACTIVE NAV ─────────────────────────────────────────────── */
-const navAs = document.querySelectorAll('.nav-links a');
-document.querySelectorAll('section[id]').forEach(s =>
-  new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting)
-        navAs.forEach(a => a.classList.toggle('act', a.getAttribute('href') === '#' + e.target.id));
-    });
-  }, { threshold: 0.35 }).observe(s)
-);
-
-/* ── CARD SPOTLIGHT EFFECT ──────────────────────────────────── */
-/* Makes a radial light follow your cursor across every card */
-document.querySelectorAll('.spotlight,.proj-card,.ti-card,.sk-card,.logo-item').forEach(el => {
-  el.addEventListener('mousemove', e => {
-    const r = el.getBoundingClientRect();
-    el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-    el.style.setProperty('--my', (e.clientY - r.top) + 'px');
-  });
-});
-
-/* ── HERO PHOTO 3D TILT ─────────────────────────────────────── */
-const photoWrap = document.getElementById('photoWrap');
-const photoTilt = document.getElementById('photoTilt');
-if (photoWrap && photoTilt) {
-  photoWrap.addEventListener('mousemove', e => {
-    const r = photoWrap.getBoundingClientRect();
-    const x = ((e.clientX - r.left) / r.width - .5) * 2;
-    const y = ((e.clientY - r.top) / r.height - .5) * 2;
-    photoTilt.style.transform = `perspective(900px) rotateX(${-y * 9}deg) rotateY(${x * 9}deg) scale3d(1.02,1.02,1.02)`;
-    photoTilt.style.transition = 'transform .08s linear';
-  });
-  photoWrap.addEventListener('mouseleave', () => {
-    photoTilt.style.transition = 'transform .55s cubic-bezier(.16,1,.3,1)';
-    photoTilt.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
-  });
-}
-
-/* ── COUNTER ANIMATION ──────────────────────────────────────── */
-const counters = document.querySelectorAll('.hst-n[data-count]');
-let countDone = false;
-const countObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting && !countDone) {
-      countDone = true;
-      counters.forEach(el => {
-        const target = parseInt(el.dataset.count);
-        const prefix = el.dataset.prefix || '';
-        const suffix = el.dataset.suffix || '';
-        const span = el.querySelector('.count-val');
-        if (!span) return;
-        const dur = 1400;
-        const start = performance.now();
-        const step = ts => {
-          const prog = Math.min((ts - start) / dur, 1);
-          const ease = 1 - Math.pow(1 - prog, 3);
-          const val = Math.round(ease * target);
-          span.innerHTML = `${prefix}${val}${suffix}`;
-          if (prog < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-      });
-    }
-  });
-}, { threshold: 0.5 });
-if (counters.length) countObs.observe(counters[0].closest('.hero-stats') || counters[0]);
-
-/* ── NEURAL NETWORK CANVAS ──────────────────────────────────── */
-(function () {
-  const canvas = document.getElementById('pcanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, pts = [];
-  const N = 52, MAX_D = 145;
-
-  const resize = () => {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  };
-  const mkPt = () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .32, vy: (Math.random() - .5) * .32, r: Math.random() * 1.4 + .4 });
-  const init = () => { pts = Array.from({ length: N }, mkPt); };
-
-  const draw = () => {
-    ctx.clearRect(0, 0, W, H);
-    const dark = root.getAttribute('data-theme') !== 'light';
-    const pc = dark ? '167,139,250' : '109,40,217';
-
-    pts.forEach((p, i) => {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > W) p.vx *= -1;
-      if (p.y < 0 || p.y > H) p.vy *= -1;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${pc},.55)`;
-      ctx.fill();
-      for (let j = i + 1; j < N; j++) {
-        const q = pts[j];
-        const d = Math.hypot(p.x - q.x, p.y - q.y);
-        if (d < MAX_D) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(q.x, q.y);
-          ctx.strokeStyle = `rgba(${pc},${.18 * (1 - d / MAX_D)})`;
-          ctx.lineWidth = .55;
-          ctx.stroke();
-        }
-      }
-    });
-    requestAnimationFrame(draw);
-  };
-
-  resize(); init(); draw();
-  window.addEventListener('resize', () => { resize(); init(); });
-})();
-
-/* ── CONTACT FORM (Web3Forms) ───────────────────────────────── */
-/* 🔑 SETUP (30 seconds):
-   1. Go to https://web3forms.com
-   2. Enter amanbhatt.1997.ab@gmail.com
-   3. Check your Gmail for the access key email
-   4. Replace YOUR_WEB3FORMS_ACCESS_KEY below with your actual key  */
-const W3F_KEY = '735cd532-1ef3-45b8-8b51-6a1288ccdd9d';
-
-document.getElementById('cForm').addEventListener('submit', async function (e) {
-  e.preventDefault();
-  const btn = this.querySelector('button[type=submit]');
-  const msg = document.getElementById('fmsg');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending…';
-  msg.style.display = 'none';
-
-  const fname    = document.getElementById('fn').value.trim();
-  const femail   = document.getElementById('fe').value.trim();
-  const fcompany = document.getElementById('fc').value.trim();
-  const frole    = document.getElementById('ft').value;
-  const fmessage = document.getElementById('fm').value.trim();
-
-  if (W3F_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY') {
-    const body = encodeURIComponent(`Name: ${fname}\nEmail: ${femail}\nCompany: ${fcompany || '—'}\nType: ${frole}\nMessage: ${fmessage || '—'}`);
-    const subject = encodeURIComponent(`Portfolio inquiry · ${fname} — ${frole}`);
-    window.location.href = `mailto:amanbhatt.1997.ab@gmail.com?subject=${subject}&body=${body}`;
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
-    return;
-  }
-
-  try {
-    const r = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        access_key: W3F_KEY,
-        name: fname, email: femail,
-        company: fcompany || '—', role: frole, message: fmessage || '—',
-        subject: `Portfolio inquiry · ${fname} — ${frole}`,
-        from_name: 'Portfolio Contact Form',
-      }),
-    });
-    const j = await r.json();
-    if (j.success) {
-      msg.textContent = '✓ Message sent! I\'ll reply within 24 hours.';
-      msg.className = 'ok'; msg.style.display = 'block';
-      this.reset();
-    } else throw new Error(j.message || 'Failed');
-  } catch (err) {
-    msg.textContent = '✕ Could not send. Please email: amanbhatt.1997.ab@gmail.com';
-    msg.className = 'er'; msg.style.display = 'block';
-  }
-  btn.disabled = false;
-  btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
-});
-</script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js" defer></script>
+<script src="assets/js/site.js" defer></script>
 </body>
 </html>
