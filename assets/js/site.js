@@ -12,6 +12,9 @@ const $  = (s, c = document) => c.querySelector(s);
 const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer  = matchMedia('(hover: hover) and (pointer: fine)').matches;
+/* Preview mode: the developer console embeds this page as ?preview=1 and
+   drives it live via postMessage instead of the published content.json. */
+const PREVIEW = (() => { try { return new URLSearchParams(location.search).has('preview'); } catch (_) { return false; } })();
 
 const esc = s => String(s ?? '')
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -381,6 +384,7 @@ function mountChrome() {
   const W3F_KEY = '735cd532-1ef3-45b8-8b51-6a1288ccdd9d';
   $('#cForm')?.addEventListener('submit', async function (e) {
     e.preventDefault();
+    if (PREVIEW) return;               // never actually send from the console preview
     const btn = this.querySelector('button[type=submit]');
     const msg = $('#fmsg');
     const orig = btn.innerHTML;
@@ -416,9 +420,43 @@ function mountChrome() {
   });
 }
 
+/* ── Live preview (driven by the developer console over postMessage) ─── */
+function applyPreview(c) {
+  const content = c || {};
+  try { render(content); } catch (_) {}
+  /* No scroll-reveal in the preview — show every section immediately. */
+  $$('[data-reveal]').forEach(el => el.classList.remove('reveal'));
+  /* Static typed line (first role) — the looping animation would flicker on every keystroke. */
+  const typed = $('#typed');
+  if (typed) {
+    const roles = Array.isArray(content.hero?.roles) ? content.hero.roles.map(String) : [];
+    typed.textContent = roles[0] || typed.textContent || '';
+  }
+}
+
+async function initPreview() {
+  root.classList.add('is-preview');
+  /* Baseline from the published content so the frame isn't blank before the first message. */
+  try {
+    const r = await fetch(`content.json?v=${Date.now()}`, { cache: 'no-cache' });
+    if (r.ok) applyPreview(await r.json());
+  } catch (_) {}
+  addEventListener('message', e => {
+    const d = e.data || {};
+    if (d.type === 'pf-preview') applyPreview(d.content);
+    else if (d.type === 'pf-theme' && d.theme) setTheme(d.theme);
+    else if (d.type === 'pf-scroll' && d.section) {
+      const el = document.getElementById(d.section);
+      if (el) el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+    }
+  });
+  try { parent.postMessage({ type: 'pf-ready' }, '*'); } catch (_) {}
+}
+
 /* ── Boot ───────────────────────────────────────────────────────────── */
 const boot = async () => {
   mountChrome();
+  if (PREVIEW) { initPreview(); return; }
   let content = {};
   try {
     const ctl = new AbortController();

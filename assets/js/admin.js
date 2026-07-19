@@ -35,12 +35,42 @@ const state = {
   dirty: false, busy: false, images: [],
 };
 
+/* ── Live preview bridge ───────────────────────────────────────────────
+   The #previewFrame iframe loads index.html?preview=1 and re-renders from
+   the in-memory draft on every edit, so you see the real site update live. */
+const PREVIEW_ANCHOR = {           // console section → on-page section id
+  hero: 'home', social: 'contact', about: 'about', skills: 'skills',
+  experience: 'experience', projects: 'projects', cta: 'hire',
+  contact: 'contact', site: 'home', resume: 'home',
+};
+let previewReady = false, previewTimer = 0;
+const previewFrame = () => $('#previewFrame');
+function previewPost(msg) {
+  const f = previewFrame();
+  if (f && f.contentWindow) { try { f.contentWindow.postMessage(msg, '*'); } catch (_) {} }
+}
+function pushPreview(now) {
+  if (!previewReady || !state.doc) return;
+  clearTimeout(previewTimer);
+  const send = () => previewPost({ type: 'pf-preview', content: state.doc });
+  if (now) send(); else previewTimer = setTimeout(send, 140);
+}
+function previewScrollTo(sectionId) {
+  const anchor = PREVIEW_ANCHOR[sectionId];
+  if (previewReady && anchor) previewPost({ type: 'pf-scroll', section: anchor });
+}
+function previewSetTheme(t) { if (previewReady) previewPost({ type: 'pf-theme', theme: t }); }
+addEventListener('message', e => {
+  if ((e.data || {}).type === 'pf-ready') { previewReady = true; pushPreview(true); }
+});
+
 /* ── Theme ─────────────────────────────────────────────────────────── */
 const root = document.documentElement;
 const setTheme = t => {
   root.setAttribute('data-theme', t);
   $('#themeIcon use')?.setAttribute('href', t === 'dark' ? '#i-moon' : '#i-sun');
   try { localStorage.setItem('theme', t); } catch (_) {}
+  previewSetTheme(t);
 };
 setTheme((() => {
   try { const s = localStorage.getItem('theme'); if (s) return s; } catch (_) {}
@@ -161,6 +191,7 @@ function setDirty(d) {
 }
 function markDirty() {
   setDirty(true);
+  pushPreview();
   clearTimeout(draftTimer);
   draftTimer = setTimeout(() => {
     try { localStorage.setItem(draftKey(), JSON.stringify(state.doc)); } catch (_) {}
@@ -516,6 +547,9 @@ function renderSidebar() {
 function renderPanel(id) {
   $$('.snav').forEach(b => b.classList.toggle('act', b.dataset.id === id));
   const s = SECTIONS.find(x => x.id === id);
+  const secLbl = $('#previewSec');
+  if (secLbl) secLbl.textContent = s.title;
+  previewScrollTo(id);
   const panel = $('#panel');
   panel.innerHTML = '';
   const head = el('div', 'panel-head',
@@ -666,6 +700,24 @@ $('#authForm').addEventListener('submit', async e => {
 $('#saveBtn').addEventListener('click', saveContent);
 $('#logoutBtn').addEventListener('click', () => {
   if (!state.dirty || confirm('You have unsaved changes. Sign out anyway?')) logout();
+});
+
+/* Preview controls */
+$('#previewReload')?.addEventListener('click', () => {
+  const f = previewFrame();
+  if (!f) return;
+  previewReady = false;
+  try { f.contentWindow.location.reload(); } catch (_) { f.src = f.src; }
+});
+$('#previewDevice')?.addEventListener('click', () => {
+  const wrap = $('#previewWrap');
+  const mobile = wrap.classList.toggle('mobile');
+  $('#previewDevice use')?.setAttribute('href', mobile ? '#i-monitor' : '#i-smartphone');
+  $('#previewDevice').title = mobile ? 'Switch to desktop width' : 'Switch to mobile width';
+});
+$('#previewToggle')?.addEventListener('click', () => {
+  const off = $('.app-body').classList.toggle('no-preview');
+  $('#previewToggle').classList.toggle('act', !off);
 });
 $('#discardDraftBtn').addEventListener('click', () => {
   if (!confirm('Discard the local draft and reload the published content?')) return;
