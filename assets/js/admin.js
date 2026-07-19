@@ -352,7 +352,8 @@ const SECTIONS = [
       { p: 'footer.copyright', t: 'text', l: 'Footer copyright line' },
     ],
   },
-  { id: 'resume', icon: 'file', title: 'Resume', special: 'resume' },
+  { id: 'resume', icon: 'file', title: 'Resume', special: 'resume',
+    desc: 'Edit your résumé text and generate the PDF straight from these fields — or upload your own PDF under Advanced.' },
 ];
 
 /* ── Field renderers ───────────────────────────────────────────────── */
@@ -561,7 +562,135 @@ function renderPanel(id) {
   scrollTo({ top: 0 });
 }
 
+const RESUME_ACCENTS = (typeof window !== 'undefined' && window.ResumeTemplate) ? window.ResumeTemplate.ACCENTS : ['violet', 'blue', 'teal', 'slate', 'rose', 'green', 'black'];
+
 function renderResumePanel(panel) {
+  const r = state.doc.resume || (state.doc.resume = {});
+  r.file = r.file || 'Aman_Bhatt_Resume.pdf';
+  if (!r.contact) r.contact = {};
+
+  if (!window.ResumeTemplate || !window.jspdf) {
+    panel.appendChild(el('div', 'f-hint', 'PDF engine still loading — reopen this section in a moment.'));
+  }
+
+  /* Template + accent + actions */
+  const genbar = el('div', 'res-genbar');
+  genbar.appendChild(fieldNode({ p: 'resume.template', t: 'select', l: 'Template', opts: ['modern', 'classic'] }, pathBind('resume.template'), refreshPreviewIfOpen));
+  genbar.appendChild(fieldNode({ p: 'resume.accent', t: 'select', l: 'Accent color', opts: RESUME_ACCENTS }, pathBind('resume.accent'), refreshPreviewIfOpen));
+  panel.appendChild(genbar);
+
+  const actions = el('div', 'res-actions');
+  const previewBtn = el('button', 'btn btn-out btn-sm', `${icon('eye')} Preview PDF`);
+  const pubBtn = el('button', 'btn btn-fill btn-sm', `${icon('check')} Generate &amp; publish PDF`);
+  previewBtn.type = pubBtn.type = 'button';
+  actions.append(previewBtn, pubBtn);
+  panel.appendChild(actions);
+  panel.appendChild(el('div', 'f-hint',
+    `<strong>Generate &amp; publish PDF</strong> saves your text edits and rebuilds <strong>${esc(r.file)}</strong> from the fields below — the live download refreshes in ~1–2 minutes. Use <strong>Preview PDF</strong> to check it first.`));
+
+  const previewBox = el('div', 'res-preview');
+  panel.appendChild(previewBox);
+  previewBtn.addEventListener('click', () => previewResume(previewBox, previewBtn));
+  pubBtn.addEventListener('click', () => publishGeneratedResume(pubBtn));
+
+  /* Structured content fields */
+  const groupHead = t => panel.appendChild(el('div', 'res-group', esc(t)));
+  const addField = f => panel.appendChild(fieldNode(f, pathBind(f.p), refreshPreviewIfOpen));
+
+  groupHead('Basics');
+  addField({ p: 'resume.name', t: 'text', l: 'Full name' });
+  addField({ p: 'resume.title', t: 'text', l: 'Professional title' });
+  const twoCol = el('div', 'res-2col');
+  [['resume.contact.email', 'Email'], ['resume.contact.phone', 'Phone'], ['resume.contact.location', 'Location'],
+   ['resume.contact.linkedin', 'LinkedIn URL'], ['resume.contact.github', 'GitHub URL'], ['resume.contact.website', 'Website / portfolio']]
+    .forEach(([p, l]) => twoCol.appendChild(fieldNode({ p, t: 'text', l }, pathBind(p), refreshPreviewIfOpen)));
+  panel.appendChild(twoCol);
+
+  groupHead('Summary');
+  addField({ p: 'resume.summary', t: 'textarea', l: 'Professional summary' });
+
+  groupHead('Experience');
+  addField({ p: 'resume.experience', t: 'list', l: 'Roles', titleKey: 'role', item: [
+    { k: 'role', t: 'text', l: 'Role' }, { k: 'org', t: 'text', l: 'Company' },
+    { k: 'date', t: 'text', l: 'Period (e.g. "Apr 2025 — Present")' }, { k: 'location', t: 'text', l: 'Location' },
+    { k: 'bullets', t: 'rows', l: 'Highlights' } ] });
+
+  groupHead('Skills');
+  addField({ p: 'resume.skills', t: 'list', l: 'Categories', titleKey: 'category', item: [
+    { k: 'category', t: 'text', l: 'Category' }, { k: 'items', t: 'chips', l: 'Skills' } ] });
+
+  groupHead('Education');
+  addField({ p: 'resume.education', t: 'list', l: 'Entries', titleKey: 'degree', item: [
+    { k: 'degree', t: 'text', l: 'Degree' }, { k: 'org', t: 'text', l: 'Institution' },
+    { k: 'date', t: 'text', l: 'Period' }, { k: 'detail', t: 'text', l: 'Detail (grade, honours…)' } ] });
+
+  groupHead('Certifications');
+  addField({ p: 'resume.certifications', t: 'chips', l: 'Certifications (optional)' });
+
+  /* Advanced: manual PDF override */
+  const adv = el('details', 'res-adv');
+  adv.appendChild(el('summary', '', 'Advanced · upload your own PDF instead'));
+  const holder = el('div', 'res-adv-body');
+  adv.appendChild(holder);
+  panel.appendChild(adv);
+  renderUploadCard(holder);
+
+  $('.panel-wrap').scrollTop = 0;
+  scrollTo({ top: 0 });
+}
+
+function refreshPreviewIfOpen() {
+  const box = $('.res-preview.show');
+  if (box) previewResume(box);
+}
+
+function buildResumeDoc() {
+  if (!window.ResumeTemplate || !window.jspdf) throw new Error('PDF engine not loaded — reload the page.');
+  return window.ResumeTemplate.buildResumePdf(window.jspdf.jsPDF, state.doc.resume || {});
+}
+
+function previewResume(box, btn) {
+  const orig = btn ? btn.innerHTML : null;
+  if (btn) { btn.disabled = true; btn.innerHTML = `${icon('refresh')} Building…`; }
+  try {
+    const url = buildResumeDoc().output('bloburl');
+    box.innerHTML = `<iframe class="res-pdf" title="Résumé preview" src="${url}"></iframe>`;
+    box.classList.add('show');
+  } catch (e) {
+    toast(`Preview failed: ${esc(e.message)}`, 'err');
+  }
+  if (btn) { btn.disabled = false; btn.innerHTML = orig; }
+}
+
+async function publishGeneratedResume(btn) {
+  if (state.busy) return;
+  if (state.dirty) {
+    await saveContent();                 // persist the text edits first
+    if (state.dirty) return;             // save failed → saveContent already toasted
+  }
+  setBusy(true);
+  const orig = btn.innerHTML;
+  btn.disabled = true; btn.innerHTML = `${icon('refresh')} Generating…`;
+  try {
+    const content = bufToB64(buildResumeDoc().output('arraybuffer'));
+    const path = state.doc.resume?.file || 'Aman_Bhatt_Resume.pdf';
+    const sha = await getFileSha(path);
+    await gh(repoPath(path), {
+      method: 'PUT',
+      body: JSON.stringify({
+        message: 'docs: regenerate resume from content via developer console',
+        content, branch: state.branch, ...(sha ? { sha } : {}),
+      }),
+    });
+    toast(`Résumé PDF regenerated &amp; published! Live in ~1–2 minutes. <a href="${esc(path)}?t=${Date.now()}" target="_blank" rel="noopener">Open</a>`);
+  } catch (e) {
+    toast(`Could not publish the PDF: ${esc(e.message)}`, 'err');
+  }
+  btn.innerHTML = orig;
+  setBusy(false);
+}
+
+function renderUploadCard(container) {
   const file = state.doc?.resume?.file || 'Aman_Bhatt_Resume.pdf';
   const card = el('div', 'res-card', `
     <div class="res-row">
@@ -580,9 +709,9 @@ function renderResumePanel(panel) {
     </div>
     <input type="file" id="dzInput" accept="application/pdf,.pdf" hidden>
   `);
-  panel.appendChild(card);
-  panel.appendChild(el('div', 'f-hint',
-    'The new PDF is committed straight to GitHub — the live link updates after the site redeploys (usually 1–2 minutes). No “Save & publish” needed for the resume.'));
+  container.appendChild(card);
+  container.appendChild(el('div', 'f-hint',
+    'Uploading a PDF replaces the generated file directly on GitHub — use this if you maintain your résumé elsewhere.'));
 
   const dz = $('#dz', card), input = $('#dzInput', card), prog = $('#dzProgress', card);
   dz.addEventListener('click', () => input.click());

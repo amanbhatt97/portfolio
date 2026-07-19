@@ -56,7 +56,122 @@
     "hackerrank": "https://www.hackerrank.com/ab_977"
   },
   "resume": {
-    "file": "Aman_Bhatt_Resume.pdf"
+    "file": "Aman_Bhatt_Resume.pdf",
+    "template": "modern",
+    "accent": "violet",
+    "name": "Aman Bhatt",
+    "title": "Data Scientist & Machine Learning Engineer",
+    "contact": {
+      "email": "amanbhatt.1997.ab@gmail.com",
+      "phone": "+91-9452305762",
+      "location": "New Delhi, India",
+      "linkedin": "https://www.linkedin.com/in/amanbhatt1997/",
+      "github": "https://github.com/amanbhatt97",
+      "website": ""
+    },
+    "summary": "Data Scientist and ML Engineer with 4+ years building production forecasting systems for the energy sector. I specialise in demand and renewable-energy forecasting at sub-3% MAPE, real-time ML pipelines (Spark, Kafka, AWS), and LLM/RAG assistants — turning operational data into reliable, deployed decisions.",
+    "experience": [
+      {
+        "role": "Assistant Manager – Data Science & AI",
+        "org": "BSES Rajdhani Power Limited (BRPL)",
+        "date": "Apr 2025 — Present",
+        "location": "New Delhi, India",
+        "bullets": [
+          "Own end-to-end demand forecasting for Delhi's electricity grid — day ahead, intraday, and week-ahead — at <3% MAPE, replacing a manual process that ran at 5–6%; segment-based ensembles (LightGBM, CatBoost, XGBoost) across weekday, weekend, and holiday regimes with real-time SCADA correction, Optuna tuning, and MLflow tracking.",
+          "Architected two production RAG systems on Llama 3.3 70B (ChromaDB, FastAPI, cross-encoder reranking): a forecasting assistant for grid operations, and a company-wide knowledge base over technical documentation and operational standards.",
+          "Built supporting data infrastructure — a FastAPI weather ingestion microservice across 14 geographic centroids feeding the forecast pipeline."
+        ]
+      },
+      {
+        "role": "Machine Learning Engineer",
+        "org": "Renew Power · Climate Connect Digital",
+        "date": "Jun 2022 — Apr 2025",
+        "location": "Gurugram, India",
+        "bullets": [
+          "Built demand forecasting systems for three Delhi DISCOMs (BRPL, BYPL, TPDDL) from the ground up — segment-based ensembles (Neural Networks, LightGBM, CatBoost, XGBoost) across day-ahead and intraday horizons.",
+          "Designed solar and wind forecasting across 166 plants for REMC Telangana; week-ahead predictions deployed on AWS SageMaker with automated CI/CD and model versioning.",
+          "Built electricity price forecasting models for IEX at 7.5% MAPE using LightGBM on market microstructure data."
+        ]
+      },
+      {
+        "role": "Engineer",
+        "org": "S & B Engineers & Constructors",
+        "date": "Aug 2019 — Sep 2020",
+        "location": "Noida, India",
+        "bullets": [
+          "Designed structural foundations for oil refinery equipment using AutoCAD, StaadPro, and RISA Base."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.Tech Civil Engineering",
+        "org": "Aligarh Muslim University",
+        "date": "2015 — 2019",
+        "detail": "Graduated with a 9.0 CGPA."
+      }
+    ],
+    "skills": [
+      {
+        "category": "Machine Learning / AI",
+        "items": [
+          "Python",
+          "OOP",
+          "DSA",
+          "SQL",
+          "Statistics",
+          "Data Visualization",
+          "ML Algorithms"
+        ]
+      },
+      {
+        "category": "Deep Learning & LLMs",
+        "items": [
+          "ANN",
+          "CNN",
+          "RNN",
+          "LSTM",
+          "GRU",
+          "Autoencoders",
+          "Transformers",
+          "NLP",
+          "Generative AI",
+          "LangChain",
+          "LlamaIndex"
+        ]
+      },
+      {
+        "category": "Python Packages",
+        "items": [
+          "NumPy",
+          "Pandas",
+          "Matplotlib",
+          "Plotly",
+          "Scipy",
+          "Scikit-learn",
+          "TensorFlow",
+          "Keras",
+          "Streamlit",
+          "Optuna"
+        ]
+      },
+      {
+        "category": "MLOps & Big Data",
+        "items": [
+          "Git",
+          "Docker",
+          "MLflow",
+          "FastAPI",
+          "Apache Spark",
+          "Kafka",
+          "Airflow",
+          "AWS",
+          "Kubernetes",
+          "Hadoop"
+        ]
+      }
+    ],
+    "certifications": []
   },
   "about": {
     "label": "About me",
