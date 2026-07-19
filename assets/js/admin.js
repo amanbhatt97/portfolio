@@ -177,7 +177,7 @@ async function loadImages() {
 
 function logout() {
   try { localStorage.removeItem(TOKEN_KEY); sessionStorage.removeItem(TOKEN_KEY); } catch (_) {}
-  location.reload();
+  location.href = 'index.html';   // exiting the console returns to the portfolio
 }
 
 /* ── Dirty state & drafts ──────────────────────────────────────────── */
@@ -353,7 +353,7 @@ const SECTIONS = [
     ],
   },
   { id: 'resume', icon: 'file', title: 'Resume', special: 'resume',
-    desc: 'Edit your résumé text and generate the PDF straight from these fields — or upload your own PDF under Advanced.' },
+    desc: 'Edit the words in your existing résumé PDF in place — its template, fonts and layout stay exactly the same. Or replace the whole file under Advanced.' },
 ];
 
 /* ── Field renderers ───────────────────────────────────────────────── */
@@ -562,132 +562,172 @@ function renderPanel(id) {
   scrollTo({ top: 0 });
 }
 
-const RESUME_ACCENTS = (typeof window !== 'undefined' && window.ResumeTemplate) ? window.ResumeTemplate.ACCENTS : ['violet', 'blue', 'teal', 'slate', 'rose', 'green', 'black'];
+/* ── Résumé: in-place text editor (keeps the existing PDF template) ──── */
+const rez = { file: null, bytes: null, ex: null, edits: {}, font: 'sans', outBytes: null, timer: 0, busy: false, prevBox: null };
 
 function renderResumePanel(panel) {
   const r = state.doc.resume || (state.doc.resume = {});
   r.file = r.file || 'Aman_Bhatt_Resume.pdf';
-  if (!r.contact) r.contact = {};
 
-  if (!window.ResumeTemplate || !window.jspdf) {
-    panel.appendChild(el('div', 'f-hint', 'PDF engine still loading — reopen this section in a moment.'));
-  }
-
-  /* Template + accent + actions */
-  const genbar = el('div', 'res-genbar');
-  genbar.appendChild(fieldNode({ p: 'resume.template', t: 'select', l: 'Template', opts: ['modern', 'classic'] }, pathBind('resume.template'), refreshPreviewIfOpen));
-  genbar.appendChild(fieldNode({ p: 'resume.accent', t: 'select', l: 'Accent color', opts: RESUME_ACCENTS }, pathBind('resume.accent'), refreshPreviewIfOpen));
-  panel.appendChild(genbar);
-
-  const actions = el('div', 'res-actions');
-  const previewBtn = el('button', 'btn btn-out btn-sm', `${icon('eye')} Preview PDF`);
-  const pubBtn = el('button', 'btn btn-fill btn-sm', `${icon('check')} Generate &amp; publish PDF`);
-  previewBtn.type = pubBtn.type = 'button';
-  actions.append(previewBtn, pubBtn);
-  panel.appendChild(actions);
   panel.appendChild(el('div', 'f-hint',
-    `<strong>Generate &amp; publish PDF</strong> saves your text edits and rebuilds <strong>${esc(r.file)}</strong> from the fields below — the live download refreshes in ~1–2 minutes. Use <strong>Preview PDF</strong> to check it first.`));
+    'Edit the text of your existing résumé PDF <strong>without changing its template</strong> — the layout, fonts and design stay exactly as they are; only the words you change get replaced. Load your current résumé (or open a different PDF) to begin.'));
 
-  const previewBox = el('div', 'res-preview');
-  panel.appendChild(previewBox);
-  previewBtn.addEventListener('click', () => previewResume(previewBox, previewBtn));
-  pubBtn.addEventListener('click', () => publishGeneratedResume(pubBtn));
+  const src = el('div', 'rez-src');
+  const loadBtn = el('button', 'btn btn-fill btn-sm', `${icon('file')} Load current résumé`);
+  const upBtn = el('button', 'btn btn-out btn-sm', `${icon('upload')} Open a different PDF`);
+  loadBtn.type = upBtn.type = 'button';
+  const fileInput = el('input'); fileInput.type = 'file'; fileInput.accept = 'application/pdf,.pdf'; fileInput.hidden = true;
+  src.append(loadBtn, upBtn, fileInput);
+  panel.appendChild(src);
 
-  /* Structured content fields */
-  const groupHead = t => panel.appendChild(el('div', 'res-group', esc(t)));
-  const addField = f => panel.appendChild(fieldNode(f, pathBind(f.p), refreshPreviewIfOpen));
+  const stage = el('div', 'rez-stage');
+  panel.appendChild(stage);
 
-  groupHead('Basics');
-  addField({ p: 'resume.name', t: 'text', l: 'Full name' });
-  addField({ p: 'resume.title', t: 'text', l: 'Professional title' });
-  const twoCol = el('div', 'res-2col');
-  [['resume.contact.email', 'Email'], ['resume.contact.phone', 'Phone'], ['resume.contact.location', 'Location'],
-   ['resume.contact.linkedin', 'LinkedIn URL'], ['resume.contact.github', 'GitHub URL'], ['resume.contact.website', 'Website / portfolio']]
-    .forEach(([p, l]) => twoCol.appendChild(fieldNode({ p, t: 'text', l }, pathBind(p), refreshPreviewIfOpen)));
-  panel.appendChild(twoCol);
+  loadBtn.addEventListener('click', () => loadCurrentResume(stage, loadBtn));
+  upBtn.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', async () => {
+    const f = fileInput.files?.[0]; if (!f) return;
+    openResumeForEdit(stage, new Uint8Array(await f.arrayBuffer()), f.name);
+    fileInput.value = '';
+  });
 
-  groupHead('Summary');
-  addField({ p: 'resume.summary', t: 'textarea', l: 'Professional summary' });
-
-  groupHead('Experience');
-  addField({ p: 'resume.experience', t: 'list', l: 'Roles', titleKey: 'role', item: [
-    { k: 'role', t: 'text', l: 'Role' }, { k: 'org', t: 'text', l: 'Company' },
-    { k: 'date', t: 'text', l: 'Period (e.g. "Apr 2025 — Present")' }, { k: 'location', t: 'text', l: 'Location' },
-    { k: 'bullets', t: 'rows', l: 'Highlights' } ] });
-
-  groupHead('Skills');
-  addField({ p: 'resume.skills', t: 'list', l: 'Categories', titleKey: 'category', item: [
-    { k: 'category', t: 'text', l: 'Category' }, { k: 'items', t: 'chips', l: 'Skills' } ] });
-
-  groupHead('Education');
-  addField({ p: 'resume.education', t: 'list', l: 'Entries', titleKey: 'degree', item: [
-    { k: 'degree', t: 'text', l: 'Degree' }, { k: 'org', t: 'text', l: 'Institution' },
-    { k: 'date', t: 'text', l: 'Period' }, { k: 'detail', t: 'text', l: 'Detail (grade, honours…)' } ] });
-
-  groupHead('Certifications');
-  addField({ p: 'resume.certifications', t: 'chips', l: 'Certifications (optional)' });
-
-  /* Advanced: manual PDF override */
   const adv = el('details', 'res-adv');
-  adv.appendChild(el('summary', '', 'Advanced · upload your own PDF instead'));
-  const holder = el('div', 'res-adv-body');
-  adv.appendChild(holder);
+  adv.appendChild(el('summary', '', 'Advanced · replace the whole PDF (no editing)'));
+  const holder = el('div', 'res-adv-body'); adv.appendChild(holder);
   panel.appendChild(adv);
   renderUploadCard(holder);
 
-  $('.panel-wrap').scrollTop = 0;
-  scrollTo({ top: 0 });
+  $('.panel-wrap').scrollTop = 0; scrollTo({ top: 0 });
 }
 
-function refreshPreviewIfOpen() {
-  const box = $('.res-preview.show');
-  if (box) previewResume(box);
-}
-
-function buildResumeDoc() {
-  if (!window.ResumeTemplate || !window.jspdf) throw new Error('PDF engine not loaded — reload the page.');
-  return window.ResumeTemplate.buildResumePdf(window.jspdf.jsPDF, state.doc.resume || {});
-}
-
-function previewResume(box, btn) {
-  const orig = btn ? btn.innerHTML : null;
-  if (btn) { btn.disabled = true; btn.innerHTML = `${icon('refresh')} Building…`; }
+async function loadCurrentResume(stage, btn) {
+  const file = state.doc.resume?.file || 'Aman_Bhatt_Resume.pdf';
+  const orig = btn.innerHTML; btn.disabled = true; btn.innerHTML = `${icon('refresh')} Loading…`;
   try {
-    const url = buildResumeDoc().output('bloburl');
-    box.innerHTML = `<iframe class="res-pdf" title="Résumé preview" src="${url}"></iframe>`;
-    box.classList.add('show');
+    const buf = await fetch(`${file}?t=${Date.now()}`, { cache: 'no-cache' })
+      .then(res => { if (!res.ok) throw new Error(`Could not load ${file} (${res.status})`); return res.arrayBuffer(); });
+    await openResumeForEdit(stage, new Uint8Array(buf), file);
+  } catch (e) { toast(esc(e.message), 'err'); }
+  btn.disabled = false; btn.innerHTML = orig;
+}
+
+async function openResumeForEdit(stage, bytes, filename) {
+  stage.innerHTML = `<div class="rez-loading">${icon('refresh')} Reading “${esc(filename)}”…</div>`;
+  rez.file = filename; rez.bytes = bytes; rez.edits = {}; rez.outBytes = null;
+  try {
+    rez.ex = await window.ResumeEdit.extract(bytes.slice(0));
   } catch (e) {
-    toast(`Preview failed: ${esc(e.message)}`, 'err');
+    stage.innerHTML = `<div class="f-hint">Could not read this PDF: ${esc(e.message)}</div>`;
+    return;
   }
-  if (btn) { btn.disabled = false; btn.innerHTML = orig; }
+  renderEditorUI(stage);
 }
 
-async function publishGeneratedResume(btn) {
-  if (state.busy) return;
-  if (state.dirty) {
-    await saveContent();                 // persist the text edits first
-    if (state.dirty) return;             // save failed → saveContent already toasted
-  }
-  setBusy(true);
-  const orig = btn.innerHTML;
-  btn.disabled = true; btn.innerHTML = `${icon('refresh')} Generating…`;
+function renderEditorUI(stage) {
+  stage.innerHTML = '';
+  const total = rez.ex.pages.reduce((n, p) => n + p.items.length, 0);
+
+  const bar = el('div', 'rez-bar');
+  bar.appendChild(el('span', 'rez-info', `${icon('file')} <strong>${esc(rez.file)}</strong> · ${rez.ex.numPages} page(s) · ${total} text runs`));
+  const filter = el('input', 'rez-filter'); filter.type = 'search'; filter.placeholder = 'Filter text…';
+  const fontLbl = el('label', 'rez-font', 'Font ');
+  const sel = el('select'); sel.innerHTML = '<option value="sans">Sans</option><option value="serif">Serif</option>';
+  sel.value = rez.font; sel.addEventListener('change', () => { rez.font = sel.value; schedulePreview(); });
+  fontLbl.appendChild(sel);
+  const pubBtn = el('button', 'btn btn-fill btn-sm', `${icon('check')} Save &amp; publish`); pubBtn.type = 'button';
+  pubBtn.addEventListener('click', () => publishEditedResume(pubBtn));
+  bar.append(filter, fontLbl, pubBtn);
+  stage.appendChild(bar);
+
+  const list = el('div', 'rez-list');
+  stage.appendChild(list);
+  rez.ex.pages.forEach(pg => {
+    if (rez.ex.numPages > 1) list.appendChild(el('div', 'rez-pg', `Page ${pg.num}`));
+    pg.items.forEach(it => {
+      const row = el('div', 'rez-row');
+      const inp = el('input'); inp.type = 'text'; inp.value = it.str; inp.spellcheck = false; inp.dataset.orig = it.str.toLowerCase();
+      const b = el('button', 'rez-b'); b.type = 'button'; b.textContent = 'B'; b.title = 'Bold';
+      inp.addEventListener('input', () => {
+        const bold = rez.edits[it.id]?.bold || false;
+        if (inp.value === it.str && !bold) delete rez.edits[it.id];
+        else rez.edits[it.id] = { newStr: inp.value, bold };
+        row.classList.toggle('changed', !!rez.edits[it.id]);
+        schedulePreview();
+      });
+      b.addEventListener('click', () => {
+        const cur = rez.edits[it.id] || { newStr: inp.value, bold: false };
+        cur.bold = !cur.bold; cur.newStr = inp.value; rez.edits[it.id] = cur;
+        b.classList.toggle('on', cur.bold); row.classList.add('changed'); schedulePreview();
+      });
+      row.append(inp, b);
+      list.appendChild(row);
+    });
+  });
+  filter.addEventListener('input', () => {
+    const q = filter.value.trim().toLowerCase();
+    $$('.rez-row', list).forEach(rw => {
+      rw.style.display = (!q || $('input', rw).dataset.orig.includes(q)) ? '' : 'none';
+    });
+    $$('.rez-pg', list).forEach(h => { h.style.display = q ? 'none' : ''; });
+  });
+
+  const prev = el('div', 'rez-prev');
+  prev.innerHTML = `<div class="rez-loading">${icon('eye')} Building preview…</div>`;
+  stage.appendChild(prev);
+  rez.prevBox = prev;
+  buildPreview();
+}
+
+function schedulePreview() { clearTimeout(rez.timer); rez.timer = setTimeout(buildPreview, 550); }
+
+async function buildPreview() {
+  if (!rez.ex || !rez.prevBox) return;
+  const prev = rez.prevBox;
+  const allItems = rez.ex.pages.flatMap(p => p.items);
   try {
-    const content = bufToB64(buildResumeDoc().output('arraybuffer'));
+    const edits = Object.entries(rez.edits).map(([id, v]) => {
+      const it = allItems.find(i => i.id === id);
+      return { page: it.page, id, newStr: v.newStr, bold: v.bold };
+    });
+    const out = await window.ResumeEdit.build(rez.bytes.slice(0), rez.ex, edits, { font: rez.font });
+    rez.outBytes = out;
+    const doc = await window.pdfjsLib.getDocument({ data: out.slice(0) }).promise;
+    prev.innerHTML = '';
+    for (let p = 1; p <= doc.numPages; p++) {
+      const page = await doc.getPage(p);
+      const vp = page.getViewport({ scale: 1.5 });
+      const c = el('canvas', 'rez-canvas'); c.width = vp.width; c.height = vp.height;
+      await page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
+      prev.appendChild(c);
+    }
+  } catch (e) {
+    prev.innerHTML = `<div class="f-hint">Preview error: ${esc(e.message)}</div>`;
+  }
+}
+
+async function publishEditedResume(btn) {
+  if (rez.busy) return;
+  rez.busy = true; setBusy(true);
+  const orig = btn.innerHTML; btn.disabled = true; btn.innerHTML = `${icon('refresh')} Publishing…`;
+  try {
+    if (!rez.outBytes) await buildPreview();
+    if (!rez.outBytes) throw new Error('Load a résumé and make an edit first.');
+    const content = bufToB64(rez.outBytes);
     const path = state.doc.resume?.file || 'Aman_Bhatt_Resume.pdf';
     const sha = await getFileSha(path);
     await gh(repoPath(path), {
       method: 'PUT',
       body: JSON.stringify({
-        message: 'docs: regenerate resume from content via developer console',
+        message: 'docs: edit resume text via developer console',
         content, branch: state.branch, ...(sha ? { sha } : {}),
       }),
     });
-    toast(`Résumé PDF regenerated &amp; published! Live in ~1–2 minutes. <a href="${esc(path)}?t=${Date.now()}" target="_blank" rel="noopener">Open</a>`);
+    toast(`Résumé updated! The live file refreshes in ~1–2 minutes. <a href="${esc(path)}?t=${Date.now()}" target="_blank" rel="noopener">Open</a>`);
   } catch (e) {
-    toast(`Could not publish the PDF: ${esc(e.message)}`, 'err');
+    toast(`Could not publish: ${esc(e.message)}`, 'err');
   }
-  btn.innerHTML = orig;
-  setBusy(false);
+  rez.busy = false; setBusy(false);
+  btn.disabled = false; btn.innerHTML = orig;
 }
 
 function renderUploadCard(container) {
