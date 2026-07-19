@@ -31,6 +31,10 @@
       canvas.width = Math.ceil(viewport.width);
       canvas.height = Math.ceil(viewport.height);
       const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      // paint an opaque white page first — pdf.js renders on a transparent
+      // canvas, so blank areas would otherwise sample as (0,0,0) = black.
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       await page.render({ canvasContext: ctx, viewport }).promise;
 
       const tc = await page.getTextContent();
@@ -51,16 +55,30 @@
     return { numPages: doc.numPages, pages };
   }
 
-  /* Sample the background colour just to the right of a text run (stays inside
-     the same band, so gray section headers stay gray, white stays white). */
+  /* Find the background colour around a text run so the cover box blends in
+     (white body stays white, gray section bands stay gray). Tries several
+     points near the run and returns the first light one; text pixels (dark)
+     and transparent pixels are skipped, defaulting to white. */
   function sampleBg(page, item) {
     const ctx = page.canvas.getContext('2d', { willReadFrequently: true });
-    const cx = Math.round((item.x + item.width + 4) * page.scale);
-    const cy = Math.round((page.ph - (item.y + item.size * 0.35)) * page.scale);
-    const X = Math.min(Math.max(cx, 0), page.canvas.width - 1);
-    const Y = Math.min(Math.max(cy, 0), page.canvas.height - 1);
-    try { const d = ctx.getImageData(X, Y, 1, 1).data; return [d[0] / 255, d[1] / 255, d[2] / 255]; }
-    catch (_) { return [1, 1, 1]; }
+    const s = page.scale, W = page.canvas.width, H = page.canvas.height;
+    const pts = [
+      [item.x + item.width + 4, item.y + item.size * 0.35],  // just right of the run
+      [item.x + item.width + 9, item.y + item.size * 0.35],
+      [item.x - 4,              item.y + item.size * 0.35],  // just left
+      [item.x + item.width / 2, item.y + item.size * 1.55],  // in the gap above
+    ];
+    for (const [px, py] of pts) {
+      const X = Math.min(Math.max(Math.round(px * s), 0), W - 1);
+      const Y = Math.min(Math.max(Math.round((page.ph - py) * s), 0), H - 1);
+      try {
+        const d = ctx.getImageData(X, Y, 1, 1).data;
+        if (d[3] < 8) return [1, 1, 1];                       // transparent → white
+        const lum = (d[0] * 0.299 + d[1] * 0.587 + d[2] * 0.114) / 255;
+        if (lum > 0.5) return [d[0] / 255, d[1] / 255, d[2] / 255];  // a light background
+      } catch (_) { /* try next point */ }
+    }
+    return [1, 1, 1];   // couldn't find a clean light sample → assume white
   }
 
   /* Rebuild the PDF with the edited runs re-typeset in place. */
