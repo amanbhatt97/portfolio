@@ -7,7 +7,7 @@
     "logo": "aman bhatt."
   },
   "hero": {
-    "availability": "Assistant Manager – Data Science & AI · BSES Rajdhani Power Limited",
+    "availability": "Senior Machine Learning Engineer · BSES Rajdhani Power Limited",
     "headline1": "Aman",
     "headline2": "Bhatt",
     "roles": [
@@ -18,7 +18,7 @@
       "MLOps Engineer",
       "Time Series Forecasting"
     ],
-    "bio": "Data Scientist & ML Engineer with 4+ years building production ML and generative AI systems for India's\nenergy sector. Own demand forecasting for Delhi's electricity grid end-to-end — models, pipelines,\ndeployment — at <3% MAPE. Built solar and wind forecasting systems across 166 renewable plants at ReNew. Architected two production RAG systems (Llama 3.3 70B, ChromaDB, FastAPI) enabling grid operations and company-wide technical documentation access in natural language.",
+    "bio": "ML Engineer turning energy data into decisions — forecasting, real-time pipelines and LLM assistants.",
     "stats": [
       {
         "value": "<3%",
@@ -255,7 +255,9 @@
         "date": "Apr 2025 — Present",
         "location": "New Delhi, India",
         "bullets": [
-          "Leading the design and deployment of short-term and day-ahead load forecasting models, enhanced with an LLM-powered assistant built using LangChain that allows grid operators and planners to query demand forecasts and scenario analyses in natural language, improving decision-making speed, transparency, and operational efficiency across BRPL's service zones."
+          "Own end-to-end demand forecasting for Delhi's electricity grid — day ahead, intraday, and week-ahead — at <3% MAPE, replacing a manual process that ran at 5–6%; segment-based ensembles (LightGBM, CatBoost, XGBoost) across weekday, weekend, and holiday regimes with real-time SCADA correction, Optuna tuning, and MLflow tracking.",
+          "Architected two production RAG systems on Llama 3.3 70B (ChromaDB, FastAPI, cross-encoder reranking): a forecasting assistant for grid operations, and a company-wide knowledge base over technical documentation and operational standards.",
+          "Built supporting data infrastructure — a FastAPI weather ingestion microservice across 14 geographic centroids feeding the forecast pipeline."
         ],
         "tags": [
           "LangChain",
@@ -271,9 +273,9 @@
         "date": "Jun 2022 — Apr 2025",
         "location": "Gurugram, India",
         "bullets": [
-          "Led the development of predictive models for Delhi Discoms (BRPL, BYPL, TPDDL), achieving a 3% MAPE using Neural Networks, LightGBM, CatBoost, and XGBoost for day-ahead and intraday forecasting. Integrated real-time weather data while leveraging Apache Spark and Kafka for efficient data handling.",
-          "Developed solar and wind forecasting models for REMC-Telangana (166 plants), designing high-precision week-ahead energy predictions. Deployed models using AWS SageMaker, with automated CI/CD pipelines for seamless updates.",
-          "Conducted extensive research and development on price forecasting at IEX, employing diverse models and achieving a notable 7.5% MAPE with innovative strategies using the LightGBM model."
+          "Built demand forecasting systems for three Delhi DISCOMs (BRPL, BYPL, TPDDL) from the ground up — segment-based ensembles (Neural Networks, LightGBM, CatBoost, XGBoost) across day-ahead and intraday horizons.",
+          "Designed solar and wind forecasting across 166 plants for REMC Telangana; week-ahead predictions deployed on AWS SageMaker with automated CI/CD and model versioning.",
+          "Built electricity price forecasting models for IEX at 7.5% MAPE using LightGBM on market microstructure data."
         ],
         "tags": [
           "LightGBM",
@@ -291,7 +293,7 @@
         "date": "Aug 2019 — Sep 2020",
         "location": "Noida, India",
         "bullets": [
-          "Designed foundation for different equipment and structures that are usually present in oil refineries using softwares like AutoCAD, StaadPro, RISA Base, Foundation 3D, RAM Connection etc."
+          "Designed structural foundations for oil refinery equipment using AutoCAD, StaadPro, and RISA Base."
         ],
         "tags": [
           "AutoCAD",
