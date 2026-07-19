@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aman Bhatt | ML Engineer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/57d8086756.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<nav id="navbar">
+    <div class="nav-container">
+        <img src="images/portfolio-logo.png" class="logo" alt="Aman Bhatt Logo">
+        <ul id="sidemenu">
+            <li><a href="#header">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <i class="fas fa-times" onclick="closemenu()"></i>
+        </ul>
+        <i class="fas fa-bars" onclick="openmenu()"></i>
+    </div>
+</nav>
+
+
+<!-- ========== HERO SECTION ========== -->
+<div id="header">
+    <div class="hero-grid"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="hero-inner">
+            <div class="header-text">
+                <div class="hero-badge">
+                    <span class="badge-pulse"></span>
+                    Open to Opportunities
+                </div>
+                <p class="hero-role">
+                    <span class="typed-text"></span><span class="typed-cursor"></span>
+                </p>
+                <h1>Hi, I'm <span>Aman</span> Bhatt.</h1>
+                <p class="hero-desc">
+                    Building intelligent systems at the intersection of data, ML, and scale —
+                    from production forecasting models achieving 3% MAPE to LLM-powered applications.
+                </p>
+                <div class="hero-specs">
+                    <span class="spec-pill"><i class="fas fa-bolt"></i> Energy Forecasting</span>
+                    <span class="spec-pill"><i class="fas fa-brain"></i> LLMs &amp; GenAI</span>
+                    <span class="spec-pill"><i class="fas fa-cloud"></i> MLOps &amp; AWS</span>
+                </div>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn-primary">View My Work</a>
+                    <a href="images/Aman_Bhatt_Resume.pdf" download class="btn-outline">
+                        Download CV <i class="fas fa-download"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-img-wrap">
+                <img src="images/about.jpeg" alt="Aman Bhatt" class="hero-profile">
+                <div class="hero-img-ring"></div>
+                <div class="hero-img-glow"></div>
+            </div>
+        </div>
+    </div>
+    <a href="#stats" class="scroll-down">
+        <i class="fas fa-chevron-down"></i>
+    </a>
+</div>
+
+
+<!-- ========== STATS SECTION ========== -->
+<div id="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card reveal">
+                <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
+                <h3>5+</h3>
+                <p>Years of Experience</p>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>3%</h3>
+                <p>MAPE on Production Models</p>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                <h3>166+</h3>
+                <p>Energy Plants Forecasted</p>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-icon"><i class="fas fa-rocket"></i></div>
+                <h3>5+</h3>
+                <p>Live Projects Deployed</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========== ABOUT SECTION ========== -->
+<div id="about">
+    <div class="container">
+        <div class="row">
+
+            <!-- Profile Image -->
+            <div class="about-col-1 reveal">
+                <div class="about-img-wrapper">
+                    <img src="images/about.jpeg" alt="Aman Bhatt">
+                    <div class="img-ring"></div>
+                </div>
+            </div>
+
+            <!-- About Content -->
+            <div class="about-col-2 reveal">
+                <p class="section-label">Who I Am</p>
+                <h1 class="sub-title">About Me</h1>
+                <p class="about-desc">
+                    Data Scientist specializing in scalable forecasting, large language models (LLMs), and MLOps.
+                    Delivered production-ready models with 3% MAPE, built real-time data pipelines using Spark, Kafka,
+                    AWS SageMaker, and FastAPI. Expert in deploying robust CI/CD workflows to ensure reliable and
+                    scalable AI systems. Passionate about turning complex data into actionable, business-driving insights.
+                </p>
+
+                <!-- Tabs -->
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+
+                <!-- ---- Skills Tab ---- -->
+                <div class="tab-contents active-tab" id="skills">
+                    <div class="skills-grid">
+
+                        <div class="skill-category">
+                            <span class="skill-cat-label">Languages</span>
+                            <div class="skill-icons-row">
+                                <a href="https://www.python.org/" target="_blank" class="skill-icon-item">
+                                    <img src="images/python.png" alt="Python"><span>Python</span>
+                                </a>
+                                <a href="https://www.r-project.org/" target="_blank" class="skill-icon-item">
+                                    <img src="images/R.png" alt="R"><span>R</span>
+                                </a>
+                                <a href="https://www.microsoft.com/en-us/sql-server" target="_blank" class="skill-icon-item">
+                                    <img src="images/sql.png" alt="SQL"><span>SQL</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <span class="skill-cat-label">ML / Deep Learning</span>
+                            <div class="skill-icons-row">
+                                <a href="https://scikit-learn.org/" target="_blank" class="skill-icon-item">
+                                    <img src="images/scikit-learn.png" alt="scikit-learn"><span>Scikit-learn</span>
+                                </a>
+                                <a href="https://www.tensorflow.org/" target="_blank" class="skill-icon-item">
+                                    <img src="images/tensorflow.png" alt="TensorFlow"><span>TensorFlow</span>
+                                </a>
+                                <a href="https://keras.io/" target="_blank" class="skill-icon-item">
+                                    <img src="images/keras.png" alt="Keras"><span>Keras</span>
+                                </a>
+                                <a href="https://pytorch.org/" target="_blank" class="skill-icon-item">
+                                    <img src="images/pytorch.png" alt="PyTorch"><span>PyTorch</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <span class="skill-cat-label">Data & Analytics</span>
+                            <div class="skill-icons-row">
+                                <a href="https://numpy.org/" target="_blank" class="skill-icon-item">
+                                    <img src="images/numpy.png" alt="NumPy"><span>NumPy</span>
+                                </a>
+                                <a href="https://pandas.pydata.org/" target="_blank" class="skill-icon-item">
+                                    <img src="images/pandas.png" alt="Pandas"><span>Pandas</span>
+                                </a>
+                                <a href="https://matplotlib.org/" target="_blank" class="skill-icon-item">
+                                    <img src="images/matplotlib.webp" alt="Matplotlib"><span>Matplotlib</span>
+                                </a>
+                                <a href="https://seaborn.pydata.org/" target="_blank" class="skill-icon-item">
+                                    <img src="images/seaborn.svg" alt="Seaborn"><span>Seaborn</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <span class="skill-cat-label">BI & Visualization</span>
+                            <div class="skill-icons-row">
+                                <a href="https://powerbi.microsoft.com/" target="_blank" class="skill-icon-item">
+                                    <img src="images/powerbi.png" alt="Power BI"><span>Power BI</span>
+                                </a>
+                                <a href="https://www.tableau.com/" target="_blank" class="skill-icon-item">
+                                    <img src="images/tableau.png" alt="Tableau"><span>Tableau</span>
+                                </a>
+                                <a href="https://www.streamlit.io/" target="_blank" class="skill-icon-item">
+                                    <img src="images/streamlit.png" alt="Streamlit"><span>Streamlit</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <span class="skill-cat-label">Databases & Big Data</span>
+                            <div class="skill-icons-row">
+                                <a href="https://www.mongodb.com/" target="_blank" class="skill-icon-item">
+                                    <img src="images/mongodb.png" alt="MongoDB"><span>MongoDB</span>
+                                </a>
+                                <a href="https://spark.apache.org/" target="_blank" class="skill-icon-item">
+                                    <img src="images/spark.png" alt="Apache Spark"><span>Spark</span>
+                                </a>
+                                <a href="https://hadoop.apache.org/" target="_blank" class="skill-icon-item">
+                                    <img src="images/hadoop.png" alt="Apache Hadoop"><span>Hadoop</span>
+                                </a>
+                                <a href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank" class="skill-icon-item">
+                                    <img src="images/excel.png" alt="Excel"><span>Excel</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="also-skilled">
+                            <span class="skill-cat-label">Deep Learning &amp; GenAI</span>
+                            <div class="tech-tags">
+                                <span>LSTM / GRU</span><span>Transformers</span><span>LangChain</span>
+                                <span>LlamaIndex</span><span>NLP</span><span>Generative AI</span>
+                                <span>Autoencoders</span><span>ANN / CNN</span>
+                            </div>
+                        </div>
+
+                        <div class="also-skilled">
+                            <span class="skill-cat-label">MLOps &amp; Cloud</span>
+                            <div class="tech-tags">
+                                <span>AWS SageMaker</span><span>Apache Airflow</span><span>Apache Kafka</span>
+                                <span>Kubernetes</span><span>CI/CD Pipelines</span><span>FastAPI</span><span>Optuna</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ---- Experience Tab ---- -->
+                <div class="tab-contents" id="experience">
+                    <div class="timeline">
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="tl-header">
+                                    <span class="tl-date">Apr 2025 – Present</span>
+                                    <span class="tl-badge">Current</span>
+                                </div>
+                                <h3 class="tl-role">Assistant Manager</h3>
+                                <h4 class="tl-company">BSES Rajdhani Power Limited (BRPL)</h4>
+                                <p class="tl-desc">Leading the design and deployment of short-term and day-ahead load forecasting models,
+                                    enhanced with an LLM-powered assistant built using LangChain that allows grid operators and planners
+                                    to query demand forecasts and scenario analyses in natural language, improving decision-making speed,
+                                    transparency, and operational efficiency across BRPL's service zones.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="tl-header">
+                                    <span class="tl-date">Aug 2022 – Apr 2025</span>
+                                </div>
+                                <h3 class="tl-role">Machine Learning Engineer</h3>
+                                <h4 class="tl-company">Renew Power (Climate Connect Digital)</h4>
+                                <p class="tl-desc">Led development of predictive models for Delhi Discoms (BRPL, BYPL, TPDDL), achieving
+                                    <strong>3% MAPE</strong> using Neural Networks, LightGBM, CatBoost, and XGBoost. Developed solar and
+                                    wind forecasting for REMC-Telangana (<strong>166 plants</strong>). Conducted R&amp;D on IEX price
+                                    forecasting achieving <strong>7.5% MAPE</strong> with LightGBM. Deployed models via AWS SageMaker with
+                                    automated CI/CD pipelines and Apache Spark &amp; Kafka for real-time data handling.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="tl-header">
+                                    <span class="tl-date">Aug 2019 – Sep 2020</span>
+                                </div>
+                                <h3 class="tl-role">Engineer</h3>
+                                <h4 class="tl-company">S &amp; B Engineers &amp; Constructors</h4>
+                                <p class="tl-desc">Designed structural foundations for equipment and facilities in oil refineries using
+                                    AutoCAD, STAAD.Pro, RISA Base, Foundation 3D, and RAM Connection to ensure safety, compliance, and
+                                    structural reliability.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ---- Education Tab ---- -->
+                <div class="tab-contents" id="education">
+                    <div class="timeline">
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="tl-header">
+                                    <span class="tl-date">2015 – 2019</span>
+                                </div>
+                                <h3 class="tl-role">B.Tech — Civil Engineering</h3>
+                                <h4 class="tl-company">Aligarh Muslim University</h4>
+                                <p class="tl-desc">CGPA: 9.0 / 10.0</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="tl-header">
+                                    <span class="tl-date">2012 – 2014</span>
+                                </div>
+                                <h3 class="tl-role">Intermediate (Science)</h3>
+                                <h4 class="tl-company">Bal Vidya Mandir Sr. Sec. School</h4>
+                                <p class="tl-desc">Percentage: 91.25%</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="tl-header">
+                                    <span class="tl-date">2010 – 2012</span>
+                                </div>
+                                <h3 class="tl-role">High School</h3>
+                                <h4 class="tl-company">Pioneer Montessori School</h4>
+                                <p class="tl-desc">Percentage: 88.67%</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========== PROJECTS SECTION ========== -->
+<div id="projects">
+    <div class="container">
+        <p class="section-label">Portfolio</p>
+        <h1 class="sub-title">My Work</h1>
+
+        <div class="work-list">
+
+            <div class="work reveal">
+                <img src="images/mrs.jpeg" alt="Movie Recommendation System">
+                <div class="layer">
+                    <h3>Movie Recommendation System</h3>
+                    <p>Recommends movies based on search using content-based filtering.</p>
+                    <div class="project-tags">
+                        <span>Python</span><span>NLP</span><span>Streamlit</span>
+                    </div>
+                    <a href="https://recommend-movies-app.streamlit.app/" target="_blank">
+                        <i class="fa-solid fa-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="work reveal">
+                <img src="images/ipl.jpeg" alt="IPL Win Predictor">
+                <div class="layer">
+                    <h3>IPL Win Predictor</h3>
+                    <p>Predicts win probability of the chasing team at any match situation in real-time.</p>
+                    <div class="project-tags">
+                        <span>Python</span><span>ML</span><span>Streamlit</span>
+                    </div>
+                    <a href="https://ipl-win-prediction.streamlit.app/" target="_blank">
+                        <i class="fa-solid fa-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="work reveal">
+                <img src="images/olympics.jpeg" alt="Olympics Analysis">
+                <div class="layer">
+                    <h3>Olympics Analysis</h3>
+                    <p>Comprehensive analysis of Summer Olympics records from 1896 to 2016.</p>
+                    <div class="project-tags">
+                        <span>Python</span><span>Pandas</span><span>Streamlit</span>
+                    </div>
+                    <a href="https://olympics-analysis.streamlit.app/" target="_blank">
+                        <i class="fa-solid fa-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="work reveal">
+                <img src="images/spam_sms.jpeg" alt="SMS Spam Classifier">
+                <div class="layer">
+                    <h3>SMS Spam Classifier</h3>
+                    <p>Binary classifier that detects spam SMS messages with high accuracy.</p>
+                    <div class="project-tags">
+                        <span>Python</span><span>NLP</span><span>ML</span>
+                    </div>
+                    <a href="https://spam-classifier-sms.streamlit.app/" target="_blank">
+                        <i class="fa-solid fa-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="work reveal">
+                <img src="images/sms_spam.jpeg" alt="WhatsApp Chat Analysis">
+                <div class="layer">
+                    <h3>WhatsApp Chat Analysis</h3>
+                    <p>Analyse group and personal WhatsApp chats with rich visualizations.</p>
+                    <div class="project-tags">
+                        <span>Python</span><span>Pandas</span><span>NLP</span>
+                    </div>
+                    <a href="https://chat-analysis-whatsapp.streamlit.app/" target="_blank">
+                        <i class="fa-solid fa-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <a href="#" class="btn" id="seeMoreBtn">See More</a>
+    </div>
+</div>
+
+
+<!-- ========== CONTACT SECTION ========== -->
+<div id="contact">
+    <div class="container">
+        <p class="section-label">Get In Touch</p>
+        <h1 class="sub-title">Contact Me</h1>
+
+        <div class="row">
+
+            <div class="contact-left reveal">
+                <p><i class="fa-regular fa-envelope"></i>amanbhatt.1997.ab@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i>+91 9452305762</p>
+
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/amanbhatt97" target="_blank" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.hackerrank.com/ab_977" target="_blank" title="HackerRank">
+                        <i class="fa-brands fa-hackerrank"></i>
+                    </a>
+                </div>
+
+                <a href="images/Aman_Bhatt_Resume.pdf" download class="btn btn2">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+            </div>
+
+            <div class="contact-right reveal">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn3">
+                        Send Message <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+                <span id="msg"></span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Aman Bhatt &nbsp;·&nbsp; Built with passion.</p>
+    </div>
+</footer>
+
+
+<!-- ==================== SCRIPTS ==================== -->
+
+<script>
+    // Typewriter effect for hero role
+    const roles = ['Machine Learning Engineer', 'Data Scientist', 'MLOps Engineer', 'Forecasting Specialist'];
+    let rIdx = 0, cIdx = 0, deleting = false;
+    const typedEl = document.querySelector('.typed-text');
+    function typeWriter() {
+        const current = roles[rIdx];
+        if (!deleting) {
+            typedEl.textContent = current.slice(0, ++cIdx);
+            if (cIdx === current.length) {
+                deleting = true;
+                setTimeout(typeWriter, 2200);
+                return;
+            }
+        } else {
+            typedEl.textContent = current.slice(0, --cIdx);
+            if (cIdx === 0) {
+                deleting = false;
+                rIdx = (rIdx + 1) % roles.length;
+            }
+        }
+        setTimeout(typeWriter, deleting ? 45 : 85);
+    }
+    typeWriter();
+</script>
+
+<script>
+    // Tab switching
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    function opentab(tabname) {
+        for (tablink of tablinks) { tablink.classList.remove("active-link"); }
+        for (tabcontent of tabcontents) { tabcontent.classList.remove("active-tab"); }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+</script>
+
+<script>
+    // Google Sheets form integration
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbw9V2B2fxo_LuS7EDZB61fNPHnyorBGoXOflkXUYt_NCkgmxaf9FTfBCW47aRYJOLEV/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => {
+                msg.innerHTML = "Message sent successfully!"
+                setTimeout(function () { msg.innerHTML = "" }, 4000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+    })
+</script>
+
+<script>
+    // See More projects
+    document.addEventListener("DOMContentLoaded", function () {
+        const seeMoreBtn = document.getElementById("seeMoreBtn");
+        const projectItems = document.querySelectorAll(".work");
+        const projectsToShowPerClick = 3;
+        let visibleProjectCount = projectsToShowPerClick;
+
+        function toggleProjectsVisibility() {
+            projectItems.forEach(function (item, index) {
+                item.style.display = index < visibleProjectCount ? "block" : "none";
+            });
+            seeMoreBtn.style.display = visibleProjectCount >= projectItems.length ? "none" : "block";
+        }
+
+        toggleProjectsVisibility();
+
+        seeMoreBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            visibleProjectCount += projectsToShowPerClick;
+            toggleProjectsVisibility();
+        });
+    });
+</script>
+
+<script>
+    // Mobile menu
+    var sidemenu = document.getElementById("sidemenu");
+    function openmenu() { sidemenu.style.right = "0"; }
+    function closemenu() { sidemenu.style.right = "-240px"; }
+</script>
+
+<script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function () {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 60) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+</script>
+
+<script>
+    // Scroll reveal animation
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                // Stagger delay for sibling reveals
+                const siblings = Array.from(entry.target.parentElement.querySelectorAll('.reveal'));
+                const idx = siblings.indexOf(entry.target);
+                entry.target.style.transitionDelay = (idx * 80) + 'ms';
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => revealObserver.observe(el));
+</script>
+
+</body>
+</html>

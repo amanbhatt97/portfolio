@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Portfolio (Python HTTP Server)",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [".claude/serve.py"],
+      "port": 8080
+    },
+    {
+      "name": "Portfolio (Ruby WEBrick)",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": ["-run", "-e", "httpd", "/Users/amanbhatt/Desktop/portfolio/.claude/worktrees/admiring-chaplygin", "-p", "8080"],
+      "port": 8080
+    }
+  ]
+}
