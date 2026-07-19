@@ -107,11 +107,19 @@
       const txt = e.newStr == null ? '' : String(e.newStr);
       if (!txt.trim()) return;
       const f = e.bold ? fontB : font;
+
+      // Keep the ORIGINAL size — only shrink if the text would run into the
+      // next run on the same line (e.g. a right-aligned date) or off the page.
+      const pageW = pdfPage.getWidth();
+      const rightRuns = ex.items.filter(i =>
+        i.id !== item.id && i.x > item.x + 1 && Math.abs(i.y - item.y) < item.size * 0.6);
+      const rightBound = rightRuns.length ? Math.min(...rightRuns.map(i => i.x)) - 3 : pageW - 34;
+      const avail = Math.max(item.width, rightBound - item.x);
       let size = item.size;
-      // shrink to fit the original width so nothing overflows the template
-      while (size > 4 && f.widthOfTextAtSize(txt, size) > item.width + 0.5) size -= 0.25;
+      while (size > item.size * 0.7 && f.widthOfTextAtSize(txt, size) > avail) size -= 0.3;
+
       const dark = rgb(0.12, 0.12, 0.13);
-      pdfPage.drawText(txt, { x: item.x, y: item.y, size, font: f, color: e.color || dark });
+      pdfPage.drawText(txt, { x: item.x, y: item.y, size, font: f, color: e.color || dark, lineHeight: item.size });
     });
     return pl.save();
   }
