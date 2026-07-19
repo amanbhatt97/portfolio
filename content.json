@@ -15,19 +15,38 @@
       "Data Scientist",
       "Energy Forecasting Expert",
       "LLM Systems Builder",
-      "MLOps Engineer"
+      "MLOps Engineer",
+      "Time Series Forecasting"
     ],
-    "bio": "Data Scientist & Machine Learning Engineer specialising in forecasting, real-time ML systems and MLOps. Proven ability to deliver production-grade models with <3% MAPE, architect low-latency data pipelines with Spark, Kafka and AWS, and design CI/CD-driven ML workflows for scale and reliability.",
+    "bio": "Data Scientist & ML Engineer with 4+ years building production ML and generative AI systems for India's\nenergy sector. Own demand forecasting for Delhi's electricity grid end-to-end — models, pipelines,\ndeployment — at <3% MAPE. Built solar and wind forecasting systems across 166 renewable plants at ReNew. Architected two production RAG systems (Llama 3.3 70B, ChromaDB, FastAPI) enabling grid operations and company-wide technical documentation access in natural language.",
     "stats": [
-      { "value": "<3%", "label": "MAPE · production" },
-      { "value": "4+", "label": "years experience" },
-      { "value": "166", "label": "RE plants forecasted" }
+      {
+        "value": "<3%",
+        "label": "MAPE · production"
+      },
+      {
+        "value": "4+",
+        "label": "years experience"
+      },
+      {
+        "value": "166",
+        "label": "RE plants forecasted"
+      }
     ],
     "photo": "images/my_pic_1.png",
     "photoBadges": [
-      { "value": "<3%", "label": "MAPE" },
-      { "value": "4+", "label": "Yrs ML" },
-      { "value": "166", "label": "Plants" }
+      {
+        "value": "<3%",
+        "label": "MAPE"
+      },
+      {
+        "value": "4+",
+        "label": "Yrs ML"
+      },
+      {
+        "value": "166",
+        "label": "Plants"
+      }
     ]
   },
   "social": {
@@ -45,8 +64,14 @@
     "headingAccent": "ML Engineer",
     "image": "images/about.jpeg",
     "badges": [
-      { "icon": "pin", "text": "New Delhi" },
-      { "icon": "wifi", "text": "Remote-friendly" }
+      {
+        "icon": "pin",
+        "text": "New Delhi"
+      },
+      {
+        "icon": "wifi",
+        "text": "Remote-friendly"
+      }
     ],
     "paragraphs": [
       "Data enthusiast and a proficient data scientist with a background in civil engineering. Currently working as an Assistant Manager – Data Science & AI at BSES Rajdhani Power Limited, applying advanced algorithms and techniques to solve complex forecasting problems.",
@@ -72,44 +97,150 @@
         "icon": "bot",
         "color": "violet",
         "title": "Machine Learning / AI",
-        "pills": ["Python", "OOP", "DSA", "SQL", "Statistics", "Data Visualization", "ML Algorithms"]
+        "pills": [
+          "Python",
+          "OOP",
+          "DSA",
+          "SQL",
+          "Statistics",
+          "Data Visualization",
+          "ML Algorithms"
+        ]
       },
       {
         "icon": "cpu",
         "color": "cyan",
         "title": "Deep Learning & LLMs",
-        "pills": ["ANN", "CNN", "RNN", "LSTM", "GRU", "Autoencoders", "Transformers", "NLP", "Generative AI", "LangChain", "LlamaIndex"]
+        "pills": [
+          "ANN",
+          "CNN",
+          "RNN",
+          "LSTM",
+          "GRU",
+          "Autoencoders",
+          "Transformers",
+          "NLP",
+          "Generative AI",
+          "LangChain",
+          "LlamaIndex"
+        ]
       },
       {
         "icon": "layers",
         "color": "green",
         "title": "Python Packages",
-        "pills": ["NumPy", "Pandas", "Matplotlib", "Plotly", "Scipy", "Scikit-learn", "TensorFlow", "Keras", "Streamlit", "Optuna"]
+        "pills": [
+          "NumPy",
+          "Pandas",
+          "Matplotlib",
+          "Plotly",
+          "Scipy",
+          "Scikit-learn",
+          "TensorFlow",
+          "Keras",
+          "Streamlit",
+          "Optuna"
+        ]
       },
       {
         "icon": "database",
         "color": "amber",
         "title": "MLOps & Big Data",
-        "pills": ["Git", "Docker", "MLflow", "FastAPI", "Apache Spark", "Kafka", "Airflow", "AWS", "Kubernetes", "Hadoop"]
+        "pills": [
+          "Git",
+          "Docker",
+          "MLflow",
+          "FastAPI",
+          "Apache Spark",
+          "Kafka",
+          "Airflow",
+          "AWS",
+          "Kubernetes",
+          "Hadoop"
+        ]
       }
     ],
     "logos": [
-      { "label": "Python", "img": "images/python.png", "url": "https://www.python.org/" },
-      { "label": "NumPy", "img": "images/numpy.png", "url": "https://numpy.org/" },
-      { "label": "Pandas", "img": "images/pandas.png", "url": "https://pandas.pydata.org/" },
-      { "label": "Matplotlib", "img": "images/matplotlib.png", "url": "https://matplotlib.org/" },
-      { "label": "Seaborn", "img": "images/seaborn.svg", "url": "https://seaborn.pydata.org/" },
-      { "label": "Sklearn", "img": "images/scikit-learn.png", "url": "https://scikit-learn.org/" },
-      { "label": "TensorFlow", "img": "images/tensorflow.png", "url": "https://www.tensorflow.org/" },
-      { "label": "Keras", "img": "images/keras.png", "url": "https://keras.io/" },
-      { "label": "PyTorch", "img": "images/pytorch.png", "url": "https://pytorch.org/" },
-      { "label": "Streamlit", "img": "images/streamlit.png", "url": "https://www.streamlit.io/" },
-      { "label": "Spark", "img": "images/spark.png", "url": "https://spark.apache.org/" },
-      { "label": "Hadoop", "img": "images/hadoop.png", "url": "https://hadoop.apache.org/" },
-      { "label": "SQL", "img": "images/sql.png", "url": "https://www.microsoft.com/en-us/sql-server" },
-      { "label": "Power BI", "img": "images/powerbi.png", "url": "https://powerbi.microsoft.com/" },
-      { "label": "Tableau", "img": "images/tableau.webp", "url": "https://www.tableau.com/" },
-      { "label": "MongoDB", "img": "images/mongodb.png", "url": "https://www.mongodb.com/" }
+      {
+        "label": "Python",
+        "img": "images/python.png",
+        "url": "https://www.python.org/"
+      },
+      {
+        "label": "NumPy",
+        "img": "images/numpy.png",
+        "url": "https://numpy.org/"
+      },
+      {
+        "label": "Pandas",
+        "img": "images/pandas.png",
+        "url": "https://pandas.pydata.org/"
+      },
+      {
+        "label": "Matplotlib",
+        "img": "images/matplotlib.png",
+        "url": "https://matplotlib.org/"
+      },
+      {
+        "label": "Seaborn",
+        "img": "images/seaborn.svg",
+        "url": "https://seaborn.pydata.org/"
+      },
+      {
+        "label": "Sklearn",
+        "img": "images/scikit-learn.png",
+        "url": "https://scikit-learn.org/"
+      },
+      {
+        "label": "TensorFlow",
+        "img": "images/tensorflow.png",
+        "url": "https://www.tensorflow.org/"
+      },
+      {
+        "label": "Keras",
+        "img": "images/keras.png",
+        "url": "https://keras.io/"
+      },
+      {
+        "label": "PyTorch",
+        "img": "images/pytorch.png",
+        "url": "https://pytorch.org/"
+      },
+      {
+        "label": "Streamlit",
+        "img": "images/streamlit.png",
+        "url": "https://www.streamlit.io/"
+      },
+      {
+        "label": "Spark",
+        "img": "images/spark.png",
+        "url": "https://spark.apache.org/"
+      },
+      {
+        "label": "Hadoop",
+        "img": "images/hadoop.png",
+        "url": "https://hadoop.apache.org/"
+      },
+      {
+        "label": "SQL",
+        "img": "images/sql.png",
+        "url": "https://www.microsoft.com/en-us/sql-server"
+      },
+      {
+        "label": "Power BI",
+        "img": "images/powerbi.png",
+        "url": "https://powerbi.microsoft.com/"
+      },
+      {
+        "label": "Tableau",
+        "img": "images/tableau.webp",
+        "url": "https://www.tableau.com/"
+      },
+      {
+        "label": "MongoDB",
+        "img": "images/mongodb.png",
+        "url": "https://www.mongodb.com/"
+      }
     ]
   },
   "experience": {
@@ -126,7 +257,12 @@
         "bullets": [
           "Leading the design and deployment of short-term and day-ahead load forecasting models, enhanced with an LLM-powered assistant built using LangChain that allows grid operators and planners to query demand forecasts and scenario analyses in natural language, improving decision-making speed, transparency, and operational efficiency across BRPL's service zones."
         ],
-        "tags": ["LangChain", "Load Forecasting", "LLMs", "Python"]
+        "tags": [
+          "LangChain",
+          "Load Forecasting",
+          "LLMs",
+          "Python"
+        ]
       },
       {
         "type": "work",
@@ -139,7 +275,14 @@
           "Developed solar and wind forecasting models for REMC-Telangana (166 plants), designing high-precision week-ahead energy predictions. Deployed models using AWS SageMaker, with automated CI/CD pipelines for seamless updates.",
           "Conducted extensive research and development on price forecasting at IEX, employing diverse models and achieving a notable 7.5% MAPE with innovative strategies using the LightGBM model."
         ],
-        "tags": ["LightGBM", "Neural Networks", "Apache Spark", "Kafka", "AWS SageMaker", "CatBoost"]
+        "tags": [
+          "LightGBM",
+          "Neural Networks",
+          "Apache Spark",
+          "Kafka",
+          "AWS SageMaker",
+          "CatBoost"
+        ]
       },
       {
         "type": "work",
@@ -150,7 +293,12 @@
         "bullets": [
           "Designed foundation for different equipment and structures that are usually present in oil refineries using softwares like AutoCAD, StaadPro, RISA Base, Foundation 3D, RAM Connection etc."
         ],
-        "tags": ["AutoCAD", "StaadPro", "RISA Base", "Foundation 3D"]
+        "tags": [
+          "AutoCAD",
+          "StaadPro",
+          "RISA Base",
+          "Foundation 3D"
+        ]
       },
       {
         "type": "education",
@@ -161,7 +309,9 @@
         "bullets": [
           "Graduated with a 9.0 CGPA."
         ],
-        "tags": ["9.0 CGPA"]
+        "tags": [
+          "9.0 CGPA"
+        ]
       }
     ]
   },
