@@ -353,7 +353,7 @@ const SECTIONS = [
     ],
   },
   { id: 'resume', icon: 'file', title: 'Resume', special: 'resume',
-    desc: 'Edit the words in your existing résumé PDF in place — its template, fonts and layout stay exactly the same. Or replace the whole file under Advanced.' },
+    desc: 'Replace the résumé PDF behind every “Resume” button on your site. Edit the text in the tool that made it, export, and upload here.' },
 ];
 
 /* ── Field renderers ───────────────────────────────────────────────── */
@@ -562,172 +562,15 @@ function renderPanel(id) {
   scrollTo({ top: 0 });
 }
 
-/* ── Résumé: in-place text editor (keeps the existing PDF template) ──── */
-const rez = { file: null, bytes: null, ex: null, edits: {}, font: 'sans', outBytes: null, timer: 0, busy: false, prevBox: null };
-
+/* ── Résumé: upload-based (keeps whatever template your PDF has) ─────── */
 function renderResumePanel(panel) {
   const r = state.doc.resume || (state.doc.resume = {});
   r.file = r.file || 'Aman_Bhatt_Resume.pdf';
-
   panel.appendChild(el('div', 'f-hint',
-    'Edit the text of your existing résumé PDF <strong>without changing its template</strong> — the layout, fonts and design stay exactly as they are; only the words you change get replaced. Load your current résumé (or open a different PDF) to begin.'));
-
-  const src = el('div', 'rez-src');
-  const loadBtn = el('button', 'btn btn-fill btn-sm', `${icon('file')} Load current résumé`);
-  const upBtn = el('button', 'btn btn-out btn-sm', `${icon('upload')} Open a different PDF`);
-  loadBtn.type = upBtn.type = 'button';
-  const fileInput = el('input'); fileInput.type = 'file'; fileInput.accept = 'application/pdf,.pdf'; fileInput.hidden = true;
-  src.append(loadBtn, upBtn, fileInput);
-  panel.appendChild(src);
-
-  const stage = el('div', 'rez-stage');
-  panel.appendChild(stage);
-
-  loadBtn.addEventListener('click', () => loadCurrentResume(stage, loadBtn));
-  upBtn.addEventListener('click', () => fileInput.click());
-  fileInput.addEventListener('change', async () => {
-    const f = fileInput.files?.[0]; if (!f) return;
-    openResumeForEdit(stage, new Uint8Array(await f.arrayBuffer()), f.name);
-    fileInput.value = '';
-  });
-
-  const adv = el('details', 'res-adv');
-  adv.appendChild(el('summary', '', 'Advanced · replace the whole PDF (no editing)'));
-  const holder = el('div', 'res-adv-body'); adv.appendChild(holder);
-  panel.appendChild(adv);
-  renderUploadCard(holder);
-
-  $('.panel-wrap').scrollTop = 0; scrollTo({ top: 0 });
-}
-
-async function loadCurrentResume(stage, btn) {
-  const file = state.doc.resume?.file || 'Aman_Bhatt_Resume.pdf';
-  const orig = btn.innerHTML; btn.disabled = true; btn.innerHTML = `${icon('refresh')} Loading…`;
-  try {
-    const buf = await fetch(`${file}?t=${Date.now()}`, { cache: 'no-cache' })
-      .then(res => { if (!res.ok) throw new Error(`Could not load ${file} (${res.status})`); return res.arrayBuffer(); });
-    await openResumeForEdit(stage, new Uint8Array(buf), file);
-  } catch (e) { toast(esc(e.message), 'err'); }
-  btn.disabled = false; btn.innerHTML = orig;
-}
-
-async function openResumeForEdit(stage, bytes, filename) {
-  stage.innerHTML = `<div class="rez-loading">${icon('refresh')} Reading “${esc(filename)}”…</div>`;
-  rez.file = filename; rez.bytes = bytes; rez.edits = {}; rez.outBytes = null;
-  try {
-    rez.ex = await window.ResumeEdit.extract(bytes.slice(0));
-  } catch (e) {
-    stage.innerHTML = `<div class="f-hint">Could not read this PDF: ${esc(e.message)}</div>`;
-    return;
-  }
-  renderEditorUI(stage);
-}
-
-function renderEditorUI(stage) {
-  stage.innerHTML = '';
-  const total = rez.ex.pages.reduce((n, p) => n + p.items.length, 0);
-
-  const bar = el('div', 'rez-bar');
-  bar.appendChild(el('span', 'rez-info', `${icon('file')} <strong>${esc(rez.file)}</strong> · ${rez.ex.numPages} page(s) · ${total} text runs`));
-  const filter = el('input', 'rez-filter'); filter.type = 'search'; filter.placeholder = 'Filter text…';
-  const fontLbl = el('label', 'rez-font', 'Font ');
-  const sel = el('select'); sel.innerHTML = '<option value="sans">Sans</option><option value="serif">Serif</option>';
-  sel.value = rez.font; sel.addEventListener('change', () => { rez.font = sel.value; schedulePreview(); });
-  fontLbl.appendChild(sel);
-  const pubBtn = el('button', 'btn btn-fill btn-sm', `${icon('check')} Save &amp; publish`); pubBtn.type = 'button';
-  pubBtn.addEventListener('click', () => publishEditedResume(pubBtn));
-  bar.append(filter, fontLbl, pubBtn);
-  stage.appendChild(bar);
-
-  const list = el('div', 'rez-list');
-  stage.appendChild(list);
-  rez.ex.pages.forEach(pg => {
-    if (rez.ex.numPages > 1) list.appendChild(el('div', 'rez-pg', `Page ${pg.num}`));
-    pg.items.forEach(it => {
-      const row = el('div', 'rez-row');
-      const inp = el('input'); inp.type = 'text'; inp.value = it.str; inp.spellcheck = false; inp.dataset.orig = it.str.toLowerCase();
-      const b = el('button', 'rez-b'); b.type = 'button'; b.textContent = 'B'; b.title = 'Bold';
-      inp.addEventListener('input', () => {
-        const bold = rez.edits[it.id]?.bold || false;
-        if (inp.value === it.str && !bold) delete rez.edits[it.id];
-        else rez.edits[it.id] = { newStr: inp.value, bold };
-        row.classList.toggle('changed', !!rez.edits[it.id]);
-        schedulePreview();
-      });
-      b.addEventListener('click', () => {
-        const cur = rez.edits[it.id] || { newStr: inp.value, bold: false };
-        cur.bold = !cur.bold; cur.newStr = inp.value; rez.edits[it.id] = cur;
-        b.classList.toggle('on', cur.bold); row.classList.add('changed'); schedulePreview();
-      });
-      row.append(inp, b);
-      list.appendChild(row);
-    });
-  });
-  filter.addEventListener('input', () => {
-    const q = filter.value.trim().toLowerCase();
-    $$('.rez-row', list).forEach(rw => {
-      rw.style.display = (!q || $('input', rw).dataset.orig.includes(q)) ? '' : 'none';
-    });
-    $$('.rez-pg', list).forEach(h => { h.style.display = q ? 'none' : ''; });
-  });
-
-  const prev = el('div', 'rez-prev');
-  prev.innerHTML = `<div class="rez-loading">${icon('eye')} Building preview…</div>`;
-  stage.appendChild(prev);
-  rez.prevBox = prev;
-  buildPreview();
-}
-
-function schedulePreview() { clearTimeout(rez.timer); rez.timer = setTimeout(buildPreview, 550); }
-
-async function buildPreview() {
-  if (!rez.ex || !rez.prevBox) return;
-  const prev = rez.prevBox;
-  const allItems = rez.ex.pages.flatMap(p => p.items);
-  try {
-    const edits = Object.entries(rez.edits).map(([id, v]) => {
-      const it = allItems.find(i => i.id === id);
-      return { page: it.page, id, newStr: v.newStr, bold: v.bold };
-    });
-    const out = await window.ResumeEdit.build(rez.bytes.slice(0), rez.ex, edits, { font: rez.font });
-    rez.outBytes = out;
-    const doc = await window.pdfjsLib.getDocument({ data: out.slice(0) }).promise;
-    prev.innerHTML = '';
-    for (let p = 1; p <= doc.numPages; p++) {
-      const page = await doc.getPage(p);
-      const vp = page.getViewport({ scale: 1.5 });
-      const c = el('canvas', 'rez-canvas'); c.width = vp.width; c.height = vp.height;
-      await page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
-      prev.appendChild(c);
-    }
-  } catch (e) {
-    prev.innerHTML = `<div class="f-hint">Preview error: ${esc(e.message)}</div>`;
-  }
-}
-
-async function publishEditedResume(btn) {
-  if (rez.busy) return;
-  rez.busy = true; setBusy(true);
-  const orig = btn.innerHTML; btn.disabled = true; btn.innerHTML = `${icon('refresh')} Publishing…`;
-  try {
-    if (!rez.outBytes) await buildPreview();
-    if (!rez.outBytes) throw new Error('Load a résumé and make an edit first.');
-    const content = bufToB64(rez.outBytes);
-    const path = state.doc.resume?.file || 'Aman_Bhatt_Resume.pdf';
-    const sha = await getFileSha(path);
-    await gh(repoPath(path), {
-      method: 'PUT',
-      body: JSON.stringify({
-        message: 'docs: edit resume text via developer console',
-        content, branch: state.branch, ...(sha ? { sha } : {}),
-      }),
-    });
-    toast(`Résumé updated! The live file refreshes in ~1–2 minutes. <a href="${esc(path)}?t=${Date.now()}" target="_blank" rel="noopener">Open</a>`);
-  } catch (e) {
-    toast(`Could not publish: ${esc(e.message)}`, 'err');
-  }
-  rez.busy = false; setBusy(false);
-  btn.disabled = false; btn.innerHTML = orig;
+    'A finished PDF can\'t be reflowed reliably, so résumé text is edited in the tool that made it — export an updated PDF (from FlowCV, Canva, Word, LaTeX, …) and drop it below. This keeps its template, fonts and layout exactly as designed, and updates every “Resume” button on your site.'));
+  renderUploadCard(panel);
+  $('.panel-wrap').scrollTop = 0;
+  scrollTo({ top: 0 });
 }
 
 function renderUploadCard(container) {
@@ -751,7 +594,7 @@ function renderUploadCard(container) {
   `);
   container.appendChild(card);
   container.appendChild(el('div', 'f-hint',
-    'Uploading a PDF replaces the generated file directly on GitHub — use this if you maintain your résumé elsewhere.'));
+    'The PDF is committed straight to GitHub — the live link updates after the site redeploys (usually 1–2 minutes). No “Save &amp; publish” needed for the résumé.'));
 
   const dz = $('#dz', card), input = $('#dzInput', card), prog = $('#dzProgress', card);
   dz.addEventListener('click', () => input.click());
