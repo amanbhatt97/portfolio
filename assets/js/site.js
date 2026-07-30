@@ -308,19 +308,26 @@ function mountStars() {
   const canvas = $('#stars');
   if (!canvas || reduceMotion || !canvas.getContext) return;
   const ctx = canvas.getContext('2d');
+  if (!ctx) return;
   let stars = [], w = 0, h = 0, raf = 0;
 
+  const newStar = () => ({
+    x: Math.random() * w, y: Math.random() * h,
+    vx: (Math.random() - .5) * .16, vy: (Math.random() - .5) * .16,
+    r: Math.random() * 1.3 + .35, tw: Math.random() * Math.PI * 2,
+  });
+  /* Resize keeps existing stars (rescaled) so mobile URL-bar/keyboard
+     resizes don't visibly re-shuffle the constellation. */
   const build = () => {
     const dpr = Math.min(devicePixelRatio || 1, 2);
+    const ow = w, oh = h;
     w = innerWidth; h = innerHeight;
     canvas.width = w * dpr; canvas.height = h * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const n = Math.min(90, Math.round((w * h) / 16000));
-    stars = Array.from({ length: n }, () => ({
-      x: Math.random() * w, y: Math.random() * h,
-      vx: (Math.random() - .5) * .16, vy: (Math.random() - .5) * .16,
-      r: Math.random() * 1.3 + .35, tw: Math.random() * Math.PI * 2,
-    }));
+    if (ow && oh) stars.forEach(s => { s.x *= w / ow; s.y *= h / oh; });
+    while (stars.length > n) stars.pop();
+    while (stars.length < n) stars.push(newStar());
   };
 
   const LINK = 120;
@@ -357,7 +364,10 @@ function mountStars() {
   const stop = () => { cancelAnimationFrame(raf); raf = 0; };
   build(); start();
   let rt;
-  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { build(); }, 200); });
+  addEventListener('resize', () => {
+    if (innerWidth === w && Math.abs(innerHeight - h) < 160) return;  // mobile URL-bar transitions
+    clearTimeout(rt); rt = setTimeout(() => { build(); }, 200);
+  });
   document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
 }
 
@@ -381,8 +391,9 @@ function mountCursorGlow() {
 
 /* ── Chrome (independent of content; mounted immediately) ──────────── */
 function mountChrome() {
-  mountStars();
-  mountCursorGlow();
+  /* Decorative only — must never take down the critical wiring below. */
+  try { mountStars(); } catch (_) {}
+  try { mountCursorGlow(); } catch (_) {}
   /* Lenis buttery scrolling (desktop, motion-ok only) */
   let lenis = null;
   if (window.Lenis && finePointer && !reduceMotion) {
