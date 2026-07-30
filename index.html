@@ -12,12 +12,13 @@
 <meta property="og:url" content="https://amanbhatt97.github.io/portfolio/">
 <meta property="og:image" content="https://amanbhatt97.github.io/portfolio/images/my_pic_1.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#05060b">
 <link rel="icon" type="image/png" href="images/portfolio-logo.png">
 <link rel="apple-touch-icon" href="images/portfolio-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="images/my_pic_1.png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <script type="application/ld+json">
 {
@@ -71,10 +72,13 @@
 
 <!-- Atmosphere -->
 <div class="atmosphere" aria-hidden="true">
+  <canvas id="stars"></canvas>
   <div class="glow glow-1"></div>
   <div class="glow glow-2"></div>
+  <div class="grid-overlay"></div>
 </div>
 <div class="grain" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 <div id="pbar" aria-hidden="true"></div>
 
 <!-- Mobile menu -->
@@ -140,8 +144,10 @@
       <div class="hero-photo hi" style="--hd:.2s" id="photoWrap">
         <div class="photo-glow" aria-hidden="true"></div>
         <div class="photo-tilt" id="photoTilt">
+          <div class="hud-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
           <div class="photo-frame">
             <img src="images/my_pic_1.png" alt="Aman Bhatt" id="heroImg" fetchpriority="high">
+            <div class="photo-scan" aria-hidden="true"></div>
             <div class="photo-fade" aria-hidden="true"></div>
             <div class="photo-stats" id="photoStats">
               <div class="pst"><div class="pst-v">&lt;3%</div><div class="pst-l">MAPE</div></div>
@@ -358,6 +364,7 @@
   <div class="wrap">
     <div class="cta-box" data-reveal>
       <div class="cta-glow" aria-hidden="true"></div>
+      <div class="hud-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <div style="position:relative;z-index:1">
         <div class="cta-badge"><svg class="ic"><use href="#i-dot"/></svg> <span data-c="cta.badge">Open to opportunities</span></div>
         <h2 class="cta-title" id="ctaTitle">Let's build something<br><span class="grd-txt">that ships to production</span></h2>
