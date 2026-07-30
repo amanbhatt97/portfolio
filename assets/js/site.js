@@ -28,6 +28,7 @@ const setTheme = t => {
   root.setAttribute('data-theme', t);
   const u = $('#themeIcon use');
   if (u) u.setAttribute('href', t === 'dark' ? '#i-moon' : '#i-sun');
+  $('meta[name="theme-color"]')?.setAttribute('content', t === 'dark' ? '#05060b' : '#f6f7fc');
   try { localStorage.setItem('theme', t); } catch (_) {}
 };
 setTheme((() => {
@@ -302,8 +303,86 @@ function mountContent(c) {
   }
 }
 
+/* ── Starfield (constellation canvas behind everything) ────────────── */
+function mountStars() {
+  const canvas = $('#stars');
+  if (!canvas || reduceMotion || !canvas.getContext) return;
+  const ctx = canvas.getContext('2d');
+  let stars = [], w = 0, h = 0, raf = 0;
+
+  const build = () => {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    w = innerWidth; h = innerHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.min(90, Math.round((w * h) / 16000));
+    stars = Array.from({ length: n }, () => ({
+      x: Math.random() * w, y: Math.random() * h,
+      vx: (Math.random() - .5) * .16, vy: (Math.random() - .5) * .16,
+      r: Math.random() * 1.3 + .35, tw: Math.random() * Math.PI * 2,
+    }));
+  };
+
+  const LINK = 120;
+  const draw = () => {
+    const dark = root.getAttribute('data-theme') !== 'light';
+    const starC = dark ? '170,190,255' : '70,80,140';
+    const linkC = dark ? '130,155,255' : '70,80,140';
+    const starA = dark ? .8 : .5, linkA = dark ? .16 : .1;
+    ctx.clearRect(0, 0, w, h);
+    for (const s of stars) {
+      s.x += s.vx; s.y += s.vy; s.tw += .012;
+      if (s.x < -8) s.x = w + 8; else if (s.x > w + 8) s.x = -8;
+      if (s.y < -8) s.y = h + 8; else if (s.y > h + 8) s.y = -8;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${starC},${(0.35 + 0.65 * Math.abs(Math.sin(s.tw))) * starA})`;
+      ctx.fill();
+    }
+    for (let i = 0; i < stars.length; i++) for (let j = i + 1; j < stars.length; j++) {
+      const a = stars[i], b = stars[j];
+      const dx = a.x - b.x, dy = a.y - b.y;
+      const d2 = dx * dx + dy * dy;
+      if (d2 > LINK * LINK) continue;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+      ctx.strokeStyle = `rgba(${linkC},${(1 - Math.sqrt(d2) / LINK) * linkA})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+    raf = requestAnimationFrame(draw);
+  };
+
+  const start = () => { if (!raf) raf = requestAnimationFrame(draw); };
+  const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+  build(); start();
+  let rt;
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { build(); }, 200); });
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+}
+
+/* ── Cursor aura (fine pointers only) ──────────────────────────────── */
+function mountCursorGlow() {
+  const el = $('#cursorGlow');
+  if (!el || !finePointer || reduceMotion) return;
+  let tx = innerWidth / 2, ty = innerHeight / 2, x = tx, y = ty, raf = 0;
+  const step = () => {
+    x += (tx - x) * .09; y += (ty - y) * .09;
+    el.style.transform = `translate(${x}px,${y}px)`;
+    if (Math.abs(tx - x) + Math.abs(ty - y) > .5) raf = requestAnimationFrame(step);
+    else raf = 0;
+  };
+  addEventListener('mousemove', e => {
+    tx = e.clientX; ty = e.clientY;
+    el.classList.add('on');
+    if (!raf) raf = requestAnimationFrame(step);
+  }, { passive: true });
+}
+
 /* ── Chrome (independent of content; mounted immediately) ──────────── */
 function mountChrome() {
+  mountStars();
+  mountCursorGlow();
   /* Lenis buttery scrolling (desktop, motion-ok only) */
   let lenis = null;
   if (window.Lenis && finePointer && !reduceMotion) {
