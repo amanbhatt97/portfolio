@@ -41,10 +41,23 @@ const state = {
 const PREVIEW_ANCHOR = {           // console section → on-page section id
   hero: 'home', social: 'contact', about: 'about', skills: 'skills',
   experience: 'experience', projects: 'projects', cta: 'hire',
-  contact: 'contact', site: 'home', resume: 'home',
+  contact: 'contact', site: 'home', resume: 'home', de: 'home',
 };
 let previewReady = false, previewTimer = 0;
 const previewFrame = () => $('#previewFrame');
+/* The German panel previews the German site — the language is always
+   pinned explicitly so the frame never inherits a stale saved choice. */
+function previewSetLang(lang) {
+  const f = previewFrame();
+  if (!f) return;
+  /* Read the frame's live URL, not its src attribute — the language can
+     also have been changed from inside the preview. */
+  let current = null;
+  try { current = new URLSearchParams(f.contentWindow.location.search).get('lang'); } catch (_) {}
+  if (current === lang) return;
+  previewReady = false;
+  f.setAttribute('src', `index.html?preview=1&lang=${lang}`);
+}
 function previewPost(msg) {
   const f = previewFrame();
   if (f && f.contentWindow) { try { f.contentWindow.postMessage(msg, '*'); } catch (_) {} }
@@ -352,8 +365,60 @@ const SECTIONS = [
       { p: 'footer.copyright', t: 'text', l: 'Footer copyright line' },
     ],
   },
+  {
+    id: 'de', icon: 'globe', title: 'Deutsch (German)',
+    desc: 'The German version of the site, shown at ?lang=de and behind the DE switch. Anything you leave blank falls back to the English text above, so a new job added in English still appears — in English — until you translate it here.',
+    fields: [
+      { p: 'de.meta.description', t: 'textarea', l: 'SEO description' },
+      { p: 'de.hero.availability', t: 'text', l: 'Hero · status badge' },
+      { p: 'de.hero.roles', t: 'chips', l: 'Hero · rotating titles' },
+      { p: 'de.hero.bio', t: 'textarea', l: 'Hero · short bio' },
+      { p: 'de.hero.stats', t: 'list', l: 'Hero · stat labels', h: 'Leave “value” empty — the numbers come from the English version.',
+        item: [{ k: 'label', t: 'text', l: 'Label' }] },
+      { p: 'de.hero.photoBadges', t: 'list', l: 'Hero · photo badge labels',
+        item: [{ k: 'label', t: 'text', l: 'Label' }] },
+      { p: 'de.about.label', t: 'text', l: 'About · eyebrow label' },
+      { p: 'de.about.headingPlain', t: 'text', l: 'About · heading (plain part)' },
+      { p: 'de.about.headingAccent', t: 'text', l: 'About · heading (gradient part)' },
+      { p: 'de.about.badges', t: 'list', l: 'About · photo badges',
+        item: [{ k: 'text', t: 'text', l: 'Text' }] },
+      { p: 'de.about.paragraphs', t: 'rows', l: 'About · paragraphs' },
+      { p: 'de.skills.label', t: 'text', l: 'Skills · eyebrow label' },
+      { p: 'de.skills.heading', t: 'text', l: 'Skills · heading' },
+      { p: 'de.skills.sub', t: 'text', l: 'Skills · subtitle' },
+      { p: 'de.skills.groups', t: 'list', l: 'Skills · group titles', titleKey: 'title',
+        item: [{ k: 'title', t: 'text', l: 'Group title' }, { k: 'pills', t: 'chips', l: 'Skills (leave empty to reuse English)' }] },
+      { p: 'de.experience.label', t: 'text', l: 'Experience · eyebrow label' },
+      { p: 'de.experience.heading', t: 'text', l: 'Experience · heading' },
+      { p: 'de.experience.sub', t: 'text', l: 'Experience · subtitle' },
+      { p: 'de.experience.items', t: 'list', l: 'Experience · entries (same order as English)', titleKey: 'role',
+        item: [
+          { k: 'role', t: 'text', l: 'Role / degree (leave empty to keep the English title)' },
+          { k: 'org', t: 'text', l: 'Company / institution (usually unchanged)' },
+          { k: 'date', t: 'text', l: 'Period (e.g. “Apr. 2025 — heute”)' },
+          { k: 'location', t: 'text', l: 'Location' },
+          { k: 'bullets', t: 'rows', l: 'Highlights' },
+          { k: 'tags', t: 'chips', l: 'Tags' },
+        ] },
+      { p: 'de.projects.label', t: 'text', l: 'Projects · eyebrow label' },
+      { p: 'de.projects.heading', t: 'text', l: 'Projects · heading' },
+      { p: 'de.projects.sub', t: 'text', l: 'Projects · subtitle' },
+      { p: 'de.projects.items', t: 'list', l: 'Projects · descriptions (same order as English)', titleKey: 'desc',
+        item: [{ k: 'title', t: 'text', l: 'Title (leave empty to keep the English title)' }, { k: 'desc', t: 'textarea', l: 'Description' }] },
+      { p: 'de.cta.badge', t: 'text', l: 'Hire banner · badge' },
+      { p: 'de.cta.title1', t: 'text', l: 'Hire banner · title line 1' },
+      { p: 'de.cta.title2', t: 'text', l: 'Hire banner · title line 2' },
+      { p: 'de.cta.sub', t: 'textarea', l: 'Hire banner · subtitle' },
+      { p: 'de.contact.label', t: 'text', l: 'Contact · eyebrow label' },
+      { p: 'de.contact.heading', t: 'text', l: 'Contact · heading' },
+      { p: 'de.contact.sub', t: 'text', l: 'Contact · subtitle' },
+      { p: 'de.contact.intro', t: 'textarea', l: 'Contact · intro paragraph' },
+      { p: 'de.contact.location', t: 'text', l: 'Contact · location' },
+      { p: 'de.footer.copyright', t: 'text', l: 'Footer copyright line' },
+    ],
+  },
   { id: 'resume', icon: 'file', title: 'Resume', special: 'resume',
-    desc: 'Replace the résumé PDF behind every “Resume” button on your site. Edit the text in the tool that made it, export, and upload here.' },
+    desc: 'Replace the résumé PDFs behind every “Resume” button on your site. Edit the text in the tool that made it, export, and upload here.' },
 ];
 
 /* ── Field renderers ───────────────────────────────────────────────── */
@@ -550,6 +615,7 @@ function renderPanel(id) {
   const s = SECTIONS.find(x => x.id === id);
   const secLbl = $('#previewSec');
   if (secLbl) secLbl.textContent = s.title;
+  previewSetLang(id === 'de' ? 'de' : 'en');
   previewScrollTo(id);
   const panel = $('#panel');
   panel.innerHTML = '';
@@ -563,54 +629,62 @@ function renderPanel(id) {
 }
 
 /* ── Résumé: upload-based (keeps whatever template your PDF has) ─────── */
+const RESUME_SLOTS = [
+  { key: 'file', fallback: 'Aman_Bhatt_Resume.pdf', title: 'English résumé',
+    sub: 'Behind every “Resume” button on the English site.' },
+  { key: 'fileDe', fallback: 'Aman_Bhatt_Lebenslauf_DE.pdf', title: 'German résumé (Lebenslauf)',
+    sub: 'Behind every “Lebenslauf” button at ?lang=de. Regenerate it from content.json with <code>node tools/build-resume-de.mjs</code>, or upload your own here.' },
+];
+
 function renderResumePanel(panel) {
   const r = state.doc.resume || (state.doc.resume = {});
   r.file = r.file || 'Aman_Bhatt_Resume.pdf';
+  r.fileDe = r.fileDe || 'Aman_Bhatt_Lebenslauf_DE.pdf';
   panel.appendChild(el('div', 'f-hint',
     'A finished PDF can\'t be reflowed reliably, so résumé text is edited in the tool that made it — export an updated PDF (from FlowCV, Canva, Word, LaTeX, …) and drop it below. This keeps its template, fonts and layout exactly as designed, and updates every “Resume” button on your site.'));
-  renderUploadCard(panel);
+  RESUME_SLOTS.forEach(slot => renderUploadCard(panel, slot));
+  panel.appendChild(el('div', 'f-hint',
+    'Each PDF is committed straight to GitHub — the live link updates after the site redeploys (usually 1–2 minutes). No “Save &amp; publish” needed for the résumés.'));
   $('.panel-wrap').scrollTop = 0;
   scrollTo({ top: 0 });
 }
 
-function renderUploadCard(container) {
-  const file = state.doc?.resume?.file || 'Aman_Bhatt_Resume.pdf';
+function renderUploadCard(container, slot) {
+  const file = state.doc?.resume?.[slot.key] || slot.fallback;
   const card = el('div', 'res-card', `
     <div class="res-row">
       <div class="res-ico">${icon('file')}</div>
       <div class="res-meta">
         <div class="res-name">${esc(file)}</div>
-        <div class="res-sub">This is the file behind every “Resume” button on the site.</div>
+        <div class="res-sub">${slot.sub}</div>
       </div>
       <a class="btn btn-out btn-sm" href="${esc(file)}" target="_blank" rel="noopener">${icon('external')} View current</a>
     </div>
-    <div class="dropzone" id="dz" role="button" tabindex="0">
+    <div class="dropzone" role="button" tabindex="0">
       ${icon('upload')}
-      <p>Upload a new resume</p>
+      <p>Upload a new ${esc(slot.title)}</p>
       <span>Click to choose or drag a PDF here · replaces the current file · max 10 MB</span>
-      <div class="dz-progress" id="dzProgress"></div>
+      <div class="dz-progress"></div>
     </div>
-    <input type="file" id="dzInput" accept="application/pdf,.pdf" hidden>
+    <input type="file" accept="application/pdf,.pdf" hidden>
   `);
   container.appendChild(card);
-  container.appendChild(el('div', 'f-hint',
-    'The PDF is committed straight to GitHub — the live link updates after the site redeploys (usually 1–2 minutes). No “Save &amp; publish” needed for the résumé.'));
 
-  const dz = $('#dz', card), input = $('#dzInput', card), prog = $('#dzProgress', card);
+  const dz = $('.dropzone', card), input = $('input[type=file]', card), prog = $('.dz-progress', card);
   dz.addEventListener('click', () => input.click());
   dz.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
   ['dragover', 'dragenter'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('over'); }));
   ['dragleave', 'drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('over'); }));
-  dz.addEventListener('drop', e => { const f = e.dataTransfer.files?.[0]; if (f) uploadResume(f, prog); });
-  input.addEventListener('change', () => { const f = input.files?.[0]; if (f) uploadResume(f, prog); input.value = ''; });
+  dz.addEventListener('drop', e => { const f = e.dataTransfer.files?.[0]; if (f) uploadResume(f, prog, slot); });
+  input.addEventListener('change', () => { const f = input.files?.[0]; if (f) uploadResume(f, prog, slot); input.value = ''; });
 }
 
-async function uploadResume(file, prog) {
+async function uploadResume(file, prog, slot) {
   if (!/\.pdf$/i.test(file.name) && file.type !== 'application/pdf')
     return toast('Please choose a PDF file.', 'err');
   if (file.size > 10 * 1024 * 1024)
     return toast('File is larger than 10 MB — please compress it first.', 'err');
-  const path = state.doc?.resume?.file || 'Aman_Bhatt_Resume.pdf';
+  const path = state.doc?.resume?.[slot.key] || slot.fallback;
   setBusy(true);
   prog.textContent = 'Uploading…';
   prog.classList.add('show');
@@ -620,7 +694,7 @@ async function uploadResume(file, prog) {
     await gh(repoPath(path), {
       method: 'PUT',
       body: JSON.stringify({
-        message: 'docs: update resume via developer console',
+        message: `docs: update ${slot.key === 'fileDe' ? 'German résumé' : 'resume'} via developer console`,
         content, branch: state.branch, ...(sha ? { sha } : {}),
       }),
     });

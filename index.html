@@ -6,6 +6,9 @@
 <title>Aman Bhatt · ML Engineer &amp; Data Scientist</title>
 <meta name="description" content="Aman Bhatt — ML Engineer & Data Scientist. Energy forecasting, LLMs, MLOps.">
 <link rel="canonical" href="https://amanbhatt97.github.io/portfolio/">
+<link rel="alternate" hreflang="en" href="https://amanbhatt97.github.io/portfolio/">
+<link rel="alternate" hreflang="de" href="https://amanbhatt97.github.io/portfolio/?lang=de">
+<link rel="alternate" hreflang="x-default" href="https://amanbhatt97.github.io/portfolio/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Aman Bhatt · ML Engineer & Data Scientist">
 <meta property="og:description" content="Energy forecasting, LLMs and MLOps — production-grade ML systems.">
@@ -61,6 +64,7 @@
     <symbol id="i-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></symbol>
     <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
     <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></symbol>
     <symbol id="i-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="currentColor"/></symbol>
     <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></symbol>
     <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
@@ -68,7 +72,7 @@
   </defs>
 </svg>
 
-<a class="skip-link" href="#about">Skip to content</a>
+<a class="skip-link" href="#about" data-i18n="skip">Skip to content</a>
 
 <!-- Atmosphere -->
 <div class="atmosphere" aria-hidden="true">
@@ -83,12 +87,16 @@
 
 <!-- Mobile menu -->
 <div class="mob-drop" id="mobDrop">
-  <a href="#about">About</a>
-  <a href="#skills">Skills</a>
-  <a href="#experience">Experience</a>
-  <a href="#projects">Projects</a>
-  <a href="#contact">Contact</a>
-  <a href="#hire" class="mob-cta"><svg class="ic"><use href="#i-zap"/></svg> Hire Me</a>
+  <a href="#about" data-i18n="nav.about">About</a>
+  <a href="#skills" data-i18n="nav.skills">Skills</a>
+  <a href="#experience" data-i18n="nav.experience">Experience</a>
+  <a href="#projects" data-i18n="nav.projects">Projects</a>
+  <a href="#contact" data-i18n="nav.contact">Contact</a>
+  <a href="#hire" class="mob-cta"><svg class="ic"><use href="#i-zap"/></svg> <span data-i18n="nav.hire">Hire Me</span></a>
+  <div class="mob-lang" role="group" aria-label="Language" data-i18n-attr="aria-label:aria.lang">
+    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+    <button type="button" data-lang="de" aria-pressed="false">DE</button>
+  </div>
 </div>
 
 <!-- Nav -->
@@ -96,16 +104,21 @@
   <div class="nav-inner">
     <a href="#home" class="nav-logo">aman <span>bhatt.</span></a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+      <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <button class="t-btn" id="themeBtn" aria-label="Toggle theme"><svg class="ic" id="themeIcon"><use href="#i-moon"/></svg></button>
-      <a href="#hire" class="nav-cta">Hire Me</a>
-      <button class="hbg" id="hbg" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="lang-switch" role="group" aria-label="Language" data-i18n-attr="aria-label:aria.lang">
+        <svg class="ic lang-ic" aria-hidden="true"><use href="#i-globe"/></svg>
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      </div>
+      <button class="t-btn" id="themeBtn" aria-label="Toggle theme" data-i18n-attr="aria-label:aria.theme"><svg class="ic" id="themeIcon"><use href="#i-moon"/></svg></button>
+      <a href="#hire" class="nav-cta" data-i18n="nav.hire">Hire Me</a>
+      <button class="hbg" id="hbg" aria-label="Menu" aria-expanded="false" data-i18n-attr="aria-label:aria.menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
@@ -119,7 +132,7 @@
       <div>
         <div class="hero-avail hi">
           <span class="avail-dot"></span>
-          <span data-c="hero.availability">Assistant Manager – Data Science &amp; AI · BSES Rajdhani Power Limited</span>
+          <span data-c="hero.availability">Senior Machine Learning Engineer · BSES Rajdhani Power Limited</span>
         </div>
         <h1 class="hi" style="--hd:.08s" id="heroH1">Aman<br><span class="grd-txt">Bhatt</span></h1>
         <p class="hero-role hi" style="--hd:.16s"><span id="typed"></span><span class="cursor" aria-hidden="true"></span></p>
@@ -130,9 +143,9 @@
           <div class="hst"><div class="hst-n" data-count="166">166</div><div class="hst-l">RE plants forecasted</div></div>
         </div>
         <div class="hero-btns hi" style="--hd:.4s">
-          <a href="#hire" class="btn btn-fill"><svg class="ic"><use href="#i-zap"/></svg> Hire Me</a>
-          <a href="#projects" class="btn btn-out"><svg class="ic"><use href="#i-folder"/></svg> Projects</a>
-          <a href="Aman_Bhatt_Resume.pdf" target="_blank" rel="noopener" class="btn btn-out" data-resume><svg class="ic"><use href="#i-file"/></svg> Resume</a>
+          <a href="#hire" class="btn btn-fill"><svg class="ic"><use href="#i-zap"/></svg> <span data-i18n="nav.hire">Hire Me</span></a>
+          <a href="#projects" class="btn btn-out"><svg class="ic"><use href="#i-folder"/></svg> <span data-i18n="btn.projects">Projects</span></a>
+          <a href="Aman_Bhatt_Resume.pdf" target="_blank" rel="noopener" class="btn btn-out" data-resume><svg class="ic"><use href="#i-file"/></svg> <span data-i18n="btn.resume">Resume</span></a>
         </div>
         <div class="hero-socs hi" style="--hd:.48s">
           <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" class="soc" aria-label="LinkedIn" data-soc="linkedin"><svg class="ic"><use href="#i-linkedin"/></svg></a>
@@ -176,7 +189,7 @@
         <div class="sect-lbl" data-c="about.label">About me</div>
         <h2 class="h2" id="aboutH2">Data Scientist &amp; <span class="grd-txt">ML Engineer</span></h2>
         <div id="aboutParas">
-          <p>Data enthusiast and a proficient data scientist with a background in civil engineering. Currently working as an Assistant Manager – Data Science &amp; AI at BSES Rajdhani Power Limited, applying advanced algorithms and techniques to solve complex forecasting problems.</p>
+          <p>Data enthusiast and a proficient data scientist with a background in civil engineering. Currently working as a Senior Machine Learning Engineer at BSES Rajdhani Power Limited, applying advanced algorithms and techniques to solve complex forecasting problems.</p>
           <p>Passionate about leveraging data-driven insights and building AI systems that last — driving measurable business impact across the energy sector. Experienced in bridging research with engineering, enabling grid operators and renewable energy firms to make data-driven decisions at speed.</p>
         </div>
         <div class="about-chips" id="aboutChips">
@@ -188,7 +201,7 @@
         <div class="about-btns">
           <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" class="btn btn-fill" data-soc="linkedin"><svg class="ic"><use href="#i-linkedin"/></svg> LinkedIn</a>
           <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" class="btn btn-out" data-soc="github"><svg class="ic"><use href="#i-github"/></svg> GitHub</a>
-          <a href="Aman_Bhatt_Resume.pdf" target="_blank" rel="noopener" class="btn btn-out" data-resume><svg class="ic"><use href="#i-file"/></svg> Resume</a>
+          <a href="Aman_Bhatt_Resume.pdf" target="_blank" rel="noopener" class="btn btn-out" data-resume><svg class="ic"><use href="#i-file"/></svg> <span data-i18n="btn.resume">Resume</span></a>
         </div>
       </div>
     </div>
@@ -260,7 +273,7 @@
         <div class="ti-card card spot">
           <div class="ti-top">
             <div>
-              <div class="ti-role">Assistant Manager – Data Science &amp; AI</div>
+              <div class="ti-role">Senior Machine Learning Engineer</div>
               <div class="ti-co">BSES Rajdhani Power Limited (BRPL)</div>
             </div>
             <span class="ti-date">Apr 2025 — Present</span>
@@ -332,27 +345,27 @@
         <h2 class="h2" data-c="projects.heading">My Work</h2>
         <p class="sect-sub" data-c="projects.sub">End-to-end ML projects — all deployed as live apps.</p>
       </div>
-      <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" class="btn btn-out" id="projGithub" data-reveal><svg class="ic"><use href="#i-github"/></svg> All on GitHub</a>
+      <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" class="btn btn-out" id="projGithub" data-reveal><svg class="ic"><use href="#i-github"/></svg> <span data-i18n="btn.allGithub">All on GitHub</span></a>
     </div>
     <div class="proj-grid" id="projGrid">
       <a class="proj-card card" href="https://recommend-movies-app.streamlit.app/" target="_blank" rel="noopener" data-reveal>
-        <div class="proj-media"><img src="images/mrs.jpeg" alt="Movie Recommendation System" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> View app</span></div></div>
+        <div class="proj-media"><img src="images/mrs.jpeg" alt="Movie Recommendation System" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> <span data-i18n="proj.view">View app</span></span></div></div>
         <div class="proj-body"><div class="proj-title"><span>Movie Recommendation System</span><svg class="ic"><use href="#i-arrow-up-right"/></svg></div><p class="proj-desc">A movie recommendation system that recommends movies based on search.</p></div>
       </a>
       <a class="proj-card card" href="https://ipl-win-prediction.streamlit.app/" target="_blank" rel="noopener" data-reveal style="--rd:.08s">
-        <div class="proj-media"><img src="images/ipl.jpeg" alt="IPL Win Predictor" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> View app</span></div></div>
+        <div class="proj-media"><img src="images/ipl.jpeg" alt="IPL Win Predictor" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> <span data-i18n="proj.view">View app</span></span></div></div>
         <div class="proj-body"><div class="proj-title"><span>IPL Win Predictor</span><svg class="ic"><use href="#i-arrow-up-right"/></svg></div><p class="proj-desc">IPL win predictor that can predict probability of winning of chasing team at any point of the match.</p></div>
       </a>
       <a class="proj-card card" href="https://olympics-analysis.streamlit.app/" target="_blank" rel="noopener" data-reveal style="--rd:.16s">
-        <div class="proj-media"><img src="images/olympics.jpeg" alt="Olympics Analysis" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> View app</span></div></div>
+        <div class="proj-media"><img src="images/olympics.jpeg" alt="Olympics Analysis" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> <span data-i18n="proj.view">View app</span></span></div></div>
         <div class="proj-body"><div class="proj-title"><span>Olympics Analysis</span><svg class="ic"><use href="#i-arrow-up-right"/></svg></div><p class="proj-desc">Analysis of past years summer olympics record from 1896 to 2016.</p></div>
       </a>
       <a class="proj-card card" href="https://spam-classifier-sms.streamlit.app/" target="_blank" rel="noopener" data-reveal>
-        <div class="proj-media"><img src="images/spam_sms.jpeg" alt="SMS Spam Classifier" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> View app</span></div></div>
+        <div class="proj-media"><img src="images/spam_sms.jpeg" alt="SMS Spam Classifier" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> <span data-i18n="proj.view">View app</span></span></div></div>
         <div class="proj-body"><div class="proj-title"><span>SMS Spam Classifier</span><svg class="ic"><use href="#i-arrow-up-right"/></svg></div><p class="proj-desc">A classifier that can predict any SMS as spam or not.</p></div>
       </a>
       <a class="proj-card card" href="https://chat-analysis-whatsapp.streamlit.app/" target="_blank" rel="noopener" data-reveal style="--rd:.08s">
-        <div class="proj-media"><img src="images/whatsapp.jpeg" alt="WhatsApp Chat Analysis" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> View app</span></div></div>
+        <div class="proj-media"><img src="images/whatsapp.jpeg" alt="WhatsApp Chat Analysis" loading="lazy"><div class="proj-veil"><span class="proj-open"><svg class="ic"><use href="#i-external"/></svg> <span data-i18n="proj.view">View app</span></span></div></div>
         <div class="proj-body"><div class="proj-title"><span>WhatsApp Chat Analysis</span><svg class="ic"><use href="#i-arrow-up-right"/></svg></div><p class="proj-desc">Analyse of group as well as personal WhatsApp chats.</p></div>
       </a>
     </div>
@@ -370,9 +383,9 @@
         <h2 class="cta-title" id="ctaTitle">Let's build something<br><span class="grd-txt">that ships to production</span></h2>
         <p class="cta-sub" data-c="cta.sub">Full-time roles · Contract work · Consulting · Research collaborations in ML, AI and data science.</p>
         <div class="cta-btns">
-          <a href="#contact" class="btn btn-fill"><svg class="ic"><use href="#i-send"/></svg> Send Inquiry</a>
+          <a href="#contact" class="btn btn-fill"><svg class="ic"><use href="#i-send"/></svg> <span data-i18n="btn.sendInquiry">Send Inquiry</span></a>
           <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" class="btn btn-out" data-soc="linkedin"><svg class="ic"><use href="#i-linkedin"/></svg> LinkedIn</a>
-          <a href="Aman_Bhatt_Resume.pdf" target="_blank" rel="noopener" class="btn btn-out" data-resume><svg class="ic"><use href="#i-file"/></svg> Resume</a>
+          <a href="Aman_Bhatt_Resume.pdf" target="_blank" rel="noopener" class="btn btn-out" data-resume><svg class="ic"><use href="#i-file"/></svg> <span data-i18n="btn.resume">Resume</span></a>
         </div>
         <div class="cta-socs">
           <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" class="soc" aria-label="LinkedIn" data-soc="linkedin"><svg class="ic"><use href="#i-linkedin"/></svg></a>
@@ -395,7 +408,7 @@
     </div>
     <div class="contact-grid">
       <div class="ct-info" data-reveal>
-        <h3>Let's connect</h3>
+        <h3 data-i18n="contact.connect">Let's connect</h3>
         <p data-c="contact.intro">Open to full-time ML/AI roles, contract work, consulting and research collaborations.</p>
         <div id="ctRows">
           <a class="ct-row" href="mailto:amanbhatt.1997.ab@gmail.com"><div class="ct-ico"><svg class="ic"><use href="#i-mail"/></svg></div><div class="ct-txt"><strong>email</strong>amanbhatt.1997.ab@gmail.com</div></a>
@@ -408,24 +421,24 @@
       <div data-reveal style="--rd:.1s">
         <form class="form-card card" id="cForm" novalidate>
           <div class="frow">
-            <div class="fg"><label for="fn">Name *</label><input type="text" id="fn" name="name" placeholder="Jane Smith" required autocomplete="name"></div>
-            <div class="fg"><label for="fe">Email *</label><input type="email" id="fe" name="email" placeholder="jane@company.com" required autocomplete="email"></div>
+            <div class="fg"><label for="fn" data-i18n="form.name">Name *</label><input type="text" id="fn" name="name" placeholder="Jane Smith" data-i18n-attr="placeholder:form.namePh" required autocomplete="name"></div>
+            <div class="fg"><label for="fe" data-i18n="form.email">Email *</label><input type="email" id="fe" name="email" placeholder="jane@company.com" data-i18n-attr="placeholder:form.emailPh" required autocomplete="email"></div>
           </div>
-          <div class="fg"><label for="fc">Company</label><input type="text" id="fc" name="company" placeholder="Acme Corp (optional)" autocomplete="organization"></div>
+          <div class="fg"><label for="fc" data-i18n="form.company">Company</label><input type="text" id="fc" name="company" placeholder="Acme Corp (optional)" data-i18n-attr="placeholder:form.companyPh" autocomplete="organization"></div>
           <div class="fg">
-            <label for="ft">Opportunity type *</label>
+            <label for="ft" data-i18n="form.type">Opportunity type *</label>
             <select id="ft" name="role" required>
-              <option value="" disabled selected>Select type</option>
-              <option>Full-time Role</option>
-              <option>Contract / Freelance</option>
-              <option>Consulting</option>
-              <option>Research Collaboration</option>
-              <option>Other</option>
+              <option value="" disabled selected data-i18n="form.typePh">Select type</option>
+              <option value="Full-time Role" data-i18n="form.opt.fulltime">Full-time Role</option>
+              <option value="Contract / Freelance" data-i18n="form.opt.contract">Contract / Freelance</option>
+              <option value="Consulting" data-i18n="form.opt.consulting">Consulting</option>
+              <option value="Research Collaboration" data-i18n="form.opt.research">Research Collaboration</option>
+              <option value="Other" data-i18n="form.opt.other">Other</option>
             </select>
           </div>
-          <div class="fg"><label for="fm">Message</label><textarea id="fm" name="message" rows="4" placeholder="Tell me about the role or project…"></textarea></div>
-          <p class="fnote"><svg class="ic"><use href="#i-lock"/></svg> Delivered securely to my inbox.</p>
-          <button type="submit" class="btn btn-fill" style="width:100%"><svg class="ic"><use href="#i-send"/></svg> Send Message</button>
+          <div class="fg"><label for="fm" data-i18n="form.message">Message</label><textarea id="fm" name="message" rows="4" placeholder="Tell me about the role or project…" data-i18n-attr="placeholder:form.messagePh"></textarea></div>
+          <p class="fnote"><svg class="ic"><use href="#i-lock"/></svg> <span data-i18n="form.note">Delivered securely to my inbox.</span></p>
+          <button type="submit" class="btn btn-fill" style="width:100%"><svg class="ic"><use href="#i-send"/></svg> <span data-i18n="form.submit">Send Message</span></button>
           <div id="fmsg" role="status"></div>
         </form>
       </div>
@@ -440,15 +453,15 @@
     <span class="foot-brand">aman <span>bhatt.</span></span>
     <span class="foot-copy" data-c="footer.copyright">© 2025 Aman Bhatt · ML Engineer &amp; Data Scientist</span>
     <nav class="foot-nav" aria-label="Footer">
-      <a href="#home">Top</a>
+      <a href="#home" data-i18n="foot.top">Top</a>
       <a href="https://www.linkedin.com/in/amanbhatt1997/" target="_blank" rel="noopener" data-soc="linkedin">LinkedIn</a>
       <a href="https://github.com/amanbhatt97" target="_blank" rel="noopener" data-soc="github">GitHub</a>
-      <a href="admin.html" rel="nofollow" title="Developer console"><svg class="ic"><use href="#i-code"/></svg> Developer</a>
+      <a href="admin.html" rel="nofollow" title="Developer console"><svg class="ic"><use href="#i-code"/></svg> <span data-i18n="foot.dev">Developer</span></a>
     </nav>
   </div>
 </footer>
 
-<button id="toTop" aria-label="Back to top"><svg class="ic"><use href="#i-arrow-up"/></svg></button>
+<button id="toTop" aria-label="Back to top" data-i18n-attr="aria-label:aria.top"><svg class="ic"><use href="#i-arrow-up"/></svg></button>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js" defer></script>
 <script src="assets/js/site.js" defer></script>

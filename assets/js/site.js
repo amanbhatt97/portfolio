@@ -38,6 +38,135 @@ setTheme((() => {
 $('#themeBtn')?.addEventListener('click', () =>
   setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
 
+/* ── Language (EN / DE) ─────────────────────────────────────────────
+   Chrome strings live here; everything content-shaped lives in
+   content.json under "de" and is merged over the English tree below.
+   Each language is a real URL (?lang=de) so it can be linked and
+   crawled — switching reloads rather than swapping the DOM in place. */
+const LANGS = ['en', 'de'];
+const UI = {
+  en: {
+    'skip': 'Skip to content',
+    'nav.about': 'About', 'nav.skills': 'Skills', 'nav.experience': 'Experience',
+    'nav.projects': 'Projects', 'nav.contact': 'Contact', 'nav.hire': 'Hire Me',
+    'btn.projects': 'Projects', 'btn.resume': 'Resume', 'btn.allGithub': 'All on GitHub',
+    'btn.sendInquiry': 'Send Inquiry',
+    'proj.view': 'View app',
+    'contact.connect': "Let's connect",
+    'form.name': 'Name *', 'form.namePh': 'Jane Smith',
+    'form.email': 'Email *', 'form.emailPh': 'jane@company.com',
+    'form.company': 'Company', 'form.companyPh': 'Acme Corp (optional)',
+    'form.type': 'Opportunity type *', 'form.typePh': 'Select type',
+    'form.opt.fulltime': 'Full-time Role', 'form.opt.contract': 'Contract / Freelance',
+    'form.opt.consulting': 'Consulting', 'form.opt.research': 'Research Collaboration',
+    'form.opt.other': 'Other',
+    'form.message': 'Message', 'form.messagePh': 'Tell me about the role or project…',
+    'form.note': 'Delivered securely to my inbox.',
+    'form.submit': 'Send Message', 'form.sending': 'Sending…',
+    'form.ok': "✓ Message sent! I'll reply within 24 hours.",
+    'form.err': '✕ Could not send. Please email me directly.',
+    'foot.top': 'Top', 'foot.dev': 'Developer',
+    'aria.theme': 'Toggle theme', 'aria.menu': 'Menu', 'aria.top': 'Back to top',
+    'aria.lang': 'Language',
+    'row.email': 'email', 'row.phone': 'phone', 'row.linkedin': 'linkedin',
+    'row.github': 'github', 'row.location': 'location',
+  },
+  de: {
+    'skip': 'Zum Inhalt springen',
+    'nav.about': 'Über mich', 'nav.skills': 'Kenntnisse', 'nav.experience': 'Erfahrung',
+    'nav.projects': 'Projekte', 'nav.contact': 'Kontakt', 'nav.hire': 'Anfragen',
+    'btn.projects': 'Projekte', 'btn.resume': 'Lebenslauf', 'btn.allGithub': 'Alle auf GitHub',
+    'btn.sendInquiry': 'Anfrage senden',
+    'proj.view': 'App ansehen',
+    'contact.connect': 'Vernetzen wir uns',
+    'form.name': 'Name *', 'form.namePh': 'Maria Schmidt',
+    'form.email': 'E-Mail *', 'form.emailPh': 'maria@unternehmen.de',
+    'form.company': 'Unternehmen', 'form.companyPh': 'Acme GmbH (optional)',
+    'form.type': 'Art der Anfrage *', 'form.typePh': 'Bitte auswählen',
+    'form.opt.fulltime': 'Festanstellung', 'form.opt.contract': 'Projektarbeit / Freelance',
+    'form.opt.consulting': 'Beratung', 'form.opt.research': 'Forschungskooperation',
+    'form.opt.other': 'Sonstiges',
+    'form.message': 'Nachricht', 'form.messagePh': 'Erzählen Sie mir von der Stelle oder dem Projekt…',
+    'form.note': 'Wird sicher an mein Postfach zugestellt.',
+    'form.submit': 'Nachricht senden', 'form.sending': 'Wird gesendet…',
+    'form.ok': '✓ Nachricht gesendet! Ich antworte innerhalb von 24 Stunden.',
+    'form.err': '✕ Senden fehlgeschlagen. Bitte schreiben Sie mir direkt per E-Mail.',
+    'foot.top': 'Nach oben', 'foot.dev': 'Entwickler',
+    'aria.theme': 'Design umschalten', 'aria.menu': 'Menü', 'aria.top': 'Nach oben',
+    'aria.lang': 'Sprache',
+    'row.email': 'E-Mail', 'row.phone': 'Telefon', 'row.linkedin': 'LinkedIn',
+    'row.github': 'GitHub', 'row.location': 'Standort',
+  },
+};
+const LANG = (() => {
+  try {
+    const q = new URLSearchParams(location.search).get('lang');
+    if (LANGS.includes(q)) return q;
+    const s = localStorage.getItem('lang');
+    if (LANGS.includes(s)) return s;
+  } catch (_) {}
+  return 'en';
+})();
+const tr = k => UI[LANG]?.[k] ?? UI.en[k] ?? '';
+
+/* Merge the "de" overlay over the English tree. Arrays merge by index and
+   the English length wins, so a job added in English but not yet
+   translated still shows up — in English rather than not at all. */
+function mergeLang(base, over) {
+  if (Array.isArray(base)) {
+    if (!Array.isArray(over)) return base;
+    return base.map((v, i) => (i < over.length ? mergeLang(v, over[i]) : v));
+  }
+  if (base && typeof base === 'object') {
+    if (!over || typeof over !== 'object' || Array.isArray(over)) return base;
+    const out = { ...base };
+    for (const k of Object.keys(over)) out[k] = mergeLang(base[k], over[k]);
+    return out;
+  }
+  return over === undefined ? base : over;
+}
+const localize = c => {
+  if (LANG === 'en' || !c?.de) return c;
+  const { de, ...base } = c;
+  const merged = mergeLang(base, de);
+  merged.de = de;                       // keep the overlay for the console preview
+  return merged;
+};
+
+/* Static markup: data-i18n swaps text, data-i18n-attr swaps attributes
+   ("placeholder:form.namePh" or "aria-label:aria.menu"). */
+function applyLang() {
+  root.lang = LANG;
+  $$('[data-i18n]').forEach(el => { el.textContent = tr(el.dataset.i18n); });
+  $$('[data-i18n-attr]').forEach(el => {
+    el.dataset.i18nAttr.split(',').forEach(pair => {
+      const i = pair.indexOf(':');
+      if (i > 0) el.setAttribute(pair.slice(0, i).trim(), tr(pair.slice(i + 1).trim()));
+    });
+  });
+  const canon = $('link[rel="canonical"]');
+  if (canon) {
+    const base = canon.href.split('?')[0];
+    canon.href = LANG === 'en' ? base : `${base}?lang=${LANG}`;
+  }
+  $$('[data-lang]').forEach(b => {
+    const on = b.dataset.lang === LANG;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', String(on));
+  });
+}
+function mountLangSwitch() {
+  $$('[data-lang]').forEach(b => b.addEventListener('click', () => {
+    const next = b.dataset.lang;
+    if (!LANGS.includes(next) || next === LANG) return;
+    try { localStorage.setItem('lang', next); } catch (_) {}
+    const q = new URLSearchParams(location.search);
+    next === 'en' ? q.delete('lang') : q.set('lang', next);
+    const s = q.toString();
+    location.href = `${location.pathname}${s ? `?${s}` : ''}${location.hash}`;
+  }));
+}
+
 /* ── Content hydration ─────────────────────────────────────────────── */
 const setText = (sel, v) => { if (v != null) $$(sel).forEach(el => { el.textContent = v; }); };
 
@@ -77,7 +206,8 @@ function render(c) {
   const soc = c.social || {};
   const socHref = { linkedin: soc.linkedin, github: soc.github, hackerrank: soc.hackerrank, email: soc.email ? `mailto:${soc.email}` : null };
   Object.entries(socHref).forEach(([k, v]) => { if (v) $$(`[data-soc="${k}"]`).forEach(a => { a.href = v; }); });
-  if (c.resume?.file) $$('[data-resume]').forEach(a => { a.href = c.resume.file; });
+  const resumeFile = (LANG !== 'en' && c.resume?.[`file${LANG[0].toUpperCase()}${LANG.slice(1)}`]) || c.resume?.file;
+  if (resumeFile) $$('[data-resume]').forEach(a => { a.href = resumeFile; });
 
   /* About */
   const ab = c.about || {};
@@ -162,7 +292,7 @@ function render(c) {
       <a class="proj-card card" href="${esc(p.link)}" target="_blank" rel="noopener" data-reveal style="--rd:${(i % 3) * .08}s">
         <div class="proj-media">
           <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy">
-          <div class="proj-veil"><span class="proj-open">${icon('external')} View app</span></div>
+          <div class="proj-veil"><span class="proj-open">${icon('external')} ${esc(tr('proj.view'))}</span></div>
         </div>
         <div class="proj-body">
           <div class="proj-title"><span>${esc(p.title)}</span>${icon('arrow-up-right')}</div>
@@ -187,11 +317,11 @@ function render(c) {
   setText('[data-c="contact.intro"]', co.intro);
   const strip = u => String(u || '').replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
   const rows = [
-    soc.email && { icon: 'mail', label: 'email', text: soc.email, href: `mailto:${soc.email}` },
-    co.phone && { icon: 'phone', label: 'phone', text: co.phone, href: `tel:${co.phone.replace(/[^+\d]/g, '')}` },
-    soc.linkedin && { icon: 'linkedin', label: 'linkedin', text: strip(soc.linkedin), href: soc.linkedin },
-    soc.github && { icon: 'github', label: 'github', text: strip(soc.github), href: soc.github },
-    co.location && { icon: 'pin', label: 'location', text: co.location },
+    soc.email && { icon: 'mail', label: tr('row.email'), text: soc.email, href: `mailto:${soc.email}` },
+    co.phone && { icon: 'phone', label: tr('row.phone'), text: co.phone, href: `tel:${co.phone.replace(/[^+\d]/g, '')}` },
+    soc.linkedin && { icon: 'linkedin', label: tr('row.linkedin'), text: strip(soc.linkedin), href: soc.linkedin },
+    soc.github && { icon: 'github', label: tr('row.github'), text: strip(soc.github), href: soc.github },
+    co.location && { icon: 'pin', label: tr('row.location'), text: co.location },
   ].filter(Boolean);
   $('#ctRows').innerHTML = rows.map(r => `
     <${r.href ? `a href="${esc(r.href)}" ${r.href.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}` : 'div'} class="ct-row">
@@ -391,6 +521,8 @@ function mountCursorGlow() {
 
 /* ── Chrome (independent of content; mounted immediately) ──────────── */
 function mountChrome() {
+  applyLang();
+  mountLangSwitch();
   /* Decorative only — must never take down the critical wiring below. */
   try { mountStars(); } catch (_) {}
   try { mountCursorGlow(); } catch (_) {}
@@ -479,7 +611,7 @@ function mountChrome() {
     const msg = $('#fmsg');
     const orig = btn.innerHTML;
     btn.disabled = true;
-    btn.textContent = 'Sending…';
+    btn.textContent = tr('form.sending');
     msg.className = '';
     try {
       const r = await fetch('https://api.web3forms.com/submit', {
@@ -498,11 +630,11 @@ function mountChrome() {
       });
       const j = await r.json();
       if (!j.success) throw new Error(j.message || 'Failed');
-      msg.textContent = "✓ Message sent! I'll reply within 24 hours.";
+      msg.textContent = tr('form.ok');
       msg.className = 'ok';
       this.reset();
     } catch (_) {
-      msg.textContent = '✕ Could not send. Please email me directly.';
+      msg.textContent = tr('form.err');
       msg.className = 'er';
     }
     btn.disabled = false;
@@ -512,7 +644,7 @@ function mountChrome() {
 
 /* ── Live preview (driven by the developer console over postMessage) ─── */
 function applyPreview(c) {
-  const content = c || {};
+  const content = localize(c || {});
   try { render(content); } catch (_) {}
   /* No scroll-reveal in the preview — show every section immediately. */
   $$('[data-reveal]').forEach(el => el.classList.remove('reveal'));
@@ -553,7 +685,7 @@ const boot = async () => {
     const timer = setTimeout(() => ctl.abort(), 4000);
     const r = await fetch(`content.json?v=${Date.now()}`, { signal: ctl.signal, cache: 'no-cache' });
     clearTimeout(timer);
-    if (r.ok) content = render(await r.json());
+    if (r.ok) content = render(localize(await r.json()));
   } catch (_) { /* static fallback markup stays */ }
   mountContent(content);
 };

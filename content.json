@@ -72,7 +72,7 @@
     "summary": "Data Scientist and ML Engineer with 4+ years building production forecasting systems for the energy sector. I specialise in demand and renewable-energy forecasting at sub-3% MAPE, real-time ML pipelines (Spark, Kafka, AWS), and LLM/RAG assistants — turning operational data into reliable, deployed decisions.",
     "experience": [
       {
-        "role": "Assistant Manager – Data Science & AI",
+        "role": "Senior Machine Learning Engineer",
         "org": "BSES Rajdhani Power Limited (BRPL)",
         "date": "Apr 2025 — Present",
         "location": "New Delhi, India",
@@ -171,7 +171,8 @@
         ]
       }
     ],
-    "certifications": []
+    "certifications": [],
+    "fileDe": "Aman_Bhatt_Lebenslauf_DE.pdf"
   },
   "about": {
     "label": "About me",
@@ -189,7 +190,7 @@
       }
     ],
     "paragraphs": [
-      "Data enthusiast and a proficient data scientist with a background in civil engineering. Currently working as an Assistant Manager – Data Science & AI at BSES Rajdhani Power Limited, applying advanced algorithms and techniques to solve complex forecasting problems.",
+      "Data enthusiast and a proficient data scientist with a background in civil engineering. Currently working as a Senior Machine Learning Engineer at BSES Rajdhani Power Limited, applying advanced algorithms and techniques to solve complex forecasting problems.",
       "Passionate about leveraging data-driven insights and building AI systems that last — driving measurable business impact across the energy sector. Experienced in bridging research with engineering, enabling grid operators and renewable energy firms to make data-driven decisions at speed."
     ],
     "chips": [
@@ -486,5 +487,258 @@
   },
   "footer": {
     "copyright": "© 2025 Aman Bhatt · ML Engineer & Data Scientist"
+  },
+  "de": {
+    "meta": {
+      "title": "Aman Bhatt · ML Engineer & Data Scientist",
+      "description": "Aman Bhatt — ML Engineer & Data Scientist. Energieprognosen, LLMs und MLOps."
+    },
+    "hero": {
+      "availability": "Senior Machine Learning Engineer · BSES Rajdhani Power Limited",
+      "roles": [
+        "ML Engineer",
+        "Data Scientist",
+        "Experte für Energieprognosen",
+        "Entwickler von LLM-Systemen",
+        "MLOps Engineer",
+        "Zeitreihenprognose"
+      ],
+      "bio": "ML Engineer, der aus Energiedaten Entscheidungen macht — Prognosen, Echtzeit-Pipelines und LLM-Assistenten.",
+      "stats": [
+        {
+          "label": "MAPE · in Produktion"
+        },
+        {
+          "label": "Jahre Erfahrung"
+        },
+        {
+          "label": "EE-Anlagen prognostiziert"
+        }
+      ],
+      "photoBadges": [
+        {
+          "label": "MAPE"
+        },
+        {
+          "label": "Jahre ML"
+        },
+        {
+          "label": "Anlagen"
+        }
+      ]
+    },
+    "about": {
+      "label": "Über mich",
+      "headingPlain": "Data Scientist &",
+      "headingAccent": "ML Engineer",
+      "badges": [
+        {
+          "text": "Neu-Delhi"
+        },
+        {
+          "text": "Remote-freundlich"
+        }
+      ],
+      "paragraphs": [
+        "Datenbegeisterter Data Scientist mit einem Hintergrund im Bauingenieurwesen. Aktuell als Senior Machine Learning Engineer bei BSES Rajdhani Power Limited tätig, wo ich fortgeschrittene Algorithmen und Verfahren für komplexe Prognoseprobleme einsetze.",
+        "Ich nutze datengetriebene Erkenntnisse und baue KI-Systeme, die Bestand haben — mit messbarem Mehrwert für die Energiewirtschaft. Erfahren darin, Forschung und Engineering zu verbinden, damit Netzbetreiber und Unternehmen der erneuerbaren Energien schnell datenbasiert entscheiden können."
+      ]
+    },
+    "skills": {
+      "label": "Tech-Stack",
+      "heading": "Kenntnisse & Tools",
+      "sub": "Von Rohdaten bis zum deployten Modell — das komplette ML-Engineering-Toolkit.",
+      "groups": [
+        {
+          "title": "Machine Learning / KI",
+          "pills": [
+            "Python",
+            "OOP",
+            "DSA",
+            "SQL",
+            "Statistik",
+            "Datenvisualisierung",
+            "ML-Algorithmen"
+          ]
+        },
+        {
+          "title": "Deep Learning & LLMs"
+        },
+        {
+          "title": "Python-Pakete"
+        },
+        {
+          "title": "MLOps & Big Data"
+        }
+      ]
+    },
+    "experience": {
+      "label": "Werdegang",
+      "heading": "Berufserfahrung",
+      "sub": "Echte ML-Systeme für die Energiewirtschaft.",
+      "items": [
+        {
+          "date": "Apr. 2025 — heute",
+          "location": "Neu-Delhi, Indien",
+          "bullets": [
+            "Verantworte die End-to-End-Lastprognose für das Stromnetz von Delhi — Day-Ahead, Intraday und Week-Ahead — mit unter 3 % MAPE und löse damit einen manuellen Prozess bei 5–6 % ab; segmentbasierte Ensembles (LightGBM, CatBoost, XGBoost) für Werktage, Wochenenden und Feiertage, mit Echtzeit-SCADA-Korrektur, Optuna-Tuning und MLflow-Tracking.",
+            "Zwei produktive RAG-Systeme auf Basis von Llama 3.3 70B konzipiert (ChromaDB, FastAPI, Cross-Encoder-Reranking): einen Prognose-Assistenten für die Netzführung und eine unternehmensweite Wissensdatenbank über technische Dokumentation und Betriebsstandards.",
+            "Die zugehörige Dateninfrastruktur aufgebaut — ein FastAPI-Microservice zur Wetterdatenerfassung über 14 geografische Zentroide, der die Prognosepipeline speist."
+          ],
+          "tags": [
+            "LangChain",
+            "Lastprognose",
+            "LLMs",
+            "Python"
+          ]
+        },
+        {
+          "date": "Juni 2022 — Apr. 2025",
+          "location": "Gurugram, Indien",
+          "bullets": [
+            "Lastprognosesysteme für drei Verteilnetzbetreiber in Delhi (BRPL, BYPL, TPDDL) von Grund auf aufgebaut — segmentbasierte Ensembles (neuronale Netze, LightGBM, CatBoost, XGBoost) für Day-Ahead- und Intraday-Horizonte.",
+            "Solar- und Windprognosen für 166 Anlagen für REMC Telangana entwickelt; Week-Ahead-Vorhersagen auf AWS SageMaker deployt, mit automatisierter CI/CD und Modellversionierung.",
+            "Strompreisprognosemodelle für die Strombörse IEX mit 7,5 % MAPE auf Basis von LightGBM und Marktmikrostrukturdaten gebaut."
+          ],
+          "tags": [
+            "LightGBM",
+            "Neuronale Netze",
+            "Apache Spark",
+            "Kafka",
+            "AWS SageMaker",
+            "CatBoost"
+          ]
+        },
+        {
+          "role": "Ingenieur",
+          "date": "Aug. 2019 — Sep. 2020",
+          "location": "Noida, Indien",
+          "bullets": [
+            "Tragwerksfundamente für Anlagen in Ölraffinerien mit AutoCAD, StaadPro und RISA Base geplant."
+          ]
+        },
+        {
+          "role": "B.Tech Bauingenieurwesen",
+          "date": "2015 — 2019",
+          "location": "Aligarh, Indien",
+          "bullets": [
+            "Abschluss mit einem CGPA von 9,0."
+          ],
+          "tags": [
+            "CGPA 9,0"
+          ]
+        }
+      ]
+    },
+    "projects": {
+      "label": "Projekte",
+      "heading": "Meine Arbeit",
+      "sub": "End-to-End-ML-Projekte — alle als Live-Apps deployt.",
+      "items": [
+        {
+          "desc": "Ein Empfehlungssystem, das Filme auf Basis einer Suche vorschlägt."
+        },
+        {
+          "desc": "Vorhersage der Siegwahrscheinlichkeit des verfolgenden Teams zu jedem Zeitpunkt eines IPL-Spiels."
+        },
+        {
+          "desc": "Analyse der Sommerolympiaden von 1896 bis 2016."
+        },
+        {
+          "desc": "Ein Klassifikator, der jede SMS als Spam oder kein Spam einstuft."
+        },
+        {
+          "desc": "Analyse von Gruppen- und Einzelchats aus WhatsApp."
+        }
+      ]
+    },
+    "cta": {
+      "badge": "Offen für neue Möglichkeiten",
+      "title1": "Gemeinsam etwas bauen,",
+      "title2": "das in Produktion geht",
+      "sub": "Festanstellung · Projektarbeit · Beratung · Forschungskooperationen in ML, KI und Data Science."
+    },
+    "contact": {
+      "label": "Kontakt",
+      "heading": "Kontakt aufnehmen",
+      "sub": "Sie haben eine Stelle oder ein Projekt im Kopf? Schreiben Sie mir — ich antworte innerhalb von 24 Stunden.",
+      "intro": "Offen für Festanstellungen im Bereich ML/KI, Projektarbeit, Beratung und Forschungskooperationen.",
+      "location": "Neu-Delhi · offen für Remote"
+    },
+    "footer": {
+      "copyright": "© 2025 Aman Bhatt · ML Engineer & Data Scientist"
+    },
+    "resume": {
+      "title": "Data Scientist & Machine Learning Engineer",
+      "contact": {
+        "location": "Neu-Delhi, Indien"
+      },
+      "summary": "Data Scientist und ML Engineer mit über 4 Jahren Erfahrung im Aufbau produktiver Prognosesysteme für die Energiewirtschaft. Schwerpunkte: Last- und Erzeugungsprognosen für erneuerbare Energien mit unter 3 % MAPE, Echtzeit-ML-Pipelines (Spark, Kafka, AWS) sowie LLM-/RAG-Assistenten — operative Daten werden zu verlässlichen, deployten Entscheidungen.",
+      "experience": [
+        {
+          "date": "Apr. 2025 — heute",
+          "location": "Neu-Delhi, Indien",
+          "bullets": [
+            "Verantworte die End-to-End-Lastprognose für das Stromnetz von Delhi — Day-Ahead, Intraday und Week-Ahead — mit unter 3 % MAPE und löse damit einen manuellen Prozess bei 5–6 % ab; segmentbasierte Ensembles (LightGBM, CatBoost, XGBoost) für Werktage, Wochenenden und Feiertage, mit Echtzeit-SCADA-Korrektur, Optuna-Tuning und MLflow-Tracking.",
+            "Zwei produktive RAG-Systeme auf Basis von Llama 3.3 70B konzipiert (ChromaDB, FastAPI, Cross-Encoder-Reranking): einen Prognose-Assistenten für die Netzführung und eine unternehmensweite Wissensdatenbank über technische Dokumentation und Betriebsstandards.",
+            "Die zugehörige Dateninfrastruktur aufgebaut — ein FastAPI-Microservice zur Wetterdatenerfassung über 14 geografische Zentroide, der die Prognosepipeline speist."
+          ]
+        },
+        {
+          "date": "Juni 2022 — Apr. 2025",
+          "location": "Gurugram, Indien",
+          "bullets": [
+            "Lastprognosesysteme für drei Verteilnetzbetreiber in Delhi (BRPL, BYPL, TPDDL) von Grund auf aufgebaut — segmentbasierte Ensembles (neuronale Netze, LightGBM, CatBoost, XGBoost) für Day-Ahead- und Intraday-Horizonte.",
+            "Solar- und Windprognosen für 166 Anlagen für REMC Telangana entwickelt; Week-Ahead-Vorhersagen auf AWS SageMaker deployt, mit automatisierter CI/CD und Modellversionierung.",
+            "Strompreisprognosemodelle für die Strombörse IEX mit 7,5 % MAPE auf Basis von LightGBM und Marktmikrostrukturdaten gebaut."
+          ]
+        },
+        {
+          "role": "Ingenieur",
+          "date": "Aug. 2019 — Sep. 2020",
+          "location": "Noida, Indien",
+          "bullets": [
+            "Tragwerksfundamente für Anlagen in Ölraffinerien mit AutoCAD, StaadPro und RISA Base geplant."
+          ]
+        }
+      ],
+      "education": [
+        {
+          "degree": "B.Tech Bauingenieurwesen",
+          "date": "2015 — 2019",
+          "detail": "Abschluss mit einem CGPA von 9,0."
+        }
+      ],
+      "skills": [
+        {
+          "category": "Machine Learning / KI",
+          "items": [
+            "Python",
+            "OOP",
+            "DSA",
+            "SQL",
+            "Statistik",
+            "Datenvisualisierung",
+            "ML-Algorithmen"
+          ]
+        },
+        {
+          "category": "Deep Learning & LLMs"
+        },
+        {
+          "category": "Python-Pakete"
+        },
+        {
+          "category": "MLOps & Big Data"
+        }
+      ],
+      "labels": {
+        "document": "Lebenslauf",
+        "summary": "Profil",
+        "experience": "Berufserfahrung",
+        "education": "Ausbildung",
+        "skills": "Kenntnisse"
+      }
+    }
   }
 }
