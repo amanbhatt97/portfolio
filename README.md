@@ -64,6 +64,15 @@ sent only to `api.github.com`.
 - Accessible: skip link, focus styles, `prefers-reduced-motion` support, semantic markup
 - No build step, no framework — deploys as plain static files
 
+## Cache busting
+
+`index.html` and its CSS/JS are cached separately by GitHub Pages, so a stale
+script can pair with fresh markup — new buttons render but nothing is wired.
+The asset URLs therefore carry a version tag (`site.js?v=3`). **Bump it in
+`index.html` and `admin.html` whenever you change `site.js`, `site.css`,
+`admin.js` or `admin.css`.** `content.json` needs no bump — it is fetched with
+a timestamp already.
+
 ## German version
 
 Site text lives in `content.json` under `de` — an overlay merged over the English

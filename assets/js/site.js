@@ -70,6 +70,8 @@ const UI = {
     'aria.lang': 'Language',
     'row.email': 'email', 'row.phone': 'phone', 'row.linkedin': 'linkedin',
     'row.github': 'github', 'row.location': 'location',
+    'cv.title': 'Resume', 'cv.download': 'Download PDF',
+    'cv.newTab': 'Open in new tab', 'cv.close': 'Close viewer',
   },
   de: {
     'skip': 'Zum Inhalt springen',
@@ -96,6 +98,8 @@ const UI = {
     'aria.lang': 'Sprache',
     'row.email': 'E-Mail', 'row.phone': 'Telefon', 'row.linkedin': 'LinkedIn',
     'row.github': 'GitHub', 'row.location': 'Standort',
+    'cv.title': 'Lebenslauf', 'cv.download': 'PDF herunterladen',
+    'cv.newTab': 'In neuem Tab öffnen', 'cv.close': 'Ansicht schließen',
   },
 };
 const LANG = (() => {
@@ -108,6 +112,68 @@ const LANG = (() => {
   return 'en';
 })();
 const tr = k => UI[LANG]?.[k] ?? UI.en[k] ?? '';
+
+/* Switching language reloads the page, so the section you were reading has
+   to be carried across by hand. The URL hash can't do it: the nav rewrites
+   it with history.replaceState, so it points at whatever you last clicked
+   rather than where you are — often Contact, i.e. the bottom of the page.
+   Instead the switch records the section in view and we scroll back to it
+   after hydration, with the browser's own restoration turned off for that
+   one load (it fires too early, while the page is still the wrong height). */
+const LANG_JUMP_KEY = 'pf_lang_jump';
+const LANG_JUMP = (() => {
+  try {
+    const v = sessionStorage.getItem(LANG_JUMP_KEY);
+    if (v !== null) { sessionStorage.removeItem(LANG_JUMP_KEY); return JSON.parse(v); }
+  } catch (_) {}
+  return null;
+})();
+if (LANG_JUMP && 'scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+const navOffset = () => (parseInt(getComputedStyle(root).getPropertyValue('--nav-h')) || 64) + 16;
+/* The last section whose top has passed under the nav — what you're reading. */
+const sectionInView = () => {
+  const limit = navOffset();
+  let id = '';
+  $$('section[id]').forEach(sec => { if (sec.getBoundingClientRect().top <= limit) id = sec.id; });
+  return id;
+};
+let lenis = null;   // set by mountChrome; used to restore scroll without fighting it
+/* Where you are, as a section plus how far you have read into it. Absolute
+   offsets are useless across a language change: German runs longer, so every
+   section sits somewhere else. */
+const scrollMark = () => {
+  const id = sectionInView();
+  const el = id && document.getElementById(id);
+  return { id, d: el ? Math.round(navOffset() - el.getBoundingClientRect().top) : 0 };
+};
+function restoreLangScroll() {
+  if (!LANG_JUMP) return;
+  const el = LANG_JUMP.id && document.getElementById(LANG_JUMP.id);
+  if (!el) return;
+
+  const apply = () => {
+    /* Clamp into the section so a shorter translation can't spill into the next one. */
+    const d = Math.max(0, Math.min(LANG_JUMP.d || 0, Math.max(0, el.offsetHeight - navOffset())));
+    const max = Math.max(0, document.documentElement.scrollHeight - innerHeight);
+    if (!max) return false;                       // layout not settled yet — try again
+    const top = Math.max(0, Math.min(el.getBoundingClientRect().top + scrollY - navOffset() + d, max));
+    if (lenis) lenis.scrollTo(top, { immediate: true });
+    else scrollTo({ top, behavior: 'auto' });
+    return true;
+  };
+
+  /* Images and web fonts land after hydration and move everything below them,
+     so re-assert the position until the page stops growing. */
+  apply();
+  let tries = 0;
+  const settle = () => {
+    apply();
+    if (++tries < 3) requestAnimationFrame(settle);
+  };
+  requestAnimationFrame(settle);
+  if (document.readyState !== 'complete') addEventListener('load', () => apply(), { once: true });
+}
 
 /* Merge the "de" overlay over the English tree. Arrays merge by index and
    the English length wins, so a job added in English but not yet
@@ -160,10 +226,12 @@ function mountLangSwitch() {
     const next = b.dataset.lang;
     if (!LANGS.includes(next) || next === LANG) return;
     try { localStorage.setItem('lang', next); } catch (_) {}
+    try { sessionStorage.setItem(LANG_JUMP_KEY, JSON.stringify(scrollMark())); } catch (_) {}
     const q = new URLSearchParams(location.search);
     next === 'en' ? q.delete('lang') : q.set('lang', next);
     const s = q.toString();
-    location.href = `${location.pathname}${s ? `?${s}` : ''}${location.hash}`;
+    /* No hash: it would jump before hydration and it is stale anyway. */
+    location.href = `${location.pathname}${s ? `?${s}` : ''}`;
   }));
 }
 
@@ -433,6 +501,68 @@ function mountContent(c) {
   }
 }
 
+/* ── Résumé viewer ───────────────────────────────────────────────────
+   Every “Resume” / “Lebenslauf” button opens the PDF in a dialog rather
+   than throwing the visitor into a bare PDF tab, with download and
+   open-in-a-tab still one click away. Where an inline PDF can't be
+   trusted — phones, and any browser with its PDF viewer switched off —
+   the link is left alone to open normally instead of trapping the
+   visitor behind an empty frame. */
+function mountCvViewer() {
+  const modal = $('#cvModal');
+  if (!modal) return;
+  const frame = $('#cvFrame'), dl = $('#cvDownload'), newTab = $('#cvOpen'),
+        closeBtn = $('#cvClose'), dialog = $('.cv-dialog', modal);
+  let lastFocus = null;
+
+  const canEmbed = () => {
+    if (matchMedia('(max-width: 860px)').matches) return false;
+    if ('pdfViewerEnabled' in navigator) return navigator.pdfViewerEnabled;
+    return true;
+  };
+
+  const open = href => {
+    lastFocus = document.activeElement;
+    dl.href = href; newTab.href = href; frame.src = href;
+    modal.hidden = false;
+    root.classList.add('cv-open');
+    lenis?.stop?.();
+    closeBtn.focus();
+  };
+  const close = () => {
+    if (modal.hidden) return;
+    modal.hidden = true;
+    frame.removeAttribute('src');          // stop the PDF rendering in the background
+    root.classList.remove('cv-open');
+    lenis?.start?.();
+    lastFocus?.focus?.();
+  };
+
+  document.addEventListener('click', e => {
+    const link = e.target.closest('[data-resume]');
+    if (link) {
+      const href = link.getAttribute('href');
+      if (!href || !canEmbed()) return;     // let the browser open it normally
+      e.preventDefault();
+      open(href);
+      return;
+    }
+    if (e.target.closest('[data-cv-close]') || e.target.closest('#cvClose')) close();
+  });
+
+  addEventListener('keydown', e => {
+    if (modal.hidden) return;
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key !== 'Tab') return;
+    /* Keep tabbing inside the dialog while it is open. */
+    const f = $$('a[href], button, iframe', dialog).filter(el => !el.hasAttribute('disabled'));
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+}
+
 /* ── Starfield (constellation canvas behind everything) ────────────── */
 function mountStars() {
   const canvas = $('#stars');
@@ -523,11 +653,11 @@ function mountCursorGlow() {
 function mountChrome() {
   applyLang();
   mountLangSwitch();
+  mountCvViewer();
   /* Decorative only — must never take down the critical wiring below. */
   try { mountStars(); } catch (_) {}
   try { mountCursorGlow(); } catch (_) {}
   /* Lenis buttery scrolling (desktop, motion-ok only) */
-  let lenis = null;
   if (window.Lenis && finePointer && !reduceMotion) {
     lenis = new Lenis({ lerp: 0.105, wheelMultiplier: 1, smoothWheel: true });
     const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
@@ -688,6 +818,7 @@ const boot = async () => {
     if (r.ok) content = render(localize(await r.json()));
   } catch (_) { /* static fallback markup stays */ }
   mountContent(content);
+  restoreLangScroll();
 };
 document.readyState === 'loading'
   ? document.addEventListener('DOMContentLoaded', boot)

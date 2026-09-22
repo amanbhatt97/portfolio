@@ -710,6 +710,41 @@ footer{border-top:1px solid var(--line);padding:34px 0;position:relative;z-index
 #toTop:hover{transform:translateY(-2px);box-shadow:var(--glow-soft)}
 
 /* ── Responsive ─────────────────────────────────────────────────────── */
+/* ── Résumé viewer ──────────────────────────────────────────────────── */
+html.cv-open, html.cv-open body{overflow:hidden}
+.cv-modal{position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,44px)}
+.cv-modal[hidden]{display:none}
+.cv-backdrop{position:absolute;inset:0;background:rgba(5,6,11,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:cvFade .25s var(--ease)}
+[data-theme="light"] .cv-backdrop{background:rgba(18,21,42,.5)}
+.cv-dialog{
+  position:relative;z-index:1;display:flex;flex-direction:column;
+  width:min(1000px,100%);height:min(88vh,1100px);padding:0;overflow:hidden;
+  animation:cvIn .3s var(--ease);
+}
+.cv-head{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:14px 16px;border-bottom:1px solid var(--line);
+}
+.cv-title{font-family:var(--font-d);font-weight:700;font-size:16px;letter-spacing:-.01em}
+.cv-actions{display:flex;align-items:center;gap:8px}
+.btn-cv{padding:8px 14px;font-size:12.5px}
+.cv-x{
+  width:34px;height:34px;border-radius:99px;flex:none;
+  border:1px solid var(--line);background:var(--surf);color:var(--t2);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:color .2s var(--ease),border-color .2s var(--ease),transform .2s var(--ease);
+}
+.cv-x:hover{color:var(--acc-c);border-color:var(--line2);transform:rotate(90deg)}
+.cv-body{flex:1;min-height:0;background:var(--surf2)}
+.cv-body iframe{display:block;width:100%;height:100%;border:0}
+@keyframes cvFade{from{opacity:0}to{opacity:1}}
+@keyframes cvIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.cv-backdrop,.cv-dialog{animation:none}}
+@media(max-width:600px){
+  .cv-head{padding:12px}
+  .cv-actions{width:100%;justify-content:space-between}
+}
+
 @media(max-width:1024px){
   .hero{min-height:auto}
   .hero-grid{grid-template-columns:1fr;max-width:660px}
