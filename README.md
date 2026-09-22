@@ -17,7 +17,10 @@ assets/
   css/admin.css       Console styles
   js/site.js          Hydration from content.json + interactions
   js/admin.js         Console: GitHub API auth, editor, publishing
-Aman_Bhatt_Resume.pdf The resume served by every “Resume” button
+Aman_Bhatt_Resume.pdf The résumé served by every “Resume” button (English)
+Aman_Bhatt_Lebenslauf_DE.pdf  The German résumé, served at ?lang=de
+tools/
+  build-resume-de.mjs Regenerates the German PDF from content.json
 images/               Photos, project covers, tech logos
 ```
 
@@ -37,8 +40,11 @@ Open **`/admin.html`** (linked as “Developer” in the site footer).
 - **Edit** — every section (hero, about, skills, experience, projects, hire banner,
   contact, footer/SEO) with add / remove / reorder for lists. Changes autosave as a
   local draft until you publish.
-- **Resume** — drag-and-drop a PDF to replace `Aman_Bhatt_Resume.pdf`; all resume
-  buttons keep working since the path never changes.
+- **Deutsch (German)** — the German version of every section. Anything left blank
+  falls back to the English text, so the site never shows an empty field.
+- **Resume** — drag-and-drop a PDF to replace `Aman_Bhatt_Resume.pdf` or
+  `Aman_Bhatt_Lebenslauf_DE.pdf`; all résumé buttons keep working since the paths
+  never change.
 - **Publish** — commits to the branch GitHub Pages deploys from (`main` by default).
 
 Security model: the console is a static page — there is no server and no shared
@@ -51,9 +57,27 @@ sent only to `api.github.com`.
   and staggered entrance animations, cursor spotlight cards, logo marquee, light/dark
   theme, auto-hiding glass nav
 - Fully content-managed via `content.json` + developer console
+- **Bilingual (EN / DE)** — an EN/DE switch in the nav; each language is a real URL
+  (`/` and `/?lang=de`) with its own `hreflang`, canonical and résumé PDF, so the
+  German version can be linked, shared and crawled rather than only toggled
 - SEO: Open Graph / Twitter cards, canonical URL, JSON-LD person schema
 - Accessible: skip link, focus styles, `prefers-reduced-motion` support, semantic markup
 - No build step, no framework — deploys as plain static files
+
+## German version
+
+Site text lives in `content.json` under `de` — an overlay merged over the English
+tree, so only what differs needs translating. Interface strings (nav, buttons, form
+labels) live in the `UI` dictionary at the top of `assets/js/site.js`.
+
+The German résumé is generated from the same `content.json`:
+
+```bash
+node tools/build-resume-de.mjs        # writes Aman_Bhatt_Lebenslauf_DE.pdf
+node tools/build-resume-de.mjs --html # HTML only, to tweak the layout first
+```
+
+Or skip it entirely and upload your own PDF in the console's **Resume** section.
 
 ## Tech stack
 

@@ -187,6 +187,24 @@ body{
 }
 .t-btn:hover{color:var(--acc-c);border-color:var(--line2);transform:rotate(12deg);box-shadow:0 0 14px -4px var(--glow-line)}
 .t-btn:active{transform:scale(.92)}
+/* Language switch (EN / DE) */
+.lang-switch{
+  display:flex;align-items:center;gap:2px;
+  padding:3px 3px 3px 9px;border-radius:99px;
+  border:1px solid var(--line);background:var(--surf);
+}
+.lang-switch .lang-ic{font-size:13px;color:var(--t3,var(--t2));margin-right:3px;flex:none}
+.lang-switch button{
+  padding:5px 9px;border-radius:99px;background:none;border:0;
+  font-family:inherit;font-size:11.5px;font-weight:700;letter-spacing:.04em;
+  color:var(--t2);cursor:pointer;
+  transition:color .2s var(--ease),background .2s var(--ease);
+}
+.lang-switch button:hover{color:var(--t1)}
+.lang-switch button.on{
+  color:var(--btn-fg);background:var(--btn-grd);
+  box-shadow:0 0 14px -6px var(--glow-line);
+}
 .nav-cta{
   padding:9px 19px;border-radius:99px;background:var(--btn-grd);color:var(--btn-fg);
   font-size:13.5px;font-weight:700;
@@ -220,6 +238,15 @@ body{
   background:var(--btn-grd);color:var(--btn-fg);font-weight:700;font-size:14.5px;
   display:flex;align-items:center;justify-content:center;gap:8px;
 }
+.mob-lang{display:flex;gap:8px;margin-top:12px}
+.mob-lang button{
+  flex:1;padding:12px;border-radius:12px;
+  border:1px solid var(--line);background:var(--surf);
+  font-family:inherit;font-size:14px;font-weight:700;letter-spacing:.04em;
+  color:var(--t2);cursor:pointer;
+  transition:color .2s var(--ease),background .2s var(--ease),border-color .2s var(--ease);
+}
+.mob-lang button.on{color:var(--btn-fg);background:var(--btn-grd);border-color:transparent}
 
 /* ── Layout & typography ────────────────────────────────────────────── */
 main{position:relative;z-index:10;counter-reset:sect}
@@ -694,7 +721,7 @@ footer{border-top:1px solid var(--line);padding:34px 0;position:relative;z-index
   .proj-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
-  .nav-links,.nav-cta{display:none}
+  .nav-links,.nav-cta,.lang-switch{display:none}
   .hbg{display:flex}
   .sk-grid{grid-template-columns:1fr}
   .frow{grid-template-columns:1fr}
